@@ -14,7 +14,7 @@ exports.create = async (req, res) => {
   }
   );
   res.send({
-    message: "Usuario creado con exito",
+    message: "Usuario creado con éxito",
     data: userDB,
   });
 };
@@ -34,8 +34,15 @@ exports.get = async (req, res) => {
 
 exports.delete = async (req, res) => {
     const {params: {id}} = req;
-    const data = await User.findOneAndDelete({_id: id}).catch((err) => console.log("UPS!", err));
-    res.send(data);
+    let msg = "";
+    const data = await User.findOneAndDelete({_id: id}).catch((err) => {
+      msg = err;
+      res.send({message: "No se pudo eliminar al usuario",
+                error: err});
+    });
+    msg = "Usuario eliminado";
+    res.send({message: msg,
+      data: data});
   };
 
 exports.update = async (req, res) => {
@@ -44,13 +51,16 @@ exports.update = async (req, res) => {
     try{
         const userDB = await User.findOne({_id: id}).catch((err) => console.log("UPS!", err));
         let data = null;
+        let msg = "";
         if (userDB){
-            data = await User.updateOne({_id: id}, user);
+          data = await User.findOneAndUpdate({_id: id}, user);
+          msg = "Usuario actualizado";
         }else{
-            data = {message: "No se encontró al usuario"}
+          msg = "No se encontró al usuario";
+          data = {user_id: id};
         }
-        res.send({data: userDB,
-        message: data});
+        res.send({message: msg,
+                  data: data});
     }
     catch(err){
         console.log(err);
