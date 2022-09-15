@@ -26,16 +26,9 @@ const UserSchema = mongoose.Schema({
     last_name: {
         type: String,
         required: true,
-    },
-    profile_picture: {
-        type: String,
-        required: true
-    },
-    date_created: {
-        type: Date,
-        required: true
-    },
-});
+    }
+},
+{timestamps: true});
 
 const User = mongoose.model("user", UserSchema);
 

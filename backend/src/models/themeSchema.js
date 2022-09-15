@@ -16,7 +16,8 @@ const ThemeSchema = mongoose.Schema({
     text_colors: [{
         type: String
     }],
-});
+},
+{timestamps: true});
 
 const Theme = mongoose.model("theme", ThemeSchema);
 
