@@ -8,16 +8,16 @@ const PostSchema = mongoose.Schema({
     },    
     text: {
         type: String,
+        maxLength: 500,
         required: true
     },
     color_index: {
         type: Number,
         required: true
     },
-    keyword_id: [{
-        type: String,
-        //type: mongoose.Schema.Types.ObjectId,
-        //ref: "keyword",
+    keyword_id: [{        
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "keyword",
         required: false
     }],
     liked_by_id: [{
