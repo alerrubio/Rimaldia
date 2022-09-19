@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const UserRoleSchema = mongoose.Schema({
+const UserRolesSchema = mongoose.Schema({
     name: {
         type: String,
         unique: true,
@@ -9,6 +9,6 @@ const UserRoleSchema = mongoose.Schema({
 },
 {timestamps: true});
 
-const UserRole = mongoose.model("userRole", UserRoleSchema);
+const UserRole = mongoose.model("userRoles", UserRolesSchema);
 
 module.exports = UserRole;

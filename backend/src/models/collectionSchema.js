@@ -14,6 +14,6 @@ const CollectionSchema = mongoose.Schema({
 },
 {timestamps: true});
 
-const Collection = mongoose.model("userRole", CollectionSchema);
+const Collection = mongoose.model("collection", CollectionSchema);
 
 module.exports = Collection;
