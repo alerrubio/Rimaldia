@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const RecordSchema = mongoose.Schema({
     start_date: {
         type: Date,
-        required: true
+        required: true,
     },
     end_date: {
         type: Date, 
@@ -17,9 +17,9 @@ const RecordSchema = mongoose.Schema({
         },
         required: true
     },
-    most_used_keywords_id: [{
+    most_used_tags_id: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "keyword",
+        ref: "tag",
         required: true
     }],
     most_liked_posts_id: [{

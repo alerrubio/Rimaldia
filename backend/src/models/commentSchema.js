@@ -11,9 +11,8 @@ const CommentSchema = mongoose.Schema({
         required: true
     },
     post_id: {
-        type: String,
-        //type: mongoose.Schema.Types.ObjectId,
-        //ref: "post",
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "post",
         required: true
     }
 },

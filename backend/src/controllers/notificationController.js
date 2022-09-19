@@ -44,3 +44,25 @@ exports.delete = async (req, res) => {
     res.send({message: msg,
       data: data});
   };
+
+  exports.update = async (req, res) => {
+    const {params: {id}} = req;
+    const {body: notification} = req;
+    try{
+        const notificationDB = await Notification.findOne({_id: id}).catch((err) => console.log("UPS!", err));
+        let data = null;
+        let msg = "";
+        if (notificationDB){
+          data = await Notification.findOneAndUpdate({_id: id}, notification);
+          msg = "Notificación actualizada.";
+        }else{
+          msg = "No se encontró la notificación.";
+          data = {notification_id: id};
+        }
+        res.send({message: msg,
+                  data: data});
+    }
+    catch(err){
+        console.log(err);
+    }
+  };

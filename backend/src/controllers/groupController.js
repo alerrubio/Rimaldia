@@ -2,7 +2,7 @@ const Group = require("../models/groupSchema");
 
 exports.create = async (req, res) => {
   const { body: group } = req;
-  console.log(theme);
+
   const groupDB = new Group(group);
   await groupDB.save().catch((err) => {
     console.log("UPS!", err)
@@ -13,7 +13,7 @@ exports.create = async (req, res) => {
   }
   );
   res.send({
-    message: "grupo creado con éxito",
+    message: "Grupo creado con éxito",
     data: groupDB,
   });
 };

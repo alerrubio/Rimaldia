@@ -15,9 +15,10 @@ const UserSchema = mongoose.Schema({
         required: true,
         minlenght: 8
     },
-    role: {
-        type: Number,
-        required: true,
+    role: {        
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "userRole",
+        required: false
     },
     name: {
         type: String,
