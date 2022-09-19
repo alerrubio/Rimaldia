@@ -8,7 +8,7 @@ const CollectionSchema = mongoose.Schema({
     },
     publications: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "publication",
+        ref: "post",
         required: [true, 'publicación existente necesaria']
     }]
 },
