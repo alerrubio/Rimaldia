@@ -2,47 +2,74 @@ const Notification = require("../models/notificationSchema");
 
 exports.get = async (req, res) => {
     const {params: {id}} = req;
-    const data = await Notification.findOne({_id: id}).catch((err) => console.log("UPS!", err));
-    console.log(data);
-    if (data){
-      res.send(data);
-    }else{
+    try{
+      const data = await Notification.findOne({_id: id});
+      console.log(data);
+      if (data){
+        res.send(data);
+      }else{
+        res.send({
+            message: "No se encontró la notificación",
+            notification_id: id,
+          });
+      }
+    }catch(error){
+      console.log(error);
       res.send({
-          message: "No se encontró la notificación",
-          notification_id: id,
-        });
+        message: "Algo salió mal",
+        error_data: error,
+        notification_id: id,
+      });
     }
   };
   
 exports.create = async (req, res) => {
   const { body: notification } = req;
   console.log(notification);
-  const notiDB = new Notification(notification);
-  await notiDB.save().catch((err) => {
-    console.log("UPS!", err)
+  try{
+    const notiDB = new Notification(notification);
+    await notiDB.save().catch((err) => {
+      console.log("Un error ha ocurrido", err)
+      res.send({
+          message: "Un error ha ocurrido",
+          error_data: err,
+          notification_data: notification
+        });
+    }
+    );
     res.send({
-        message: err,
-        data: notiDB,
-      });
+      message: "Notificación creada con éxito",
+      data: notiDB,
+    });
   }
-  );
-  res.send({
-    message: "Notificación creada con éxito",
-    data: notiDB,
-  });
+  catch(error){
+    console.log(error);
+  }
+  
 };
 
 exports.delete = async (req, res) => {
     const {params: {id}} = req;
-    let msg = "";
-    const data = await Notification.findOneAndDelete({_id: id}).catch((err) => {
-      msg = err;
+    try{
+      let msg = "";
+      let data = null;
+      const notifDB = await Notification.findOneAndDelete({_id: id});
+      if (notifDB){
+        msg = "Notificación eliminada";
+        data = notifDB;
+      }else{
+        msg = "No se encontró la notificación";
+        data = {notification_id: id};
+      }
+      res.send({message: msg,
+        data: data});
+    }
+    catch(error){
+      console.log(error);
       res.send({message: "No se pudo eliminar la notificación",
-                error: err});
-    });
-    msg = "Notificación eliminada";
-    res.send({message: msg,
-      data: data});
+        error: error,
+        notification_id: id});
+    }
   };
 
   exports.update = async (req, res) => {
@@ -64,5 +91,8 @@ exports.delete = async (req, res) => {
     }
     catch(err){
         console.log(err);
+        res.send({message: "No se pudo actualizar la notificación",
+        error_data: err,  
+        notification_data: notification});
     }
   };

@@ -3,15 +3,24 @@ const Collection = require("../models/collectionSchema");
 //[GET]
 exports.get = async (req, res) => {
     const {params: {id}} = req;
-    const data = await Collection.findOne({_id: id}).catch((err) => console.log("Un error ha ocurrido", err));
-    console.log(data);
-    if (data){
-      res.send(data);
-    }else{
+    try {
+      const data = await Collection.findOne({_id: id});
+      console.log(data);
+      if (data){
+        res.send(data);
+      }else{
+        res.send({
+            message: "No se encontró la colección",
+            collection_id: id,
+          });
+      }
+    } catch (error) {
+      console.log(error);
       res.send({
-          message: "No se encontró la colección",
-          collection_id: id,
-        });
+        message: "Algo salió mal",
+        error_data: error,
+        collection_id: id,
+      });
     }
   };
 
@@ -19,19 +28,28 @@ exports.get = async (req, res) => {
 exports.create = async (req, res) => {
   const { body: collection } = req;
   console.log(collection);
-  const collectionDB = new Collection(collection);
-  await collectionDB.save().catch((err) => {
-    console.log("Un error ha ocurrido", err)
+  try {
+    const collectionDB = new Collection(collection);
+    await collectionDB.save().catch((err) => {
+      console.log("Un error ha ocurrido", err)
+      res.send({
+          message: "Un error ha ocurrido",
+          error_data: err,
+          collection_data: collectionDB
+        });
+    }
+    );
     res.send({
-        message: err,
-        data: collectionDB,
-      });
+      message: "Colección creada con éxito",
+      data: collectionDB
+    });
+  } catch (error) {
+    console.log(error);
+    res.send({
+      message: "Un error ha ocurrido",
+      collection_data: collection
+    });
   }
-  );
-  res.send({
-    message: "Colección creada con éxito",
-    data: collectionDB,
-  });
 };
 
 //[UPDATE]
@@ -39,7 +57,7 @@ exports.update = async (req, res) => {
     const {params: {id}} = req;
     const {body: collection} = req;
     try{
-        const collectionDB = await Collection.findOne({_id: id}).catch((err) => console.log("UPS!", err));
+        const collectionDB = await Collection.findOne({_id: id});
         let data = null;
         let msg = "";
         if (collectionDB){
@@ -54,19 +72,34 @@ exports.update = async (req, res) => {
     }
     catch(err){
         console.log(err);
+        res.send({message: "No se pudo actualizar la colección",
+        error_data: err,  
+        data: collection});
     }
   };
 
 //[DELETE]
 exports.delete = async (req, res) => {
     const {params: {id}} = req;
-    let msg = "";
-    const data = await Collection.findOneAndDelete({_id: id}).catch((err) => {
-      msg = err;
-      res.send({message: "No se pudo eliminar la colección",
-                error: err});
-    });
-    msg = "Colección eliminada";
-    res.send({message: msg,
-      data: data});
+    try {
+        let msg = "";
+        let data = null;
+        const collectionDB = await Collection.findOneAndDelete({_id: id});
+        if (collectionDB){
+          msg = "Colección eliminada";
+          data = collectionDB;
+        }else{
+          msg = "No se encontró la colección";
+          data = {collection_id: id};
+        }
+        
+        res.send({message: msg,
+          data: data});
+    
+      } catch (error) {
+        console.log(error);
+        res.send({message: "No se pudo eliminar la colección",
+        error_data: error,  
+        collection_id: id});
+      }
   };
