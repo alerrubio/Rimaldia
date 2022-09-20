@@ -75,7 +75,12 @@ exports.delete = async (req, res) => {
           res.send({message: "No se pudo eliminar el tag",
                     error: err});
         });
-        msg = "Tag eliminado";
+        if (data){
+          msg = "Tag eliminado";
+        }
+        else{
+          msg = "No se encontró el tag";
+        }
         res.send({message: msg,
           data: data});
           

@@ -3,19 +3,20 @@ const Theme = require("../models/themeSchema");
 exports.create = async (req, res) => {
   const { body: theme } = req;
   console.log(theme);
-  const themeDB = new Theme(theme);
-  await themeDB.save().catch((err) => {
-    console.log("UPS!", err)
+  try{
+    const themeDB = new Theme(theme);
+    await themeDB.save();
     res.send({
-        message: err,
-        data: themeDB,
-      });
+      message: "Tema creado con éxito",
+      data: themeDB,
+    });
+  }catch(err){
+    console.log(err);
+    res.send({
+      message: "No se pudo crear el tema",
+      theme_data: theme,
+    });
   }
-  );
-  res.send({
-    message: "Tema creado con éxito",
-    data: themeDB,
-  });
 };
 
 exports.get = async (req, res) => {
@@ -34,14 +35,24 @@ exports.get = async (req, res) => {
 exports.delete = async (req, res) => {
     const {params: {id}} = req;
     let msg = "";
-    const data = await Theme.findOneAndDelete({_id: id}).catch((err) => {
-      msg = err;
+    let data = null;
+    try{
+      const themeDB = await Theme.findOneAndDelete({_id: id});
+      if (themeDB){
+        msg = "Tema eliminado";
+        data = themeDB;
+      }else{
+        msg = "No se encontró el tema";
+        data = {theme_id: id};
+      }
+      res.send({message: msg,
+        theme: data});
+    }
+    catch(err){
+      console.log(err);
       res.send({message: "No se pudo eliminar el tema",
-                error: err});
-    });
-    msg = "Tema eliminado";
-    res.send({message: msg,
-      data: data});
+        theme_id: id});
+    }
   };
 
 exports.update = async (req, res) => {

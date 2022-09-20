@@ -4,7 +4,7 @@ const Collection = require("../models/collectionSchema");
 exports.get = async (req, res) => {
     const {params: {id}} = req;
     try {
-      const data = await Collection.findOne({_id: id}).catch((err) => console.log("Un error ha ocurrido", err));
+      const data = await Collection.findOne({_id: id});
       console.log(data);
       if (data){
         res.send(data);
@@ -16,6 +16,11 @@ exports.get = async (req, res) => {
       }
     } catch (error) {
       console.log(error);
+      res.send({
+        message: "Algo salió mal",
+        error_data: error,
+        collection_id: id,
+      });
     }
   };
 
@@ -28,17 +33,22 @@ exports.create = async (req, res) => {
     await collectionDB.save().catch((err) => {
       console.log("Un error ha ocurrido", err)
       res.send({
-          message: err,
-          data: collectionDB,
+          message: "Un error ha ocurrido",
+          error_data: err,
+          collection_data: collectionDB
         });
     }
     );
     res.send({
       message: "Colección creada con éxito",
-      data: collectionDB,
+      data: collectionDB
     });
   } catch (error) {
     console.log(error);
+    res.send({
+      message: "Un error ha ocurrido",
+      collection_data: collection
+    });
   }
 };
 
@@ -47,7 +57,7 @@ exports.update = async (req, res) => {
     const {params: {id}} = req;
     const {body: collection} = req;
     try{
-        const collectionDB = await Collection.findOne({_id: id}).catch((err) => console.log("UPS!", err));
+        const collectionDB = await Collection.findOne({_id: id});
         let data = null;
         let msg = "";
         if (collectionDB){
@@ -62,6 +72,9 @@ exports.update = async (req, res) => {
     }
     catch(err){
         console.log(err);
+        res.send({message: "No se pudo actualizar la colección",
+        error_data: err,  
+        data: collection});
     }
   };
 
@@ -70,16 +83,23 @@ exports.delete = async (req, res) => {
     const {params: {id}} = req;
     try {
         let msg = "";
-        const data = await Collection.findOneAndDelete({_id: id}).catch((err) => {
-          msg = err;
-          res.send({message: "No se pudo eliminar la colección",
-                    error: err});
-        });
-        msg = "Colección eliminada";
+        let data = null;
+        const collectionDB = await Collection.findOneAndDelete({_id: id});
+        if (collectionDB){
+          msg = "Colección eliminada";
+          data = collectionDB;
+        }else{
+          msg = "No se encontró la colección";
+          data = {collection_id: id};
+        }
+        
         res.send({message: msg,
           data: data});
     
       } catch (error) {
         console.log(error);
+        res.send({message: "No se pudo eliminar la colección",
+        error_data: error,  
+        collection_id: id});
       }
   };

@@ -3,7 +3,7 @@ const Comment = require("../models/commentSchema");
 exports.get = async (req, res) => {
     const {params: {id}} = req;
     try{
-      const data = await Comment.findOne({_id: id}).catch((err) => console.log("UPS!", err));
+      const data = await Comment.findOne({_id: id});
       console.log(data);
       if (data){
         res.send(data);
@@ -16,6 +16,11 @@ exports.get = async (req, res) => {
     }
     catch(error){
       console.log(error);
+      res.send({
+        message: "Algo salió mal",
+        error_data: error,
+        comment_id: id,
+      });
     }
   };
   
@@ -25,10 +30,11 @@ exports.create = async (req, res) => {
   try{
     const commentDB = new Comment(comment);
     await commentDB.save().catch((err) => {
-      console.log("UPS!", err)
+      console.log("Un error ha ocurrido", err)
       res.send({
-          message: err,
-          data: commentDB,
+          message: "Un error ha ocurrido",
+          error_data: err,
+          comment_data: commentDB
         });
     }
     );
@@ -46,16 +52,25 @@ exports.delete = async (req, res) => {
     const {params: {id}} = req;
     try{
       let msg = "";
-      const data = await Comment.findOneAndDelete({_id: id}).catch((err) => {
-        msg = err;
-        res.send({message: "No se pudo eliminar el comentario",
-                  error: err});
-      });
-      msg = "Comentario eliminado";
+      let data = null;
+      const commentDB = await Comment.findOneAndDelete({_id: id});
+      if (commentDB){
+        msg = "Comentario eliminado";
+        data = commentDB;
+      }
+      else{
+        msg = "No se encontró el comentario";
+        data = {commment_id: id};
+      }
       res.send({message: msg,
-        data: data});
+        comment: data});
     }catch(error){
       console.log(error);
+      res.send({
+        message: "No se pudo borrar el comentario",
+        error_data: error,
+        comment_id: id,
+      });
     }
     
   };
@@ -64,7 +79,7 @@ exports.update = async (req, res) => {
     const {params: {id}} = req;
     const {body: comment} = req;
     try{
-        const commentDB = await Comment.findOne({_id: id}).catch((err) => console.log("UPS!", err));
+        const commentDB = await Comment.findOne({_id: id});
         let data = null;
         let msg = "";
         if (commentDB){
@@ -79,5 +94,8 @@ exports.update = async (req, res) => {
     }
     catch(err){
         console.log(err);
+        res.send({message: "No se pudo actualizar el comentario",
+          error_data: err,
+          data: comment});
     }
   };
