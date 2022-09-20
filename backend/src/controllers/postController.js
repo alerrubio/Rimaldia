@@ -129,7 +129,9 @@ exports.get_most_active_users = async (req, res) => {
     } = req;
 
     let data = await Post.aggregate([ //aggregate te permite hacer queries más elaborados.
-      {$group: {_id: "$user_id", count: {$sum: 1}}}, //agrupa por user_id
+      {$group: {_id: "$user_id", count: {$sum: 1}}}, //agrupa por user_id y 
+      //suma la cantidad de veces que aparece el user_id, 
+      //representando la cantidad de posts que tiene el usuario
       {$sort: { _id: 1 }}]); //1 desc order, -1 asc order
 
     console.log(data);
