@@ -17,9 +17,9 @@ const RecordSchema = mongoose.Schema({
         },
         required: true
     },
-    most_used_keywords_id: [{
+    most_used_tags_id: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "keyword",
+        ref: "tag",
         required: true
     }],
     most_liked_posts_id: [{
@@ -29,7 +29,7 @@ const RecordSchema = mongoose.Schema({
     }],
     most_commented_posts_id: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "post",
+        ref: "comment",
         required: true
     }],
     most_popular_users_id: [{

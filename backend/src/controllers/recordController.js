@@ -2,55 +2,78 @@ const Record = require("../models/recordSchema");
 
 exports.create = async (req, res) => {
   const { body: record } = req;
-  console.log(record);
-  const recordDB = new Record(record);
-  await recordDB.save().catch((err) => {
-    console.log("UPS!", err)
+
+  try{
+    console.log(record);
+    const recordDB = new Record(record);
+    await recordDB.save().catch((err) => {
+      console.log("UPS!", err)
+      res.send({
+          message: err,
+          data: recordDB,
+        });
+    }
+    );
     res.send({
-        message: err,
-        data: recordDB,
-      });
+      message: "Registro creado con éxito.",
+      data: recordDB,
+    });
   }
-  );
-  res.send({
-    message: "Registro creado con éxito.",
-    data: recordDB,
-  });
+  catch(err){
+      console.log(err);
+  }
+  
 };
 
 exports.get = async (req, res) => {
   const {params: {id}} = req;
-  const data = await Record.findOne({_id: id}).catch((err) => console.log("UPS!", err));
-  if (data){
-    res.send(data);
-  }else{
-    res.send({
-        message: "No se encontró el registro.",
-        record_id: id,
-      });
+
+  try{
+    const data = await Record.findOne({_id: id}).catch((err) => console.log("UPS!", err));
+    if (data){
+      res.send(data);
+    }else{
+      res.send({
+          message: "No se encontró el registro.",
+          record_id: id,
+        });
+    }
   }
+  catch(err){
+      console.log(err);
+  }
+  
 };
 
 exports.delete = async (req, res) => {
     const {params: {id}} = req;
-    let msg = "";
-    const data = await Record.findOneAndDelete({_id: id}).catch((err) => {
-      msg = err;
-      res.send({message: "No se pudo eliminar el registro.",
-                error: err});
-    });
-    if(data){
-      msg = "Registro eliminado.";
-    res.send({message: msg,
-      data: data});
-    }else{
-      res.send({message: "No se encontró el registro."});
+
+    try{
+      let msg = "";
+      const data = await Record.findOneAndDelete({_id: id}).catch((err) => {
+        msg = err;
+        res.send({message: "No se pudo eliminar el registro.",
+                  error: err});
+      });
+      if(data){
+        msg = "Registro eliminado.";
+      res.send({message: msg,
+        data: data});
+      }else{
+        res.send({message: "No se encontró el registro."});
+      }
+
     }
+    catch(err){
+        console.log(err);
+    }
+    
   };
 
 exports.update = async (req, res) => {
     const {params: {id}} = req;
     const {body: record} = req;
+    
     try{
         const recordDB = await Record.findOne({_id: id}).catch((err) => console.log("UPS!", err));
         let data = null;

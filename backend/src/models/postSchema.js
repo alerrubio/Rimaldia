@@ -15,9 +15,9 @@ const PostSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    keyword_id: [{        
+    tag_id: [{        
         type: mongoose.Schema.Types.ObjectId,
-        ref: "keyword",
+        ref: "tag",
         required: false
     }],
     liked_by_id: [{
