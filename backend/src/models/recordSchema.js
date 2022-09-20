@@ -29,7 +29,7 @@ const RecordSchema = mongoose.Schema({
     }],
     most_commented_posts_id: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "post",
+        ref: "comment",
         required: true
     }],
     most_popular_users_id: [{
