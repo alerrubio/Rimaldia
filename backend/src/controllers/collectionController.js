@@ -45,10 +45,6 @@ exports.create = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.send({
-      message: "Un error ha ocurrido",
-      collection_data: collection
-    });
   }
 };
 
