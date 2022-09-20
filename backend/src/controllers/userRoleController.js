@@ -70,7 +70,7 @@ exports.update = async (req, res) => {
         console.log(err);
         res.send({message: "No se pudo actualizar el rol de usuario",
         error_data: err,  
-        data: userRole});
+        user_role_data: userRole});
     }
   };
 
