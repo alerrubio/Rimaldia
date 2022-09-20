@@ -9,8 +9,9 @@ exports.create = async (req, res) => {
     await postDB.save().catch((err) => {
       console.log("UPS!", err)
       res.send({
-          message: err,
-          data: postDB,
+          message: "Un error ha ocurrido",
+          error_data: err,
+          post_data: postDB,
         });
     }
     );
@@ -29,7 +30,8 @@ exports.get = async (req, res) => {
   const {params: {id}} = req;
 
   try{
-    const data = await Post.findOne({_id: id}).catch((err) => console.log("UPS!", err));
+    const data = await Post.findOne({_id: id});
+    console.log(data);
     if (data){
       res.send(data);
     }else{
@@ -41,6 +43,11 @@ exports.get = async (req, res) => {
   }
   catch(err){
       console.log(err);
+      res.send({
+        message: "Algo salió mal",
+        error_data: err,
+        post_id: id,
+      });
   }
   
 };
@@ -50,23 +57,23 @@ exports.delete = async (req, res) => {
 
     try{
       let msg = "";
-      const data = await Post.findOneAndDelete({_id: id}).catch((err) => {
-        msg = err;
-        res.send({message: "No se pudo eliminar la publicación.",
-                  error: err});
-      });
-      if(data){
+      let data = null;
+      const postDB = await Post.findOneAndDelete({_id: id});
+      if(postDB){
         msg = "Publicación eliminada.";
+        data = postDB;
+      }else{
+        msg = "No se encontró la publicación.";
+        data = {post_id: id};
+      }
       res.send({message: msg,
         data: data});
-      }else{
-        res.send({message: "No se encontró la publicación."});
-      }
     }
     catch(err){
         console.log(err);
+        res.send({message: "No se pudo eliminar la publicación.",
+          post_id: id});
     }
-    
   };
 
 exports.update = async (req, res) => {
@@ -74,7 +81,7 @@ exports.update = async (req, res) => {
     const {body: post} = req;
     
     try{
-        const postDB = await Post.findOne({_id: id}).catch((err) => console.log("UPS!", err));
+        const postDB = await Post.findOne({_id: id});
         let data = null;
         let msg = "";
         if (postDB){
@@ -89,5 +96,8 @@ exports.update = async (req, res) => {
     }
     catch(err){
         console.log(err);
+        res.send({message: "No se pudo actualizar la publicación",
+        error_data: err,  
+        post_data: post});
     }
   };

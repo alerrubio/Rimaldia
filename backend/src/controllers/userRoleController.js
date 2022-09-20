@@ -35,7 +35,7 @@ exports.create = async (req, res) => {
       res.send({
           message: "Un error ha ocurrido",
           error_data: err,
-          user_role_data: userRoleDB
+          user_role_data: userRole
         });
     }
     );
@@ -96,6 +96,7 @@ exports.delete = async (req, res) => {
       } catch (error) {
         console.log(error);
         res.send({message: "No se pudo eliminar el rol de usuario",
+          error: error,
           user_role_id: id});
       }
   };

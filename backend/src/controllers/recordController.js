@@ -7,10 +7,11 @@ exports.create = async (req, res) => {
     console.log(record);
     const recordDB = new Record(record);
     await recordDB.save().catch((err) => {
-      console.log("UPS!", err)
+      console.log("Un error ha ocurrido", err)
       res.send({
-          message: err,
-          data: recordDB,
+          message: "Un error ha ocurrido",
+          error_data: err,
+          record_data: recordDB,
         });
     }
     );
@@ -29,7 +30,7 @@ exports.get = async (req, res) => {
   const {params: {id}} = req;
 
   try{
-    const data = await Record.findOne({_id: id}).catch((err) => console.log("UPS!", err));
+    const data = await Record.findOne({_id: id});
     if (data){
       res.send(data);
     }else{
@@ -41,6 +42,11 @@ exports.get = async (req, res) => {
   }
   catch(err){
       console.log(err);
+      res.send({
+        message: "Algo salió mal",
+        error_data: err,
+        record_id: id,
+      });
   }
   
 };
@@ -50,22 +56,23 @@ exports.delete = async (req, res) => {
 
     try{
       let msg = "";
-      const data = await Record.findOneAndDelete({_id: id}).catch((err) => {
-        msg = err;
-        res.send({message: "No se pudo eliminar el registro.",
-                  error: err});
-      });
-      if(data){
+      let data = null;
+      const recordDB = await Record.findOneAndDelete({_id: id});
+      if(recordDB){
         msg = "Registro eliminado.";
+        data = recordDB;
+      }else{
+        msg = "No se encontró el registro.";
+        data = {record_id: id};
+      }
       res.send({message: msg,
         data: data});
-      }else{
-        res.send({message: "No se encontró el registro."});
-      }
-
     }
     catch(err){
         console.log(err);
+        res.send({message: "No se pudo eliminar el rol de usuario",
+          error: err,
+          user_role_id: id});
     }
     
   };
@@ -75,7 +82,7 @@ exports.update = async (req, res) => {
     const {body: record} = req;
     
     try{
-        const recordDB = await Record.findOne({_id: id}).catch((err) => console.log("UPS!", err));
+        const recordDB = await Record.findOne({_id: id});
         let data = null;
         let msg = "";
         if (recordDB){
@@ -90,5 +97,8 @@ exports.update = async (req, res) => {
     }
     catch(err){
         console.log(err);
+        res.send({message: "No se pudo actualizar el registro",
+        error_data: err,  
+        record_data: record});
     }
   };
