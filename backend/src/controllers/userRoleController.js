@@ -3,15 +3,19 @@ const UserRole = require("../models/userRoleSchema");
 //[GET]
 exports.get = async (req, res) => {
     const {params: {id}} = req;
-    const data = await UserRole.findOne({_id: id}).catch((err) => console.log("Un error ha ocurrido", err));
-    console.log(data);
-    if (data){
-      res.send(data);
-    }else{
-      res.send({
-          message: "No se encontró el rol",
-          userRole_id: id,
-        });
+    try {
+      const data = await UserRole.findOne({_id: id}).catch((err) => console.log("Un error ha ocurrido", err));
+      console.log(data);
+      if (data){
+        res.send(data);
+      }else{
+        res.send({
+            message: "No se encontró el rol",
+            userRole_id: id,
+          });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -19,19 +23,23 @@ exports.get = async (req, res) => {
 exports.create = async (req, res) => {
   const { body: userRole } = req;
   console.log(userRole);
-  const userRoleDB = new UserRole(userRole);
-  await userRoleDB.save().catch((err) => {
-    console.log("Un error ha ocurrido", err)
+  try {
+    const userRoleDB = new UserRole(userRole);
+    await userRoleDB.save().catch((err) => {
+      console.log("Un error ha ocurrido", err)
+      res.send({
+          message: err,
+          data: userRoleDB,
+        });
+    }
+    );
     res.send({
-        message: err,
-        data: userRoleDB,
-      });
+      message: "Rol creado con éxito",
+      data: userRoleDB,
+    });
+  } catch (error) {
+    console.log(error);
   }
-  );
-  res.send({
-    message: "Rol creado con éxito",
-    data: userRoleDB,
-  });
 };
 
 //[UPDATE]
@@ -60,13 +68,18 @@ exports.update = async (req, res) => {
 //[DELETE]
 exports.delete = async (req, res) => {
     const {params: {id}} = req;
-    let msg = "";
-    const data = await UserRole.findOneAndDelete({_id: id}).catch((err) => {
-      msg = err;
-      res.send({message: "No se pudo eliminar el rol",
-                error: err});
-    });
-    msg = "Rol eliminado";
-    res.send({message: msg,
-      data: data});
+    try {
+        let msg = "";
+        const data = await UserRole.findOneAndDelete({_id: id}).catch((err) => {
+          msg = err;
+          res.send({message: "No se pudo eliminar el rol",
+                    error: err});
+        });
+        msg = "Rol eliminado";
+        res.send({message: msg,
+          data: data});
+    
+      } catch (error) {
+        console.log(error);
+      }
   };
