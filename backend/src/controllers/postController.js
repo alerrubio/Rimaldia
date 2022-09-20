@@ -1,3 +1,4 @@
+const { Types } = require("mongoose");
 const Post = require("../models/postSchema");
 
 exports.create = async (req, res) => {
@@ -70,3 +71,41 @@ exports.update = async (req, res) => {
         console.log(err);
     }
   };
+
+exports.get_most_liked_post = async (req, res) => {
+  try{
+    const {
+      query: {postquantity}
+    } = req;
+
+    let data = await Post.aggregate([{$project: { count: { $size: '$liked_by_id' } }}]);
+    data.sort(function(a, b) {
+      return b.count - a.count;
+    });
+    console.log(data);
+    //const most_liked_posts = await Post.find({_id: data._id});
+    res.send({posts: data.slice(0,postquantity)});
+  }
+  catch(error){
+    console.log(error);
+  }
+};
+
+exports.get_most_active_users = async (req, res) => {
+  try{
+    const {
+      query: {postquantity}
+    } = req;
+
+    let data = await Post.aggregate([ //aggregate te permite hacer queries más elaborados.
+      {$group: {_id: "$user_id", count: {$sum: 1}}}, //agrupa por user_id
+      {$sort: { _id: 1 }}]); //1 desc order, -1 asc order
+
+    console.log(data);
+    //const most_liked_posts = await Post.find({_id: data._id});
+    res.send({users: data});
+  }
+  catch(error){
+    console.log(error);
+  }
+};
