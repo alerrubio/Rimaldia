@@ -6,40 +6,21 @@ function Post() {
 
     <div className="Fondito_Post">
 
-
-
-
-
-
-<div className="Grupo_Foros">
-        <div className="Color_Foro">
-         
-          <div className="mis_foros">
-          <a href={`/post`}>MIS FOROS</a>
-           
+      <div className="Grupo_Foros">
+          <div className="Color_Foro">
+          
+            <div className="mis_foros">
+            <a href={`/post`}>MIS FOROS</a>
+            
+            </div>
+            <div className="todos_foros">
+            <a href={`/tForos`}>TODOS LOS FOROS</a>
+            
+            </div>
+          
           </div>
-          <div className="todos_foros">
-          <a href={`/tForos`}>TODOS LOS FOROS</a>
-           
-          </div>
-         
+
         </div>
-
-      </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       <div className="Post_Contenedor2">
         <div className="perfil_usuario">
@@ -124,20 +105,9 @@ function Post() {
           <span>______________________________________________________________________________________</span>
         </div>
 
-
-
-
-
       </div>
 
-
-
-
-
-
     </div>
-
-
   )
 }
 
