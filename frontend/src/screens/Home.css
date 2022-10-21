@@ -1,7 +1,214 @@
 
-img{
-    width: auto;
-  margin: 0;
-    position: fixed;
+ 
+.Fondito_Home{
+ 
+  position: fixed;
   
+}
+.Fondito_Home img{
+    max-width: 100%;
+    max-height: 90%;
+    position:static;
+
+  }
+ 
+/*CUADRO PARA PUBLICAR UNA RIMA*/
+  .Post_Contenedor{
+    width: 101%;
+    background: #f7f4ef;
+    border-radius: 6px;
+    padding: 20px;
+    columns: #626262;
+    top: 11%;
+    left: 9.6%;
+    position: fixed;
+    
+  }
+
+  .perfil_usuario{
+    display: flex;
+    align-items: center;
+  }
+
+  .perfil_usuario img{
+    width: 45px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .perfil_usuario p{
+    margin-bottom: -5px;
+    font-weight: 500;
+    color: #626262;
+  }
+
+  .perfil_usuario small{ 
+    font-size: 12px;
+    color: #b26967;
+  }
+
+  .Post_Input_Contenedor{
+    padding-left: 25px;
+    padding-top: 20px;
+  }
+
+  .Post_Input_Contenedor textarea{
+    width: 100%;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+    resize: none;
+  }
+
+  .Links_post{
+    display: flex;
+    margin-top: 10px;
+  }
+
+  .Links_post a{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: #626262;
+    margin-right: 30px;
+    font-size: 13px;
+  }
+
+  .Links_post a img{
+    width: 20px;
+    margin-right: 10px;
+  }
+
+
+  /*CONTENIDO PUBLICADO*/
+  .Contenido_Publicado{
+    width: 100%;
+    background: #f7f4ef;
+    border-radius: 6px;
+    padding: 20px;
+    color: #626262;
+    margin-top: 0%;
+    
+   
+  }
+
+  .perfil_usuario span{
+    font-size: 13px;
+    color: #9a9a9a;
+  }
+
+  .post-text{
+    color: #9a9a9a;
+   
+    font-size: 15px;
+  }
+
+  .post-text span{
+    color: #626262;
+    font-weight: 500;
+  }
+
+  .post-text a{
+    color: #1876f2;
+    text-decoration:none;
+  }
+
+  .post-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .Actividad-iconos div img{
+    width: 18px;
+    margin-right: 10px;
+  }
+
+  .Actividad-iconos div{
+    display: inline-flex;
+    align-items: center;
+    margin-right:30px;
+  }
+
+  
+  
+
+  /*ESTILO PARA EL COMBO BOX*/
+  .select {
+    
+    display:flex;
+    flex-direction: column;
+    position:relative;
+    width:160px;
+    height:10px;
+    transform: translate(-10%, -20%);
+  }
+  
+  .option {
+    color: #ccc;
+   
+    padding:0 80px 0 10px;
+    min-height:25px;
+    display:flex;
+    align-items:center;
+    background:rgb(176, 166, 166);
+    border-top:#222 solid 1px;
+    position:absolute;
+    top:10;
+    width: 100%;
+    pointer-events:none;
+    order:2;
+    z-index:1;
+    transition:background .4s ease-in-out;
+    box-sizing:border-box;
+    overflow:hidden;
+    white-space:nowrap;
+    
+  }
+  
+  .option:hover {
+    background:#666;
+  }
+  
+  .select:focus .option {
+    position:relative;
+    pointer-events:all;
+  }
+  
+  .selectopt {
+    opacity:0;
+    position:absolute;
+    left:-99999px;
+  }
+  
+  .selectopt:checked + label {
+    order: 1;
+    z-index:2;
+    background:#666;
+    border-top:none;
+    position:relative;
+  }
+  
+  .selectopt:checked + label:after {
+    content:'';
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid white;
+    position:absolute;
+    right:10px;
+    top:calc(50% - 2.5px);
+    pointer-events:none;
+    z-index:3;
+  }
+  
+  .selectopt:checked + label:before {
+    position:absolute;
+    right:0;
+    height: 90px;
+    width: 20px;
+    content: '';
+    background:#666;
   }

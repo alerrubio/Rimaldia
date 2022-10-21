@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-
+import "./Layout.css";
 
 export default function Layout() {
   return (
@@ -35,30 +35,11 @@ export default function Layout() {
         <h1></h1>
         <div>
           <ul>
-            <div id="Imgperfil">
-              <img src="https://i.postimg.cc/XYHFk7d7/PERFIL.png" />
+            <div className="Imgperfil">
+              <img className="Imgperfil" src="https://i.postimg.cc/XYHFk7d7/PERFIL.png" />
 
             </div>
             <li>
-              <br>
-              </br>
-              <br>
-              </br>
-              <br>
-              </br>
-              <br>
-              </br>
-              <br>
-              </br>
-              <br>
-              </br>
-              <br>
-              </br>
-              <br>
-              </br>
-              <br>
-              </br>
-         
               <a >Usuario:</a>
             </li>
             <li>
@@ -73,7 +54,7 @@ export default function Layout() {
               <a href={`/`}>Home</a>
             </li>
             <li>
-              <a href={`/post`}>Publicaciones</a>
+              <a href={`/post`}>Mis Foros</a>
             </li>
 
           </ul>
@@ -94,26 +75,13 @@ export default function Layout() {
             <li>
               <a >        Motivacional</a>
             </li>
+          
 
           </ul>
         </nav>
       </div>
 
-      <div id="sidebar2">
-        <h2></h2>
-        <div>
-          <a >Chat</a>
-        </div>
-        <nav>
-
-        </nav>
-        <div class="search-box3">
-          <form>
-            <input type="text" name="search" id="srch2" placeholder="Escribir mensaje" />
-            <button type="submit"><i class="fa fa-search"></i></button>
-          </form>
-        </div>
-      </div>
+      
 
       <div id="detail">
         <Outlet />

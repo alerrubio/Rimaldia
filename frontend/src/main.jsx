@@ -7,7 +7,7 @@ import Home from './screens/Home';
 import Login from './screens/Login';
 import Post from './screens/Post';
 import Register from './screens/Register';
-
+import TForos from './screens/TForos';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "post",
         element: <Post />,
+      },
+      {
+        path: "TForos",
+        element: <TForos />,
       },
     ],
   },
