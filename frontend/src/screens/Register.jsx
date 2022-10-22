@@ -3,6 +3,8 @@ import Background from "/img/REGISTRO.png";
 import Logo from "/img/logo.png";
 import { useLocation, Link } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 const Register = () => {
   const location = useLocation();
@@ -12,31 +14,86 @@ const Register = () => {
       <Link to={"/"}>
         <img className="logo" src={ Logo } />
       </Link>
-      <div className="container content d-flex flex-row justify-content-around align-items-center bordes">
-        <div className="row Iniciar col-3">
-          <a href="/Login">Iniciar Sesion</a>
+      <div className="container content  d-flex flex-row justify-content-around align-items-center">
+      <div className="row col-4">
+          <div className="registerBanner">
+            ¿YA TIENES CUENTA?
+          </div>
+          <div>
+            <Link to="/login">
+              <div className="btn register">
+                Iniciar Sesión
+              </div>
+            </Link>
+          </div>
         </div>
-        <div className="row login-box_R col-9 justify-content-center align-items-center bordes">
-          <label for="username"></label>
-          <input type="text" placeholder=" Usuario" />
-
-          <label for="Email"></label>
-          <input type="text" placeholder=" Correo Electronico" />
-
-          <label for="password"></label>
-          <input type="password" placeholder=" Contraseña" />
-
-          <label for="password"></label>
-          <input type="password" placeholder=" Repetir Contraseña" />
-
-          {/*<input type="submit" value="Iniciar Sesion" href="/post"/>*/}
-          <div className="Registrar">
-            <a href="/">Registrar</a>
-          </div>     
-
-          {/*<a href="/post">Olvidó su contraseña?</a>*/}
-
+        <div className="row register-box col-9 justify-content-center align-items-center">
+          <div className="row col-12 login-box_R">
+            <Form >
+              <div>
+                <label for="email">Correo electrónico</label>
+                <div class="input-group mb-3">
+                  <i class="input-group-text bi bi-envelope-fill"></i>
+                  <input type="email" className="form-control email-input" name="email" placeholder="Correo electrónico" required />
+                </div>
+              
+              </div>
+              <div>
+                <label for="first-name">Nombre(s)</label>
+                <div class="input-group mb-3">
+                  <i class="input-group-text bi bi-person-fill"></i>
+                  <input type="text" className="form-control first-name-input" name="first-name" placeholder="Nombre" required/>
+                </div>
+              </div>
+              <div>
+                <label for="last-name">Apellido paterno</label>
+                <div class="input-group mb-3">
+                  <i class="input-group-text bi bi-person-fill"></i>
+                  <input type="text" className="form-control last-name-input" name="last-name" placeholder="Apellido paterno" required/>
+                </div>
+              </div>
+              <div>
+                <label for="mlast-name">Confirmar contraseña</label>
+                <div class="input-group mb-3">
+                  <i class="input-group-text bi bi-person-fill"></i>
+                  <input type="text" className="form-control mlast-name-input" name="mlast-name" placeholder="Apellido materno" required/>
+                </div>
+              </div>
+              <div>
+                <label for="username">Nombre de usuario</label>
+                <div class="input-group mb-3">
+                  <i class="input-group-text bi bi-person-fill"></i>
+                  <input type="text" className="form-control username-input" name="username" placeholder="Nombre de usuario" required/>
+                </div>
+              </div>
+              <div>
+                <label for="password">Contraseña</label>
+                <div class="input-group mb-3">
+                  <i class="input-group-text bi bi-key-fill"></i>
+                  <input type="password" className="form-control password-input" name="password" required/>
+                </div>
+              </div>
+              <div>
+                <label for="confirm-password">Confirmar contraseña</label>
+                <div class="input-group mb-3">
+                  <i class="input-group-text bi bi-key-fill"></i>
+                  <input type="password" className="form-control confirm-password-input" name="confirm-password" required/>
+                </div>
+              </div>
+            </Form>
+          </div>
+          <div className="row col-12 btn-registro justify-content-center align-items-center">
+            <div className="col-4">
+              <button 
+                type="button"
+                variant="primary"
+                className="btn">
+                  Registrarse
+              </button>  
+            </div>
+          </div>
         </div>
+        
       </div>
     </div>
 

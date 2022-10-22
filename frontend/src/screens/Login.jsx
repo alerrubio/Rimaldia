@@ -21,7 +21,7 @@ const Login = () => {
               <label for="email">Correo electrónico</label>
               <div class="input-group mb-3">
                 <i class="input-group-text bi bi-envelope-fill"></i>
-                <input type="text" className="form-control email-input" name="email" placeholder="Correo electrónico" required/>
+                <input type="email" className="form-control email-input" name="email" placeholder="Correo electrónico" required/>
               </div>
             </div>
             <div>

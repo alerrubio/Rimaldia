@@ -14,14 +14,50 @@ img{
   .bordes{
     border: 1px solid black;
   }
+
+  .btn{
+    background-color:#ff8e6c;
+    color: white;
+    font-size: 25px;
+  }
+
+  .input-group-text{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(178, 61, 61);
+    outline: none;
+  }
+
+  .input-group{
+
+  }
+
+  .register-box{
+    height: 100vh;
+    margin-left: 100px;
+  }
+
+  .btn-registro{
+    padding-bottom: 60px;
+  }
+
+  .registerBanner{
+    font-size: 45px;
+    font-weight: bold;
+    color: #4f776f;
+  }
   .login-box_R {
-    height:80%;
+    height: 70vh;
     color: rgb(208, 79, 79);
-    padding: 60px 30px;
+    margin-top: 5%;
+    margin-bottom: 0%;
+    overflow: scroll;
+    overflow-x: hidden;
   }
 
   .login-box_R label {
     margin: 0;
+    font-size: 12px;
     padding: 0;
     font-weight: bold;
     display: block;
@@ -29,50 +65,24 @@ img{
   
   .login-box_R input {
     width: 100%;
-    margin-bottom: 44.5px;
-  }
-  
-  .login-box_R input[type="text"], .login-box_R input[type="password"] {
-    border: none;
+    margin: 5px 0px;
     border-bottom: 1px solid rgb(178, 61, 61);
-    background: transparent;
     outline: none;
     height: 40px;
     color: rgb(147, 147, 147);
     padding: 0 50px 0px;
-    font-size: 16px;
-  }
-  
-  .login-box_R input[type="submit"] {
+    font-size: 12px;
     border: none;
-    outline: none;
-    height: 40px;
-    background: #b80f22;
-    color: #fff;
-    font-size: 18px;
-    border-radius: 20px;
-    
-  }
-  
-  .login-box_R input[type="submit"]:hover {
-    cursor: pointer;
-    background: #e98c6c;
-    color: #f1eee9;
-  }
-  
-  .login-box_R a {
-    text-decoration: none;
-    font-size: 25px;
-    padding-inline-start: 470px;
-    color: rgb(226, 226, 226);
-  
-   
-  }
-  
-  .login-box_R a:hover {
-    color: #e98c6c;
+    background-color: white;
   }
 
+  .form-control, .input-group-text{
+    background-color: white;
+    margin: 5px 0px;
+    height: 40px;
+    border-bottom: 1px solid rgb(178, 61, 61);
+  }
+  
   .Iniciar{
     color: rgb(208, 79, 79);
 
