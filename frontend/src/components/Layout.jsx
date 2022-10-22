@@ -19,13 +19,10 @@ export default function Layout() {
           <li><a href="#">Favoritos</a></li>
           <li><a href="#">Foros</a></li>
           <li><a href={`/login`}>Cerrar Sesion</a></li>
-
         </ul>
         <div class="menu">
           <label for="chk1">
             <i class="fa fa-bars"></i>
-
-
           </label>
         </div>
       </header2>
@@ -37,7 +34,6 @@ export default function Layout() {
           <ul>
             <div className="Imgperfil">
               <img className="Imgperfil" src="https://i.postimg.cc/XYHFk7d7/PERFIL.png" />
-
             </div>
             <li>
               <a >Usuario:</a>

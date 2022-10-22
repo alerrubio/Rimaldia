@@ -1,63 +1,43 @@
 import "./Register.css";
+import Background from "/img/REGISTRO.png";
+import Logo from "/img/logo.png";
+import { useLocation, Link } from "react-router-dom";
+import Form from 'react-bootstrap/Form';
 
-const FondoRegistro = new URL("../../fotos/REGISTRO.jpg", import.meta.url)
 const Register = () => {
+  const location = useLocation();
   return (
-    <div className="Fondito_Registro">
-      
-      <header>
-     
-        <input type="checkbox" name="" id="chk1" />
-        <div class="logo"></div>
-        <div class="search-box">
-          <form>
-            <input type="text" name="search" id="srch" placeholder="Buscar" />
-            <button  type="submit"><i class="fa fa-search"></i></button>
-          </form>
-        </div>
-        <ul>
-          <li><a href="/">Inicio</a></li>
-          <li><a href="#">Info</a></li>
-          <li><a href="#">Foros</a></li>
-          <li><a href="#">Registrarse</a></li>
-        </ul>
-        <div class="menu">
-          <label for="chk1">
-            <i class="fa fa-bars"></i>
-
-            
-          </label>
-        </div>
-      </header>
-      <img src={FondoRegistro} />
-
-      
-
-      <div className="login-box_R">
-
-        <label for="username"></label>
-        <input type="text" placeholder=" Usuario" />
-
-        <label for="Email"></label>
-        <input type="text" placeholder=" Correo Electronico" />
-
-        <label for="password"></label>
-        <input type="password" placeholder=" Contraseña" />
-
-        <label for="password"></label>
-        <input type="password" placeholder=" Repetir Contraseña" />
-
-        {/*<input type="submit" value="Iniciar Sesion" href="/post"/>*/}
-        <div className="Registrar">
-          <a href="/">Registrar</a>
-        </div>     
-
-        {/*<a href="/post">Olvidó su contraseña?</a>*/}
-
-      </div>
-      <div className="Iniciar">
+    <div>
+      <img className="background" src={ Background } />
+      <Link to={"/"}>
+        <img className="logo" src={ Logo } />
+      </Link>
+      <div className="container content d-flex flex-row justify-content-around align-items-center bordes">
+        <div className="row Iniciar col-3">
           <a href="/Login">Iniciar Sesion</a>
         </div>
+        <div className="row login-box_R col-9 justify-content-center align-items-center bordes">
+          <label for="username"></label>
+          <input type="text" placeholder=" Usuario" />
+
+          <label for="Email"></label>
+          <input type="text" placeholder=" Correo Electronico" />
+
+          <label for="password"></label>
+          <input type="password" placeholder=" Contraseña" />
+
+          <label for="password"></label>
+          <input type="password" placeholder=" Repetir Contraseña" />
+
+          {/*<input type="submit" value="Iniciar Sesion" href="/post"/>*/}
+          <div className="Registrar">
+            <a href="/">Registrar</a>
+          </div>     
+
+          {/*<a href="/post">Olvidó su contraseña?</a>*/}
+
+        </div>
+      </div>
     </div>
 
   )
