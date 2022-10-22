@@ -54,14 +54,25 @@ button{
 form{
   padding-top: 30px;
 }
-
+.input-group-text{
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgb(178, 61, 61);
+  outline: none;
+}
+.form-control, .input-group-text{
+  background-color: white;
+  margin: 5px 0px;
+  height: 40px;
+  border-bottom: 1px solid rgb(178, 61, 61);
+}
 .login-box {
   background-color: #f3f0eb;
   border-radius: 20px;
   height: 70%;
   width: 75%;
   padding: 0px 30px;
-  margin-left: 20%;
+  margin-left: 10%;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
@@ -80,20 +91,13 @@ form{
 .login-box input[type="text"], .login-box input[type="password"] {
   border: none;
   border-bottom: 1px solid rgb(178, 61, 61);
-  background: transparent;
   outline: none;
-  margin-top: 10px;
   padding: 10px 15px;
   color: rgb(147, 147, 147);
   font-size: 16px;
+  background-color: white;
 }
 
-.input-group-text{
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid rgb(178, 61, 61);
-  outline: none;
-}
 
 .login-box input[type="submit"] {
   border: none;

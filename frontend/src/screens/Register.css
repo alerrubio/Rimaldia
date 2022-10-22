@@ -48,11 +48,15 @@ img{
   }
   .login-box_R {
     height: 70vh;
+    padding: 0px 25px;
     color: rgb(208, 79, 79);
     margin-top: 5%;
     margin-bottom: 0%;
     overflow: scroll;
     overflow-x: hidden;
+    background-color: #f3f0eb;
+    border-radius: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   }
 
   .login-box_R label {
