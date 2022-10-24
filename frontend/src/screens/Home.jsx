@@ -1,14 +1,18 @@
 import "./Home.css";
 import { NewRhyme } from "../components/NewRhyme";
+import UserInfo from "../components/UserInfo";
 
 function Home() {
 
   return (
-
+    <>
+    <NewRhyme>
+        <UserInfo user_name="Ricardo Poetiso"></UserInfo>
+      </NewRhyme>
     <div className="Fondito_Home container">
       <div className="Post_Contenedor">
        
-        <NewRhyme user_name="Ricardo Poetiso"></NewRhyme>
+      
 
         <div className="Contenido_Publicado">
           <div className="perfil_usuario">
@@ -75,7 +79,7 @@ function Home() {
 
     </div>
 
-
+    </>
   )
 }
 
