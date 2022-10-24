@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import Test from './screens/test';
 import Layout from './components/Layout';
 import './index.css';
 import Home from './screens/Home';
@@ -12,6 +13,7 @@ import Login from './screens/Login';
 import Post from './screens/Post';
 import Register from './screens/Register';
 import TForos from './screens/TForos';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "TForos",
         element: <TForos />,
+      },
+      {
+        path: "test",
+        element: <Test />,
       },
     ],
   },

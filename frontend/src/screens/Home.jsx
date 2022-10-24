@@ -1,47 +1,14 @@
 import "./Home.css";
-
-const FondoHome = new URL("../../fotos/FONDO.jpg", import.meta.url)
+import { NewRhyme } from "../components/NewRhyme";
 
 function Home() {
 
   return (
 
-    <div className="Fondito_Home">
-
+    <div className="Fondito_Home container">
       <div className="Post_Contenedor">
-        <div className="perfil_usuario">
-          <i className="fa-solid fa-caret-down"></i>
-          <img src="https://i.postimg.cc/XYHFk7d7/PERFIL.png" />
-          <div>
-            <p>Alejandro Tijerina</p>
-            <small>Publico</small>
-          </div>
-        </div>
-
-        <div className="Post_Input_Contenedor">
-          <textarea row="3" placeholder="Cual será la rima de hoy?"></textarea>
-
-          <div className="Links_post">
-            <a href="#"> <img src="../../fotos/publicar.png" /> Publicar rima</a>
-            <a href="#"> <img src="../../fotos/PHOTO.png" /> Agregar foto</a>
-
-            <div className="select" tabindex="1">
-              <input class="selectopt" name="test" type="radio" id="opt1" checked />
-              <label for="opt1" class="option">Categoria</label>
-              <input class="selectopt" name="test" type="radio" id="opt2" />
-              <label for="opt2" class="option">Romantico</label>
-              <input class="selectopt" name="test" type="radio" id="opt3" />
-              <label for="opt3" class="option">Verso Libre</label>
-              <input class="selectopt" name="test" type="radio" id="opt4" />
-              <label for="opt4" class="option">Tristeza</label>
-              <input class="selectopt" name="test" type="radio" id="opt5" />
-              <label for="opt5" class="option">Motivacional</label>
-            </div>
-
-          </div>
-          <span>______________________________________________________________________________________</span>
-        </div>
-
+       
+        <NewRhyme user_name="Ricardo Poetiso"></NewRhyme>
 
         <div className="Contenido_Publicado">
           <div className="perfil_usuario">

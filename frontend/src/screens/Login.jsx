@@ -38,7 +38,7 @@ const Login = () => {
               window.location.href='/';
               }} 
               variant="primary"
-              className="btn login col-12">
+              className="btn-login btn login col-12">
                 Iniciar Sesión
             </button>
           </Form>

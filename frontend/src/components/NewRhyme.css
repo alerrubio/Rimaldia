@@ -1,0 +1,26 @@
+.Post_Input_Contenedor{
+    padding-left: 25px;
+    padding-top: 20px;
+}
+
+.Post_Input_Contenedor textarea{
+    width: 80%;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+    resize: none;
+}
+
+.categories-dd{
+    margin: 0%;
+    padding: 0%; 
+}
+
+i{
+    margin: 0px 10px;
+}
+
+.Links_post{
+    margin:0%;
+}

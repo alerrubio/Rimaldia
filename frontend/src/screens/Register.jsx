@@ -21,7 +21,7 @@ const Register = () => {
           </div>
           <div>
             <Link to="/login">
-              <div className="btn register">
+              <div className="btn btn-register register">
                 Iniciar Sesión
               </div>
             </Link>
@@ -87,7 +87,7 @@ const Register = () => {
               <button 
                 type="button"
                 variant="primary"
-                className="btn">
+                className="btn btn-register">
                   Registrarse
               </button>  
             </div>

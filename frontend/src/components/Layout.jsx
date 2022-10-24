@@ -7,17 +7,15 @@ export default function Layout() {
   return (
     <>
       <div className="container d-flex flex-row contenido">
-        <div className="row">
-          <SideBar username="Nombre de usuario" />
+        <div className="row col-3">
+          <SideBar username="rickypoeta" />
         </div>
         
         <div id="detail" className="row col-9 ">
-          <div className="col-12 bordes">
-            <NavBar title="Rimaldía">
+          <NavBar title="Rimaldía">
               <MenuContent/>
-            </NavBar>
-          </div>
-          <div className="col-12 bordes">
+          </NavBar>
+          <div className="page-content">
             <Outlet />
           </div>
         </div>
