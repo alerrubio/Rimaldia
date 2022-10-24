@@ -3,16 +3,18 @@ import Background from "/img/LOGIN.png";
 import Logo from "/img/logo.png";
 import { useLocation, Link } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
-import "./Login.css";
+import Button from "react-bootstrap/esm/Button";
+import "./css/Login.css";
 
 const Login = () => {
   const location = useLocation();
-
+  
   return (
+    
     <div>
       <img className="background" src={ Background } />
       <Link to={"/"}>
-        <img className="logo" src={ Logo } />
+        <img className="logo-box" src={ Logo } />
       </Link>
       <div className="container content d-flex flex-row justify-content-around align-items-center">
         <div className="row login-box col-7 justify-content-center align-items-center">
@@ -31,16 +33,9 @@ const Login = () => {
                 <input type="password" className="form-control password-input" name="password" placeholder="Contraseña" required/>
               </div>
             </div>
-            <button 
-              type="button"
-              onClick={(e) => {
-              e.preventDefault();
-              window.location.href='/';
-              }} 
-              variant="primary"
-              className="btn-login btn login col-12">
-                Iniciar Sesión
-            </button>
+            <Button variant="peach" onClick={event =>  window.location.href='/'} className="btn-login btn login col-12">
+                Entrar
+            </Button>
           </Form>
           {/*<div className="row col-12 forgot-pwd justify-content-end">
             ¿Olvidó su contraseña?
@@ -61,9 +56,9 @@ const Login = () => {
           </div>
           <div>
             <Link to="/Register">
-              <div className="btn register">
+              <Button variant="peach" className="register">
                 Registrarse
-              </div>
+              </Button>
             </Link>
           </div>
         </div>

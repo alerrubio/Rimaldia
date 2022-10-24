@@ -1,4 +1,4 @@
-import "./Post.css";
+import "./css/Post.css";
 
 function Post() {
 

@@ -11,7 +11,7 @@ img{
   width: 100vw;
 }
 
-.logo{
+.logo-box{
   margin-top: 1%;
   margin-left: 1%;
   height: 5%;
@@ -29,15 +29,19 @@ img{
 }
 
 .btn-login{
-  background-color:#aa071a;
+  background-color:#ff8e6c;
   color: white;
   width: 100%;
+  font-weight: bold;
   font-size: 25px;
 }
 
 .register{
   background-color: #ff8e6c;
   width: 80%;
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
 }
 
 button{
@@ -137,7 +141,7 @@ form{
 }
 
 .Regi a:hover {
-  color: #c13202;
+  color: black;
 }
 
 .registerBanner{
@@ -153,7 +157,6 @@ form{
 }
 
 body{
-  overflow: hidden;
   height: 100vh;
   width: 100vw;
 }

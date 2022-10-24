@@ -1,0 +1,34 @@
+.Contenido_Publicado{
+    width: 100%;
+    background: #f7f4ef;
+    border-radius: 6px;
+    padding: 20px;
+    color: #626262;
+    margin-top: 0%;
+  }
+
+  .post-text{
+    color: #9a9a9a;
+   
+    font-size: 15px;
+  }
+
+  .post-text span{
+    color: #626262;
+    font-weight: 500;
+  }
+
+  .post-text a{
+    color: #1876f2;
+    text-decoration:none;
+  }
+
+  .post-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .post-img{
+    position: static;
+  }

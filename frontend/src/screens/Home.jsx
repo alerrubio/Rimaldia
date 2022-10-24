@@ -1,74 +1,27 @@
-import "./Home.css";
+import "./css/Home.css";
 import { NewRhyme } from "../components/NewRhyme";
 import UserInfo from "../components/UserInfo";
+import Post from "../components/Post";
+import PP from"/img/pp-example.jpg";
+import PP2 from"/img/pp2.png";
+var date = new Date();
+date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
+var datetime = new Date();
+datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
 
 function Home() {
 
   return (
     <>
     <NewRhyme>
-        <UserInfo user_name="Ricardo Poetiso"></UserInfo>
+        <UserInfo user_name="Ricardo Poetiso" time={date} profile_picture={PP}></UserInfo>
     </NewRhyme>
-    <div className="Fondito_Home container">
-      <div className="Post_Contenedor">
-
-        <div className="Contenido_Publicado">
-          <p class="post-text">El <span>amor no se compra</span>, no necesitas dinero lo que realmente
-            se necesitas es valor para decirle te quiero.<a href="#">#Rimaldia</a></p>
-          <img src="../../fotos/amorfoto.png" class="post-img"></img>
-
-          <div className="post-row">
-            <div className="Actividad-iconos">
-              <div><img src="../../fotos/like-blue.png" /> 12</div>
-              <div><img src="../../fotos/comments.png" /> 5</div>
-              <div><img src="../../fotos/share.png" /> 2</div>
-            </div>
-            <div className="Perfil-Post-Icono">
-
-            </div>
-          </div>
-          <span>______________________________________________________________________________________</span>
-        </div>
-
-
-        <div className="Contenido_Publicado">
-          <div className="perfil_usuario">
-
-            <img src="https://i.postimg.cc/XYHFk7d7/PERFIL.png" />
-            <div>
-              <p>Alejandro Tijerina</p>
-              <span>20 Octubre 2022, 12:40pm</span>
-            </div>
-          </div>
-          <p class="post-text">El <span>amor no se compra</span>, no necesitas dinero lo que realmente
-            se necesitas es valor para decirle te quiero.<a href="#">#Rimaldia</a></p>
-          <img src="../../fotos/amorfoto.png" class="post-img"></img>
-
-          <div className="post-row">
-            <div className="Actividad-iconos">
-              <div><img src="../../fotos/like-blue.png" /> 12</div>
-              <div><img src="../../fotos/comments.png" /> 5</div>
-              <div><img src="../../fotos/share.png" /> 2</div>
-            </div>
-            <div className="Perfil-Post-Icono">
-
-            </div>
-          </div>
-          <span>______________________________________________________________________________________</span>
-        </div>
-
-
-
-
-      </div>
-
-
-
-
-
-
-    </div>
-
+    <Post>
+      <UserInfo user_name="Sandra Eterna" time={datetime} profile_picture={PP2}></UserInfo>
+    </Post>
+    <Post>
+      <UserInfo user_name="Ricardo Poetiso" time={date} profile_picture={PP}></UserInfo>
+    </Post>
     </>
   )
 }

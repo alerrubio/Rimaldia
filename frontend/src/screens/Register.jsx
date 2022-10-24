@@ -1,4 +1,4 @@
-import "./Register.css";
+import "./css/Register.css";
 import Background from "/img/REGISTRO.png";
 import Logo from "/img/logo.png";
 import { useLocation, Link } from "react-router-dom";
@@ -12,7 +12,7 @@ const Register = () => {
     <div>
       <img className="background" src={ Background } />
       <Link to={"/"}>
-        <img className="logo" src={ Logo } />
+        <img className="logo-box" src={ Logo } />
       </Link>
       <div className="container content  d-flex flex-row justify-content-around align-items-center">
       <div className="row col-4">
@@ -21,9 +21,9 @@ const Register = () => {
           </div>
           <div>
             <Link to="/login">
-              <div className="btn btn-register register">
+              <Button variant="peach" className="btn-register register">
                 Iniciar Sesión
-              </div>
+              </Button>
             </Link>
           </div>
         </div>
@@ -84,12 +84,11 @@ const Register = () => {
           </div>
           <div className="row col-12 btn-registro justify-content-center align-items-center">
             <div className="col-4">
-              <button 
-                type="button"
-                variant="primary"
-                className="btn btn-register">
-                  Registrarse
-              </button>  
+              <Link to="/login">
+                <Button variant="peach" className="btn btn-register">
+                    Registrarse
+                </Button>  
+              </Link>
             </div>
           </div>
         </div>
