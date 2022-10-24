@@ -18,7 +18,7 @@ export const NewRhyme = (props) => {
     return (
       <>
         {children}
-        <div className="Post_Input_Contenedor">
+        <div className="Post_Input_Contenedor pb-3">
           <textarea row="3" placeholder="Cual será la rima de hoy?"></textarea>
 
           <div className="Links_post d-flex flex-row justify-content-between">

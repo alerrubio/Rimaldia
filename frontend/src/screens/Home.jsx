@@ -8,7 +8,7 @@ function Home() {
     <>
     <NewRhyme>
         <UserInfo user_name="Ricardo Poetiso"></UserInfo>
-      </NewRhyme>
+    </NewRhyme>
     <div className="Fondito_Home container">
       <div className="Post_Contenedor">
 
