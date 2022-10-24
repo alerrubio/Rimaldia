@@ -11,7 +11,7 @@ export default function Layout() {
           <SideBar username="rickypoeta" />
         </div>
         
-        <div id="detail" className="row col-9 ">
+        <div id="detail" className="row col-12">
           <NavBar title="Rimaldía">
               <MenuContent/>
           </NavBar>

@@ -11,18 +11,8 @@ function Home() {
       </NewRhyme>
     <div className="Fondito_Home container">
       <div className="Post_Contenedor">
-       
-      
 
         <div className="Contenido_Publicado">
-          <div className="perfil_usuario">
-
-            <img src="https://i.postimg.cc/XYHFk7d7/PERFIL.png" />
-            <div>
-              <p>Alejandro Tijerina</p>
-              <span>20 Octubre 2022, 12:40pm</span>
-            </div>
-          </div>
           <p class="post-text">El <span>amor no se compra</span>, no necesitas dinero lo que realmente
             se necesitas es valor para decirle te quiero.<a href="#">#Rimaldia</a></p>
           <img src="../../fotos/amorfoto.png" class="post-img"></img>
