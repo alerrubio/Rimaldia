@@ -16,7 +16,7 @@ export const NavBar = (props) => {
             <div className="search-bar input-group rounded">
               <input type="search" className="form-control rounded search-nav-bar" placeholder="Buscar" aria-label="Search" aria-describedby="search-addon" />
               <span className="input-group-text border-0" id="search-addon">
-                <i class="bi bi-search"></i>
+                <i className="bi bi-search"></i>
               </span>
             </div>
             <div className="col-12 col-lg-8">

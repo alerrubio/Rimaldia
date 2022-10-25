@@ -36,9 +36,9 @@ function Post() {
         </div>
 
         <div className="Post_Input_Contenedor2">
-        <p class="post-text">El <span>amor no se compra</span>, no necesitas dinero lo que realmente
+        <p className="post-text">El <span>amor no se compra</span>, no necesitas dinero lo que realmente
             se necesitas es valor para decirle te quiero.<a href="#">#Rimaldia</a></p>
-          <img src="../../fotos/amorfoto.png" class="post-img"></img>
+          <img src="../../fotos/amorfoto.png" className="post-img"></img>
 
           <div className="Links_post">
             <a href="#"> <img src="../../fotos/publicar.png" /> Editar rima</a>
@@ -60,9 +60,9 @@ function Post() {
               <span>20 Octubre 2022, 12:40pm</span>
             </div>
           </div>
-          <p class="post-text">El <span>amor no se compra</span>, no necesitas dinero lo que realmente
+          <p className="post-text">El <span>amor no se compra</span>, no necesitas dinero lo que realmente
             se necesitas es valor para decirle te quiero.<a href="#">#Rimaldia</a></p>
-          <img src="../../fotos/amorfoto.png" class="post-img"></img>
+          <img src="../../fotos/amorfoto.png" className="post-img"></img>
 
           <div className="post-row">
           <div className="Links_post">
@@ -88,9 +88,9 @@ function Post() {
               <span>20 Octubre 2022, 12:40pm</span>
             </div>
           </div>
-          <p class="post-text">El <span>amor no se compra</span>, no necesitas dinero lo que realmente
+          <p className="post-text">El <span>amor no se compra</span>, no necesitas dinero lo que realmente
             se necesitas es valor para decirle te quiero.<a href="#">#Rimaldia</a></p>
-          <img src="../../fotos/amorfoto.png" class="post-img"></img>
+          <img src="../../fotos/amorfoto.png" className="post-img"></img>
 
           <div className="post-row">
           <div className="Links_post">

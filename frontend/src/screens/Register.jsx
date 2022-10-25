@@ -32,51 +32,51 @@ const Register = () => {
             <Form >
               <div>
                 <label for="email">Correo electrónico</label>
-                <div class="input-group mb-3">
-                  <i class="input-group-text bi bi-envelope-fill"></i>
+                <div className="input-group mb-3">
+                  <i className="input-group-text bi bi-envelope-fill"></i>
                   <input type="email" className="form-control email-input" name="email" placeholder="Correo electrónico" required />
                 </div>
               
               </div>
               <div>
                 <label for="first-name">Nombre(s)</label>
-                <div class="input-group mb-3">
-                  <i class="input-group-text bi bi-person-fill"></i>
+                <div className="input-group mb-3">
+                  <i className="input-group-text bi bi-person-fill"></i>
                   <input type="text" className="form-control first-name-input" name="first-name" placeholder="Nombre" required/>
                 </div>
               </div>
               <div>
                 <label for="last-name">Apellido paterno</label>
-                <div class="input-group mb-3">
-                  <i class="input-group-text bi bi-person-fill"></i>
+                <div className="input-group mb-3">
+                  <i className="input-group-text bi bi-person-fill"></i>
                   <input type="text" className="form-control last-name-input" name="last-name" placeholder="Apellido paterno" required/>
                 </div>
               </div>
               <div>
                 <label for="mlast-name">Confirmar contraseña</label>
-                <div class="input-group mb-3">
-                  <i class="input-group-text bi bi-person-fill"></i>
+                <div className="input-group mb-3">
+                  <i className="input-group-text bi bi-person-fill"></i>
                   <input type="text" className="form-control mlast-name-input" name="mlast-name" placeholder="Apellido materno" required/>
                 </div>
               </div>
               <div>
                 <label for="username">Nombre de usuario</label>
-                <div class="input-group mb-3">
-                  <i class="input-group-text bi bi-person-fill"></i>
+                <div className="input-group mb-3">
+                  <i className="input-group-text bi bi-person-fill"></i>
                   <input type="text" className="form-control username-input" name="username" placeholder="Nombre de usuario" required/>
                 </div>
               </div>
               <div>
                 <label for="password">Contraseña</label>
-                <div class="input-group mb-3">
-                  <i class="input-group-text bi bi-key-fill"></i>
+                <div className="input-group mb-3">
+                  <i className="input-group-text bi bi-key-fill"></i>
                   <input type="password" className="form-control password-input" name="password" required/>
                 </div>
               </div>
               <div>
                 <label for="confirm-password">Confirmar contraseña</label>
-                <div class="input-group mb-3">
-                  <i class="input-group-text bi bi-key-fill"></i>
+                <div className="input-group mb-3">
+                  <i className="input-group-text bi bi-key-fill"></i>
                   <input type="password" className="form-control confirm-password-input" name="confirm-password" required/>
                 </div>
               </div>

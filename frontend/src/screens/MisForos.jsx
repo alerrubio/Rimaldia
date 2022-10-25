@@ -10,7 +10,7 @@ datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', 
 var date = new Date();
 date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
 var foro = " en Educación poeta"
-function TForos() {
+function MisForos() {
 
   return (
     <>
@@ -31,4 +31,4 @@ function TForos() {
   )
 }
 
-export default TForos
+export default MisForos

@@ -13,6 +13,7 @@ import Login from './screens/Login';
 import Post from './screens/Post';
 import Register from './screens/Register';
 import TForos from './screens/TForos';
+import MisForos from './screens/MisForos';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "TForos",
         element: <TForos />,
+      },
+      {
+        path: "misforos",
+        element: <MisForos />,
       },
       {
         path: "test",

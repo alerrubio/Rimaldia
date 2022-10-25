@@ -10,22 +10,24 @@ export const Post = (props) => {
     const {children, title, user_name, time} = props;
     return (
       <>
-        <div>
-          {children}
-        </div>
-        <div className="Contenido_Publicado">
-          <p class="post-text">El <span>amor no se compra</span>, no necesitas dinero lo que realmente
-            se necesitas es valor para decirle te quiero.<a href="#">#Rimaldia</a></p>
-          <img src="../../fotos/amorfoto.png" class="post-img"></img>
+        <div className="post-container">
+          <div>
+            {children}
+          </div>
+          <div className="Contenido_Publicado">
+            <p className="post-text">El <span>amor no se compra</span>, no necesitas dinero lo que realmente
+              se necesitas es valor para decirle te quiero.<a href="#">#Rimaldia</a></p>
+            <img src="../../fotos/amorfoto.png" className="post-img"></img>
 
-          <div className="post-row">
-            <div className="Actividad-iconos">
-              <div><i class="bi bi-hand-thumbs-up-fill"></i>12</div>
-              <div><i class="bi bi-chat-left-fill"></i>5</div>
-              <div><i class="bi bi-share-fill"></i>2</div>
-            </div>
-            <div className="Perfil-Post-Icono">
+            <div className="post-row">
+              <div className="Actividad-iconos">
+                <div><i className="bi bi-hand-thumbs-up-fill"></i>12</div>
+                <div><i className="bi bi-chat-left-fill"></i>5</div>
+                <div><i className="bi bi-share-fill"></i>2</div>
+              </div>
+              <div className="Perfil-Post-Icono">
 
+              </div>
             </div>
           </div>
         </div>

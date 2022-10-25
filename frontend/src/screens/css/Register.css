@@ -122,7 +122,6 @@ img{
     font-family: Arial;
 }
 body{
-    background: url(bg.jpg);
     background-size: cover;
     height: 100vh;
     background-position: center;

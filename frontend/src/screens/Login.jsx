@@ -21,15 +21,15 @@ const Login = () => {
           <Form className="container justify-content-center align-items-around">
             <div>
               <label for="email">Correo electrónico</label>
-              <div class="input-group mb-3">
-                <i class="input-group-text bi bi-envelope-fill"></i>
+              <div className="input-group mb-3">
+                <i className="input-group-text bi bi-envelope-fill"></i>
                 <input type="email" className="form-control email-input" name="email" placeholder="Correo electrónico" required/>
               </div>
             </div>
             <div>
               <label for="password">Contraseña</label>
-              <div class="input-group mb-3">
-                <i class="input-group-text bi bi-key-fill"></i>
+              <div className="input-group mb-3">
+                <i className="input-group-text bi bi-key-fill"></i>
                 <input type="password" className="form-control password-input" name="password" placeholder="Contraseña" required/>
               </div>
             </div>

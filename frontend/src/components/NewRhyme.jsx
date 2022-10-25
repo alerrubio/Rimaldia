@@ -15,14 +15,9 @@ const styles = {
   };
   
 export const NewRhyme = (props) => {
-    const {children, title, user_name, time} = props;
+    const {children, title, user_name, time, post_to} = props;
     return (
       <>
-      <style type="text/css">
-        {`
-    
-    `}
-      </style>
         {children}
         <div className="Post_Input_Contenedor p-4">
           <textarea row="3" placeholder="Cual será la rima de hoy?"></textarea>
@@ -45,7 +40,7 @@ export const NewRhyme = (props) => {
 
             <a href="#" className="col-2">
                 <i className="bi bi-pencil-square"></i>
-                Publicar rima
+                Publicar rima {post_to}
             </a>
           </div>
         </div>

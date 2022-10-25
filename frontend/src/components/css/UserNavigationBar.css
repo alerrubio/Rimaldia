@@ -1,0 +1,21 @@
+.bordes{
+    border: 1px solid black;
+}
+
+.forum-tab{
+    background-color: #f7f4ef;
+    padding: 15px 0px;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border: 1px solid #d1d0c9;
+    color: #626262;
+    font-weight: bold;
+}
+
+.forum-tab:hover{
+    background-color: #d1d0c9;
+}
+
+.user-nav-bar{
+    margin-bottom: 0px;
+}
