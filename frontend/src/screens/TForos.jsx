@@ -18,7 +18,8 @@ function TForos() {
     <NewRhyme post_to={foro}>
         <UserInfo user_name="Ricardo Poetiso" time={date} profile_picture={PP}></UserInfo>
     </NewRhyme>
-    <UserNavigationBar>
+    <div className="mt-5"></div>
+    <UserNavigationBar tabs={['Mis foros', 'Todos los foros']}>
     </UserNavigationBar>
     <Post>
       <UserInfo user_name="Sandra Eterna" time={datetime} profile_picture={PP2}></UserInfo>

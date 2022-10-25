@@ -16,8 +16,7 @@ export const Post = (props) => {
           </div>
           <div className="Contenido_Publicado">
             <p className="post-text">El <span>amor no se compra</span>, no necesitas dinero lo que realmente
-              se necesitas es valor para decirle te quiero.<a href="#">#Rimaldia</a></p>
-            <img src="../../fotos/amorfoto.png" className="post-img"></img>
+              necesitas es valor para decirle te quiero.<a href="#">#Rimaldia</a></p>
 
             <div className="post-row">
               <div className="Actividad-iconos">

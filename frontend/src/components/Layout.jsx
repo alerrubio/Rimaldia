@@ -11,11 +11,11 @@ export default function Layout() {
         <div className="row col-3">
           <SideBar username="rickypoeta" email="ricky@gmail.com" />
         </div>
+        <NavBar title="Rimaldía" username="rickypoeta">
+            <MenuContent username="rickypoeta"/>
+        </NavBar>
         
         <div id="detail" className="row col-11 ps-5">
-          <NavBar title="Rimaldía" username="rickypoeta">
-              <MenuContent username="rickypoeta"/>
-          </NavBar>
           <div className="page-content">
             <Outlet />
           </div>

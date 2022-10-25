@@ -72,6 +72,16 @@ export const NavBar = (props) => {
             </Link>
           </li>
           <li className="nav-item">
+            <Link
+              className={`nav-link ${
+                location.pathname === "/Records" ? "active" : ""
+              }`}
+              to="/Records"
+            >
+              Records
+            </Link>
+          </li>
+          <li className="nav-item">
             <DropdownButton id="dropdown-basic-button" className="dd-nav-bar" variant="peach" title={username}>
               <Dropdown.Item href="#/action-1">Mi cuenta</Dropdown.Item>
               <Dropdown.Item href="#/action-2">Mi perfil</Dropdown.Item>

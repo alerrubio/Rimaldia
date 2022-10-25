@@ -6,8 +6,9 @@
 }
 
 .profile-image{
-    max-width: 30%;
-    max-height: 30%;
+    width: 15%;
+    height: auto;
+    margin-top: 30px;
     border-radius: 100%;
 }
 
@@ -20,7 +21,6 @@
     max-width: 20%;
     z-index: 100000;
     background-color: #e0dcd6;
-    border-right: solid 1px #b5b5b5;
     padding: 0px 10px;
 }
 
@@ -43,7 +43,7 @@
 }
 
 .item{
-    margin: 10px 50px;
+    margin: 10px 5px;
 }
 
 .username{

@@ -10,7 +10,7 @@ export const SideBar = (props) => {
     <div id="sidebar" className="container d-none d-lg-block d-flex justify-content-center">
         <div className="user-card row">
             <Link 
-                to="/profile" className="to-profile container d-flex justify-content-center ">
+                to="/profile" className="to-profile container d-flex justify-content-center">
                     <img className="profile-image" src={PP} />
                     <div className="username ">
                         { username }
@@ -19,10 +19,10 @@ export const SideBar = (props) => {
         </div>
         <div id="categorias" className="categories row">
             <div className="head">
-                <a>CATEGORIAS</a>
+                <a>Categorías</a>
             </div>
             <div className="item">
-                <Link to={"/category"}>Romantico</Link>
+                <Link to={"/category"}>Romántico</Link>
             </div>
             <div className="item">
                 <Link to={"/category"}>Verso Libre</Link>

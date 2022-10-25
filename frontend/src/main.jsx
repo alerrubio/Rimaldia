@@ -14,6 +14,7 @@ import Post from './screens/Post';
 import Register from './screens/Register';
 import TForos from './screens/TForos';
 import MisForos from './screens/MisForos';
+import Records from './screens/Records';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "test",
         element: <Test />,
+      },
+      {
+        path: "Records",
+        element: <Records />,
       },
     ],
   },
