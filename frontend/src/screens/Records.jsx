@@ -2,8 +2,8 @@ import "./css/Records.css";
 import UserInfo from "../components/UserInfo";
 import PP from"/img/pp-example.jpg";
 import PP2 from"/img/pp2.png";
-import Table from 'react-bootstrap/Table';
 import UserNavigationBar from "../components/UserNavigationBar";
+import RecordTable from "../components/RecordTable";
 
 var date = new Date();
 date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
@@ -12,41 +12,49 @@ datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', 
 
 function Records() {
 
+  let pclaveDummy = 
+  [
+    {
+      rank: 1,
+      pclave: 'amor',
+      usos: 184
+    },
+    {
+      rank: 2,
+      pclave: 'cielo',
+      usos: 156
+    },
+    {
+      rank: 3,
+      pclave: 'bosque',
+      usos: 76
+    },
+    {
+      rank: 4,
+      pclave: 'agua',
+      usos: 43
+    },
+    {
+      rank: 5,
+      pclave: 'vida',
+      usos: 29
+    }
+  ]
+
   return (
     <>
-    <UserInfo user_name="Ricardo Poetiso" time={date} profile_picture={PP}></UserInfo>
-    <div className="mt-5"></div>
-    <UserNavigationBar tabs={['Palabras clave', 'Likes', 'Comentarios', 'Usuarios']}>
-    </UserNavigationBar>
-    <Table striped bordered hover className="mt-5">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Username</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td colSpan={2}>Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </Table>
+      <UserInfo user_name="Ricardo Poetiso" time={date} profile_picture={PP}></UserInfo>
+      <div className="mt-5"></div>
+      <UserNavigationBar tabs={['Palabras clave', 'Likes', 'Comentarios', 'Usuarios']}>
+      </UserNavigationBar>
+      <div className="record-container">
+      
+
+
+      <RecordTable headers={['Ranking', 'Palabras clave', 'Usos']} data={pclaveDummy}>        
+      </RecordTable>
+      
+      </div>    
     </>
   )
 }

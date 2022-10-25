@@ -5,13 +5,6 @@
     border-bottom: 1px solid #b5b5b5;
 }
 
-.profile-image{
-    width: 15%;
-    height: auto;
-    margin-top: 30px;
-    border-radius: 100%;
-}
-
 #sidebar {
     position: fixed;
     top: 0;
@@ -44,18 +37,44 @@
 
 .item{
     margin: 10px 5px;
+    color: #626262;
 }
 
-.username{
-    position: static;
+.profile-image{
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+    border-radius: 100%;
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+}
+
+.username {
+    position: relative;
     font-size: 25px;
     color:rgb(178, 61, 61);
-    padding-top: 200px;
+    display: block;
+    margin: 10px 5px;
 }
 
-a{
+.categories{
+    padding-bottom: 20px;
+    border-bottom: 1px solid #b5b5b5;
+    width: 100%;
+    display: block;
+    position: relative;
+}
+
+.to-profile{
+    display: block;
+}
+
+a {
     text-decoration: none;
-    color: black;
+    color: #626262;
     position: static;
     font-weight: bold;
 }
@@ -64,14 +83,9 @@ a:hover{
     color:rgb(178, 61, 61);
 }
 
-.categories{
-    padding-bottom: 20px;
-    border-bottom: 1px solid #b5b5b5;
-    width: 100%;
-}
-
 .head{
     font-size: 25px;
+    color: #626262;
 }
 
 li{

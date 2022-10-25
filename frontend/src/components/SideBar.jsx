@@ -9,10 +9,10 @@ export const SideBar = (props) => {
   return (
     <div id="sidebar" className="container d-none d-lg-block d-flex justify-content-center">
         <div className="user-card row">
+            <img className="profile-image" src={PP} />
             <Link 
-                to="/profile" className="to-profile container d-flex justify-content-center">
-                    <img className="profile-image" src={PP} />
-                    <div className="username ">
+                to="/profile" className="to-profile container justify-content-center">
+                    <div className="username">
                         { username }
                     </div>
             </Link>
