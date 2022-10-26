@@ -6,6 +6,20 @@ import Form from 'react-bootstrap/Form';
 import Button from "react-bootstrap/esm/Button";
 import "./css/Login.css";
 
+function useradmin() {
+  // Get the checkbox
+  var checkBox = document.getElementById("cbox1");
+  // Get the output text
+  var text = document.getElementById("text");
+
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+    text.style.display = "none";
+  }
+}
+
 const Login = () => {
   const location = useLocation();
   
@@ -36,6 +50,9 @@ const Login = () => {
             <Button variant="peach" onClick={event =>  window.location.href='/'} className="btn-login btn login col-12">
                 Entrar
             </Button>
+            <Link style={{fontSize: "18px"}} to="/SuperAdmin">
+            <div><br /><br /><center><label><input style={{width: "14px", height: "14px"}} type="checkbox" id="cbox1" value="first_checkbox"/> Soy Administrador</label></center></div>
+            </Link>
           </Form>
           {/*<div className="row col-12 forgot-pwd justify-content-end">
             ¿Olvidó su contraseña?

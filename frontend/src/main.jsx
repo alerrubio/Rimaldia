@@ -20,6 +20,7 @@ import PostDetail from './screens/PostDetail';
 import ForumDetail from './screens/ForumDetail';
 import Favoritos from './screens/Favoritos';
 import Modal from "react-modal";
+import SuperAdmin from './screens/SuperAdmin';
 Modal.setAppElement("#root");
 
 const router = createBrowserRouter([
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />
+  },
+  {
+    path: "/SuperAdmin",
+    element: <SuperAdmin />
   },
   {
     path: "/Register",

@@ -1,9 +1,10 @@
+import Comments from "./comments/Comments";
 import "./css/PostDetail.css";
+import "./css/comments.css";
 import UserInfo from "../components/UserInfo";
 import Post from "../components/Post";
-import PP from"/img/pp-example.jpg";
 import PP2 from"/img/pp2.png";
-import Background from "/img/LOGIN.png"
+import Background from "/img/LOGIN.png";
 var date = new Date();
 date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
 var datetime = new Date();
@@ -21,7 +22,12 @@ function PostDetail() {
                 </Post>
             </div>
             <div className="comments-box col-6 d-flex flex-column justify-content-center ms-4">
-                Aquí va la caja de comentarios
+            <div>
+      <Comments
+        commentsUrl="http://localhost:3004/comments"
+        currentUserId="1"
+      />
+    </div>
             </div>
         </div>
     </>
