@@ -57,7 +57,7 @@ const router = createBrowserRouter([
       },
       {
         path: "forum/:id",
-        element: <ForumDetail forum_name="Romance" about="Foro para románticos empedernidos" members_no="3"/>,
+        element: <ForumDetail forum_name="Romance" about="Foro para románticos empedernidos" members_no="3" username="Francisca Sueño"/>,
       },
       {
         path: "favoritos",
