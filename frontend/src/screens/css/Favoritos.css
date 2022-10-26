@@ -1,0 +1,11 @@
+.favs-header{
+    background-color: #f7f4ef;
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0px;
+    margin-bottom: 0px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    color: gray;
+}

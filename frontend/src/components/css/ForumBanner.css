@@ -1,0 +1,25 @@
+.forum-detail-box{
+
+}
+
+.forum-information{
+    height: 10%;
+    background-color: #e3dfda;
+    border-radius: 25px;
+}
+
+.username-text{
+    font-size: 50px;
+}
+
+.userfullname-text{
+    color: gray;
+}
+
+.text-user-box{
+    margin-left: 20px;
+}
+
+.bordes{
+    border: 1px solid black;
+}

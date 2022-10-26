@@ -15,7 +15,10 @@ import Register from './screens/Register';
 import TForos from './screens/TForos';
 import MisForos from './screens/MisForos';
 import Records from './screens/Records';
-
+import UserProfile from './screens/UserProfile'
+import PostDetail from './screens/PostDetail';
+import ForumDetail from './screens/ForumDetail';
+import Favoritos from './screens/Favoritos';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,8 +29,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "post",
-        element: <Post />,
+        path: "post/:id",
+        element: <PostDetail />,
       },
       {
         path: "TForos",
@@ -45,6 +48,18 @@ const router = createBrowserRouter([
         path: "Records",
         element: <Records />,
       },
+      {
+        path: "record/:id",
+        element: <Records />,
+      },
+      {
+        path: "forum/:id",
+        element: <ForumDetail forum_name="Romance" about="Foro para románticos empedernidos" members_no="3"/>,
+      },
+      {
+        path: "favoritos",
+        element: <Favoritos/>,
+      },
     ],
   },
   {
@@ -54,7 +69,11 @@ const router = createBrowserRouter([
   {
     path: "/Register",
     element: <Register />
-  }
+  },
+  {
+    path: "/user/:id",
+    element: <UserProfile username="panchitadream" user_full_name="Francisca Sueño" />
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

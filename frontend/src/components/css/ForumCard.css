@@ -1,0 +1,33 @@
+.forum-card-container{
+    width: 30%;
+    height: auto;
+    margin-bottom: 15px;
+    margin-right: 20px;
+}
+
+.forums-icon{
+    font-size: 50px;
+    margin-right: 50px;
+}
+.forum-card{
+    background-color: white;
+    height: 100%;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.forum-card:hover{
+    background-color: #e0dcd6;
+}
+
+.forum_info{
+    margin-left: 0px;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.forum_name{
+    font-size: 28px;
+    font-weight: bold;
+}

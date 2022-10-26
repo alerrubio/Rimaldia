@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./css/NavBar.css";
+import Logo from "/img/logo.png";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useLocation, Link } from "react-router-dom";
@@ -8,20 +9,25 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 
 
 export const NavBar = (props) => {
-    const {children, title, username} = props;
+    const {children, title, username, nav_bar_alignment, logo} = props;
+    var logo_div = null;
+    if (logo){
+      logo_div = <Link className="logo-link" to={"/"}><img className="nav-bar-logo" src={ Logo } /></Link>;
+    }
     return (
       <>
-        <nav className="barra-nav navbar navbar-expand-sm navbar-expand-lg  fixed-top d-flex justify-content-end">
-          <div className="d-flex flex-row align-items-center col-12 col-lg-8">
+        <nav className={`barra-nav navbar navbar-expand-sm navbar-expand-lg  fixed-top d-flex justify-content-${nav_bar_alignment}`}>
+          {logo_div}
+          <div className="d-flex flex-row align-items-center col-12 col-lg-3 ms-2">
             <div className="search-bar input-group rounded">
               <input type="search" className="form-control rounded search-nav-bar" placeholder="Buscar" aria-label="Search" aria-describedby="search-addon" />
               <span className="input-group-text border-0" id="search-addon">
                 <i className="bi bi-search"></i>
               </span>
             </div>
-            <div className="col-12 col-lg-8">
+          </div>
+          <div className="col-12 col-lg-6">
               {children}
-            </div>
           </div>
         </nav>
       </>
@@ -45,24 +51,6 @@ export const NavBar = (props) => {
           </li>
           <li className="nav-item">
             <Link
-              className={`nav-link ${location.pathname === "/test" ? "active" : ""}`}
-              to="/test"
-            >
-              Test
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              className={`nav-link ${
-                location.pathname === "/Favoritos" ? "active" : ""
-              }`}
-              to="#"
-            >
-              Favoritos
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
               className={`nav-link ${
                 location.pathname === "/TForos" ? "active" : ""
               }`}
@@ -78,14 +66,14 @@ export const NavBar = (props) => {
               }`}
               to="/Records"
             >
-              Records
+              Récords
             </Link>
           </li>
           <li className="nav-item">
             <DropdownButton id="dropdown-basic-button" className="dd-nav-bar" variant="peach" title={username}>
-              <Dropdown.Item href="#/action-1">Mi cuenta</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Mi perfil</Dropdown.Item>
-              <Dropdown.Item href={"/login"}>Cerrar sesión</Dropdown.Item>
+              <Dropdown.Item as={Link} to="#/action-1">Mi cuenta</Dropdown.Item>
+              <Dropdown.Item as={Link} to={"/user/:id"}>Mi perfil</Dropdown.Item>
+              <Dropdown.Item as={Link} to={"/login"}>Cerrar sesión</Dropdown.Item>
             </DropdownButton>
           </li>
         </ul>

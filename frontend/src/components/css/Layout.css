@@ -8,6 +8,7 @@
 
 .page-content{
     padding-top: 60px;
+    padding-bottom: 80px;
 }
 
 .contenido{
@@ -23,6 +24,22 @@
     background-color: #ff8e6c;
     color: white;
 }
+
 .btn-peach:hover {
     color:#ff8e6c;
+}
+
+.btn-leaf {
+    background-color: #52776f;
+    color: white;
+}
+
+.btn-leaf:hover {
+    color: #52776f;
+}
+
+.bg-img{
+    background-size:cover;
+    background-attachment: fixed;
+    opacity: 20%;
 }
