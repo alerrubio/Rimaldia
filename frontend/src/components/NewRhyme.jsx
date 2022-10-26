@@ -25,11 +25,11 @@ export const NewRhyme = (props) => {
         {children}
         <div className="Post_Input_Contenedor p-4">
           <label className="label-textarea" for="poet_input">¿Cuál será la rima de hoy?</label>
-          <textarea row="5" id="poet_input" className="mt-0" placeholder={placeholder_textarea}></textarea>
+          <textarea row="5" id="poet_input" className="mt-0 pb-5" placeholder={placeholder_textarea}></textarea>
 
           <div className="Links_post d-flex flex-row justify-content-between">
 
-            <div className="categories-dd d-flex justify-content-end  col-12">
+            <div className="categories-dd d-flex justify-content-end col-12">
                 <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="Seleccione la categoría">
                     <Dropdown.Item href="#">Romántico</Dropdown.Item>
                     <Dropdown.Item href="#">Verso Libre</Dropdown.Item>

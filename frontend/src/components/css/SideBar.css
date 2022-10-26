@@ -32,7 +32,15 @@
 }
 
 .head{
-    margin: 20px 5px;
+    margin: 10px 5px;
+    padding: 5px 0px;
+    border-radius: 15px;
+    
+}
+
+.head:hover{
+    background-color: #b5b5b5;
+    color: rgb(178, 61, 61);
 }
 
 .item{
@@ -45,6 +53,7 @@
     height: auto;
     margin-top: 30px;
     border-radius: 100%;
+    border: 5px solid white;
     position: relative;
     display: block;
     margin-left: auto;
@@ -55,13 +64,13 @@
 .username {
     position: relative;
     font-size: 25px;
-    color:rgb(178, 61, 61);
+    color: gray;
     display: block;
     margin: 10px 5px;
 }
 
 .categories{
-    padding-bottom: 20px;
+    padding: 0px;
     border-bottom: 1px solid #b5b5b5;
     width: 100%;
     display: block;
@@ -94,4 +103,9 @@ li{
 
 .bordes{
     border: 1px solid black;
+}
+
+.logo-sidebar{
+    position: static;
+    margin: 10px 0px;
 }

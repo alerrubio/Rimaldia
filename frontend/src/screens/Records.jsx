@@ -43,9 +43,11 @@ function Records() {
 
   return (
     <>
-      <UserInfo user_name="Ricardo Poetiso" time={date} profile_picture={PP} />
       <div className="mt-5"></div>
-      <UserNavigationBar tabs={['Palabras clave', 'Likes', 'Comentarios', 'Usuarios']} />
+      <UserNavigationBar tabs={[{name: 'Palabras clave', link: 'record/:id'}, 
+                                {name: 'Likes', link: 'record/:id'},
+                                {name: 'Comentarios', link: 'record/:id'},
+                                {name: 'Usuarios', link: 'record/:id'}]} />
       <div className="record-container">
         <RecordTable headers={['Ranking', 'Palabras clave', 'Usos']} data={pclaveDummy} />        
       </div>    
