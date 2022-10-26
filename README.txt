@@ -10,12 +10,28 @@ los modelos (collections), controladores y configuración requerida para Rimald�
 Rutas:
 	Controladores:
 		Rimaldia > Backend > src > controllers
+
+		La carpeta de controladores guarda toda la lógica de los 
+		endpoints de cada modelo.
+
 	Modelos
 		Rimaldia > Backend > src > models
+
+		La carpeta de modelos guarda la estructura representativa de 
+		cada schema de la base de datos.
+
 	Routers
 		Rimaldia > Backend > src > routes
+
+		La carpeta de routers guarda las rutas necesarias para poder
+		acceder a los endpoints de la aplicación.
+
 	Plug-ins
 		Rimaldia > Backend > node_modules
+
+		La carpeta de plug-ins guarda todos los plugins necesarios
+		para el funcionamiento del código de backend.
+
 
 INTEGRANTES DEL EQUIPO
 Alejandro Tijerina Hinojosa - 1837575

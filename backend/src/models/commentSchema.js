@@ -3,17 +3,16 @@ const mongoose = require('mongoose');
 const CommentSchema = mongoose.Schema({
     text: {
         type: String,
-        required: true
+        required: [true, 'El texto del comentario no puede estar vacío']
     },
     user_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",
-        required: true
+        required: [true, 'Un id de usuario es necesario']
     },
-    post_id: {
-        type: String,
-        //type: mongoose.Schema.Types.ObjectId,
-        //ref: "post",
+    post_id: {        
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "post",
         required: true
     }
 },

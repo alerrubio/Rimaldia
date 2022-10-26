@@ -1,0 +1,39 @@
+.Imgperfil{
+    margin-bottom: 220px;
+}
+
+.bordes{
+    border: 1px solid black;
+}
+
+.page-content{
+    padding-top: 60px;
+    padding-bottom: 80px;
+}
+
+.contenido{
+    height: 100vh;
+    width: 100vw;
+}
+
+#detail{
+    overflow:visible;
+}
+
+.btn-peach {
+    background-color: #ff8e6c;
+    color: white;
+}
+
+.btn-peach:hover {
+    color:#ff8e6c;
+}
+
+.btn-leaf {
+    background-color: #52776f;
+    color: white;
+}
+
+.btn-leaf:hover {
+    color: #52776f;
+}

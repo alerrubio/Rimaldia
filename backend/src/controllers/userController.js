@@ -2,20 +2,20 @@ const User = require("../models/userSchema");
 
 exports.create = async (req, res) => {
   const { body: user } = req;
-  console.log(user);
-  const userDB = new User(user);
-  await userDB.save().catch((err) => {
-    console.log("UPS!", err)
-    res.send({
-        message: err,
+  try{
+    const userDB = new User(user);
+    await userDB.save();
+      res.send({
+        message: "Usuario creado con éxito",
         data: userDB,
       });
+  }catch(err){
+    console.log(err);
+    res.send({
+      message: "No se pudo crear al usuario",
+      user_data: user,
+    });
   }
-  );
-  res.send({
-    message: "Usuario creado con éxito",
-    data: userDB,
-  });
 };
 
 exports.get = async (req, res) => {
@@ -34,14 +34,26 @@ exports.get = async (req, res) => {
 exports.delete = async (req, res) => {
     const {params: {id}} = req;
     let msg = "";
-    const data = await User.findOneAndDelete({_id: id}).catch((err) => {
-      msg = err;
-      res.send({message: "No se pudo eliminar al usuario",
-                error: err});
-    });
-    msg = "Usuario eliminado";
+    let data = null;
+   try{
+    const userDB = await User.findOneAndDelete({_id: id})
+    if (userDB){
+      msg = "Usuario eliminado";
+      data = userDB;
+    }
+    else{
+      msg = "No se encontró al usuario";
+      data = {user_id: id};
+    }
     res.send({message: msg,
-      data: data});
+      user: data});
+   }
+   catch(err){
+    console.log(err);
+    res.send({message: "No se pudo eliminar al usuario",
+      user_id: id});
+   }
+    
   };
 
 exports.update = async (req, res) => {

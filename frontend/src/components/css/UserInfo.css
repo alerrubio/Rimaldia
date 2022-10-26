@@ -1,0 +1,20 @@
+.perfil_usuario{
+    padding: 15px 30px;
+    border-bottom: 1px solid #b5b5b5;
+}
+
+.user-info{
+    padding-left: 10px;
+    height: auto;
+}
+
+.profile-image{
+    max-width: 30%;
+    max-height: 30%;
+    border-radius: 100%;
+}
+
+.profile-picture{
+    z-index: 1000;
+    position: inherit;
+}

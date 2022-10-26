@@ -1,0 +1,55 @@
+.Contenido_Publicado{
+    width: 100%;
+    background-color: #f7f4ef;
+    border-radius: 6px;
+    padding: 20px;
+    color: #626262;
+    margin: 0%;
+  }
+
+  .post-container{
+    padding: 15px 10px;
+    border-radius: 25px;
+    margin: 0px 0px;
+    margin-bottom: 20px;
+    background-color: #f7f4ef;
+  }
+  
+  .post-text{
+    color: #9a9a9a;
+    font-size: 15px;
+  }
+
+  .post-text span{
+    color: #626262;
+    font-weight: 500;
+  }
+
+  .hashtags a{
+    color: #52776f;
+    font-size: 15px;
+    text-decoration:none;
+  }
+
+  .post-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .post-img{
+    position: static;
+  }
+
+  .Actividad-iconos{
+    margin-top: 20px;
+  }
+
+.post-text{
+    width: 100%;
+    height: fit-content;
+    border: 0;
+    outline: 0;
+    resize: none;
+    margin-bottom: 0%;
+}

@@ -1,0 +1,44 @@
+
+.barra-nav{
+    background-color: #e0dcd6;
+    opacity: 90%;
+    width: 100%;
+    height: 60px;
+    color: black;
+}
+
+.bordes{
+    border: 1px solid black;
+}
+
+.logo{
+    padding: 0%;
+}
+
+.search-bar{
+    padding: 0%;
+    margin: 0%;
+}
+.nav-bar-colapse{
+    margin-left: 50%;
+    padding: 0%;
+}
+
+.dd-nav-bar{
+    padding: 0%;
+    margin: -25% -10%;
+}
+
+.nav-bar-logo{
+    position: static;
+    width: 60%;
+    height: auto;
+    margin: 0% 10px;
+    padding: 0%;
+}
+
+
+.logo-link{
+    margin: 0%;
+    padding: 0%;
+}
