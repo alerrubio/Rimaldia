@@ -72,7 +72,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/SuperAdmin",
-    element: <SuperAdmin />
+    element: <SuperAdmin username="panchitadream" user_full_name="Francisca Sueño"/>
   },
   {
     path: "/Register",
