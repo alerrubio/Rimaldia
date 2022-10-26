@@ -28,3 +28,17 @@
     padding: 0%;
     margin: -25% -10%;
 }
+
+.nav-bar-logo{
+    position: static;
+    width: 60%;
+    height: auto;
+    margin: 0% 10px;
+    padding: 0%;
+}
+
+
+.logo-link{
+    margin: 0%;
+    padding: 0%;
+}

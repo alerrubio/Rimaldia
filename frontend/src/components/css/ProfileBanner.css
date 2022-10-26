@@ -1,0 +1,34 @@
+.pp{
+    position: static;
+    height: 100%;
+    width: auto;
+    border-radius: 100%;
+    border: 5px solid white;
+    z-index: 100;
+}
+
+.user-information{
+    height: 30%;
+    background-color: #e3dfda;
+    padding: 10px 0px;
+}
+
+.bordes{
+    border: 1px solid black;
+}
+
+.username-text{
+    font-size: 50px;
+}
+
+.userfullname-text{
+    color: gray;
+}
+
+.text-user-box{
+    margin-left: 20px;
+}
+
+.bordes{
+    border: 1px solid black;
+}

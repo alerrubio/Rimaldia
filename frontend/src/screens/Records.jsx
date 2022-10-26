@@ -43,17 +43,11 @@ function Records() {
 
   return (
     <>
-      <UserInfo user_name="Ricardo Poetiso" time={date} profile_picture={PP}></UserInfo>
+      <UserInfo user_name="Ricardo Poetiso" time={date} profile_picture={PP} />
       <div className="mt-5"></div>
-      <UserNavigationBar tabs={['Palabras clave', 'Likes', 'Comentarios', 'Usuarios']}>
-      </UserNavigationBar>
+      <UserNavigationBar tabs={['Palabras clave', 'Likes', 'Comentarios', 'Usuarios']} />
       <div className="record-container">
-      
-
-
-      <RecordTable headers={['Ranking', 'Palabras clave', 'Usos']} data={pclaveDummy}>        
-      </RecordTable>
-      
+        <RecordTable headers={['Ranking', 'Palabras clave', 'Usos']} data={pclaveDummy} />        
       </div>    
     </>
   )

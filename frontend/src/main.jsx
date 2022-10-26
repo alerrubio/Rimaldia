@@ -15,6 +15,7 @@ import Register from './screens/Register';
 import TForos from './screens/TForos';
 import MisForos from './screens/MisForos';
 import Records from './screens/Records';
+import UserProfile from './screens/UserProfile'
 
 const router = createBrowserRouter([
   {
@@ -54,7 +55,11 @@ const router = createBrowserRouter([
   {
     path: "/Register",
     element: <Register />
-  }
+  },
+  {
+    path: "/user",
+    element: <UserProfile username="panchitadream" user_full_name="Francisca Sueño" />
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

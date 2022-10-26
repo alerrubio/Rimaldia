@@ -8,18 +8,18 @@ export const SideBar = (props) => {
   const {children, username, email} = props;
   return (
     <div id="sidebar" className="container d-none d-lg-block d-flex justify-content-center">
-        <div className="user-card row">
+        <div className="user-card row ">
             <img className="profile-image" src={PP} />
             <Link 
-                to="/profile" className="to-profile container justify-content-center">
-                    <div className="username">
+                to="/user" className="to-profile container justify-content-center">
+                    <div className="username text-center">
                         { username }
                     </div>
             </Link>
         </div>
         <div id="categorias" className="categories row">
             <div className="head">
-                <a>Categorías</a>
+                <Link to={"/category"}>Categorías</Link>
             </div>
             <div className="item">
                 <Link to={"/category"}>Romántico</Link>

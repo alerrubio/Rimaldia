@@ -25,8 +25,9 @@
     font-weight: 500;
   }
 
-  .post-text a{
-    color: #1876f2;
+  .hashtags a{
+    color: #52776f;
+    font-size: 15px;
     text-decoration:none;
   }
 
@@ -43,3 +44,12 @@
   .Actividad-iconos{
     margin-top: 20px;
   }
+
+.post-text{
+    width: 100%;
+    height: fit-content;
+    border: 0;
+    outline: 0;
+    resize: none;
+    margin-bottom: 0%;
+}
