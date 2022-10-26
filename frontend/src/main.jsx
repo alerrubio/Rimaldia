@@ -20,7 +20,7 @@ import PostDetail from './screens/PostDetail';
 import ForumDetail from './screens/ForumDetail';
 import Favoritos from './screens/Favoritos';
 import Modal from "react-modal";
-Modal.setAppElement("#root");
+
 
 const router = createBrowserRouter([
   {
