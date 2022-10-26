@@ -18,3 +18,13 @@
 .user-nav-bar{
     margin-bottom: 0px;
 }
+
+.peach{
+    background-color: #ff8e6c;
+    color: white;
+}
+
+.peach:hover{
+    color: #ff8e6c;
+    background-color: white;
+}
