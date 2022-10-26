@@ -37,3 +37,9 @@
 .btn-leaf:hover {
     color: #52776f;
 }
+
+.bg-img{
+    background-size:cover;
+    background-attachment: fixed;
+    opacity: 20%;
+}

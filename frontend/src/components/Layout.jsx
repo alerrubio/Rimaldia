@@ -2,11 +2,12 @@ import { Outlet } from "react-router-dom";
 import SideBar from "../components/SideBar";
 import NavBar, { MenuContent }  from "../components/NavBar";
 import "./css/Layout.css";
-import Background from "/img/FONDO.jpg";
+import Background from "/img/LOGIN.png"
 
 export default function Layout() {
   return (
     <>
+      <img src={Background} className="bg-img" alt="" />
       <div className="container d-flex flex-row contenido">
         <div className="row col-3">
           <SideBar username="rickypoeta" email="ricky@gmail.com" />

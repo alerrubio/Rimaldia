@@ -1,21 +1,19 @@
 import React, { useState } from "react";
 import "./css/Post.css";
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 var fecha = new Date();
 fecha = fecha.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric' });
 import { useLocation, Link } from "react-router-dom";
 
 export const Post = (props) => {
-    const {children, title, user_name, time} = props;
+    const {children, title, user_name, time, visible_rows} = props;
     return (
       <>
         <div className="post-container">
-          <div>
+          <Link to={"/post/:id"}>
             {children}
-          </div>
+          </Link>
           <div className="Contenido_Publicado">
-            <textarea className="post-text" readOnly>
+            <textarea rows={visible_rows} className="post-text" readOnly>
             El amor no se compra, 
             no necesitas dinero lo que realmente necesitas
             es valor para decirle te quiero.</textarea>

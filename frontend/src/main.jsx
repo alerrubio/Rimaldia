@@ -16,6 +16,7 @@ import TForos from './screens/TForos';
 import MisForos from './screens/MisForos';
 import Records from './screens/Records';
 import UserProfile from './screens/UserProfile'
+import PostDetail from './screens/PostDetail';
 
 const router = createBrowserRouter([
   {
@@ -27,8 +28,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "post",
-        element: <Post />,
+        path: "post/:id",
+        element: <PostDetail />,
       },
       {
         path: "TForos",

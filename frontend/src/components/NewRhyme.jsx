@@ -19,13 +19,13 @@ const styles = {
 resuelvo el problema de la soledad del ser.
 Invito a la luna y con mi sombra somos tres.`
 export const NewRhyme = (props) => {
-    const {children, title, user_name, time, post_to} = props;
+    const {children, title, user_name, time, post_to, visible_rows} = props;
     return (
       <>
         {children}
         <div className="Post_Input_Contenedor p-4">
           <label className="label-textarea" for="poet_input">¿Cuál será la rima de hoy?</label>
-          <textarea row="3" id="poet_input" className="mt-0" placeholder={placeholder_textarea}></textarea>
+          <textarea row="5" id="poet_input" className="mt-0" placeholder={placeholder_textarea}></textarea>
 
           <div className="Links_post d-flex flex-row justify-content-between">
 
