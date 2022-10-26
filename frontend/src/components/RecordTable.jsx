@@ -9,8 +9,8 @@ const RecordTable = (props) => {
     let dataList = [];
 
     {headers.forEach((header, index)=>{
-        if(index == 1){
-            headerList.push(<th key={index} className="ps-4">{header}</th>);
+        if(index == 0){
+            headerList.push(<th key={index} className="ps-4 col-3">{header}</th>);
         }else{
             headerList.push(<th key={index}>{header}</th>);
         }
