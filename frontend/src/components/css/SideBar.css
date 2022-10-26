@@ -49,7 +49,7 @@
 }
 
 .profile-image{
-    width: 100%;
+    width: 80%;
     height: auto;
     margin-top: 30px;
     border-radius: 100%;
@@ -107,5 +107,9 @@ li{
 
 .logo-sidebar{
     position: static;
+    width: 70%;
     margin: 10px 0px;
+}
+.img-logo-link{
+    margin-top: 30px;
 }

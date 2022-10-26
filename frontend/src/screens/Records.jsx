@@ -42,16 +42,26 @@ function Records() {
   ]
 
   return (
-    <>
-      <div className="mt-5"></div>
-      <UserNavigationBar tabs={[{name: 'Palabras clave', link: 'record/:id'}, 
-                                {name: 'Likes', link: 'record/:id'},
-                                {name: 'Comentarios', link: 'record/:id'},
-                                {name: 'Usuarios', link: 'record/:id'}]} />
-      <div className="record-container">
-        <RecordTable headers={['Ranking', 'Palabras clave', 'Usos']} data={pclaveDummy} />        
-      </div>    
-    </>
+<>
+  <div className="mt-5"></div>
+  <UserNavigationBar tabs={[{name: 'Palabras clave', link: 'record/:id'}, 
+                                    {name: 'Likes', link: 'record/:id'},
+                                    {name: 'Comentarios', link: 'record/:id'},
+                                    {name: 'Usuarios', link: 'record/:id'}]} />
+    <div className="record-container">
+      <RecordTable headers={['Ranking', 'Palabras clave', 'Usos']} data={pclaveDummy} />  
+    </div>
+    <div className="record-container">
+      <RecordTable headers={['Ranking semanal', 'Tags', 'Usos']} data={pclaveDummy}>        
+      </RecordTable>      
+    </div>    
+
+    <div className="record-container">
+      <RecordTable headers={['Ranking mensual', 'Tags', 'Usos']} data={pclaveDummy}>        
+      </RecordTable>      
+    </div>  
+     
+</>
   )
 }
 

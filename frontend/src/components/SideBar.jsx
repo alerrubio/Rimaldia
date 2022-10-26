@@ -37,7 +37,9 @@ export const SideBar = (props) => {
                 Favoritos
             </Link>
         </div>
-        <img className="logo-sidebar" src={Logo} />
+        <Link to={"/"} className="img-logo-link d-flex flex-row justify-content-center">
+        <img className="logo-sidebar" src={ Logo } />
+        </Link>
     </div>
   );
 };
