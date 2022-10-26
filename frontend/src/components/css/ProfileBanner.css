@@ -23,7 +23,9 @@
 }
 
 .userfullname-text{
+    font-size: 20px;
     color: gray;
+    font-weight: bold;
 }
 
 .text-user-box{
@@ -32,4 +34,8 @@
 
 .bordes{
     border: 1px solid black;
+}
+
+.profile-user-role{
+    color: gray;
 }

@@ -14,10 +14,10 @@ function Home() {
   return (
     <>
     <NewRhyme/>
-    <Post>
+    <Post edit="false">
       <UserInfo user_name="Sandra Eterna" time={datetime} profile_picture={PP2}></UserInfo>
     </Post>
-    <Post>
+    <Post edit="false">
       <UserInfo user_name="Francisca Sueño" time={date} profile_picture={PP}></UserInfo>
     </Post>
     </>

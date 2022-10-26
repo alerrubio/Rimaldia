@@ -11,7 +11,7 @@ var datetime = new Date();
 datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
 
 function ProfileBanner(props) {
-  const {username, user_full_name} = props;
+  const {username, user_full_name,role} = props;
   return (
     <>
         <div className="user-information col-12 d-flex flex-row justify-content-center">
@@ -19,6 +19,7 @@ function ProfileBanner(props) {
             <div className="text-user-box d-flex flex-column justify-content-center align-items-center">
                 <div className="username-text">{username}</div>
                 <div className="userfullname-text">{user_full_name}</div>
+                <div className="profile-user-role">Poeta{role}</div>
             </div>
         </div>
     </>

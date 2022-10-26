@@ -16,8 +16,8 @@ function PostDetail() {
     <>
         <div className="post-detail-box d-flex flex-row bordes">
             <div className="post-box col-6 d-flex flex-column justify-content-center">
-                <Post visible_rows="12">
-                <UserInfo user_name="Sandra Eterna" time={datetime} profile_picture={PP2}></UserInfo>
+                <Post visible_rows="12" post_detail>
+                  <UserInfo user_name="Sandra Eterna" time={datetime} profile_picture={PP2}></UserInfo>
                 </Post>
             </div>
             <div className="comments-box col-6 d-flex flex-column justify-content-center ms-4">

@@ -23,6 +23,7 @@ import Modal from "react-modal";
 import SuperAdmin from './screens/SuperAdmin';
 Modal.setAppElement("#root");
 
+
 const router = createBrowserRouter([
   {
     path: "/",
