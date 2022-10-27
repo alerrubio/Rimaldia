@@ -24,6 +24,8 @@
 .user_info_card{
     margin-left: 0px;
     font-size: 13px;
+    border-radius: 25px;
+    padding: 20px;
     font-weight: normal;
 }
 

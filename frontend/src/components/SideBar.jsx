@@ -18,7 +18,7 @@ export const SideBar = (props) => {
             </Link>
         </div>
         <div id="categorias" className="categories d-flex flex-column ">
-            <Link to={"/#"} className={`head nav-link ${
+            <Link to={"/category"} className={`head nav-link ${
                 location.pathname === "/category" ? "active" : ""
               }`}>
                 <i class="bi bi-collection-fill"></i>

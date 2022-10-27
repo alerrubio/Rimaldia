@@ -23,7 +23,7 @@ import ForumDetail from './screens/ForumDetail';
 import Favoritos from './screens/Favoritos';
 import Modal from "react-modal";
 import SuperAdmin from './screens/SuperAdmin';
-import AdminRecords from './screens/AdminRecords';
+import AdminRecords from './components/AdminRecords';
 import NewNotification from './screens/NewNotification';
 import Users from './screens/Users';
 Modal.setAppElement("#root");
@@ -107,7 +107,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/Settings",
-    element: <Settings />
+    element: <Settings username="panchitadream" user_full_name="Francisca Sueño" role="Poeta"/>
   },
   {
     path: "/user/:id",

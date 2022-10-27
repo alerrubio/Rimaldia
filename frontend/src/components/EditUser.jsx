@@ -1,28 +1,22 @@
 import "../screens/css/Register.css";
 import "./css/SideBar.css";
-import Background from "/img/REGISTRO.png";
-import Logo from "/img/logo.png";
 import { useLocation, Link } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import InputGroup from 'react-bootstrap/InputGroup';
 import "../assets/sb.css";
 
 function EditUser(){
   return (
-    <div>
-        <div className="row register-box col-6">
-          <div className="row col-12 login-box_R sb">
-            <h3>Editar Usuario</h3>
-            <div className="container content  d-flex justify-content  col-12">
+    <>
+      <div className="col-8 edit-box_R sb">
+            <div className="edit-user-content">
             <Form>
               <div>
                 <label for="email">Correo electrónico</label>
                 <div className="input-group mb-3">
                   <i className="input-group-text bi bi-envelope-fill"></i>
                   <input type="email" className="form-control email-input" name="email" placeholder="Correo electrónico" required />
-                </div>
-              
+                </div>  
               </div>
               <div>
                 <label for="first-name">Nombre(s)</label>
@@ -66,8 +60,8 @@ function EditUser(){
                   <input type="password" className="form-control confirm-password-input" name="confirm-password" required/>
                 </div>
               </div>
-              <div className="pb-3">
-              <Button variant="peach" className="">
+              <div className="pb-3 col-12 d-flex flex-row justify-content-end">
+                <Button variant="peach" className="col-4 p-2">
                   Guardar
                 </Button>
               </div>
@@ -75,9 +69,7 @@ function EditUser(){
           </div>
           
         </div>
-        
-      </div>
-    </div>
+    </>
 
   )
 }

@@ -1,16 +1,16 @@
-import "./css/UserProfile.css";
-import NavBar from "../components/NavBar";
+import "./css/AdminRecords.css";
+import NavBar from "./NavBar";
 import { Outlet } from "react-router-dom";
-import { MenuContent } from "../components/NavBar";
-import ProfileBanner from "../components/ProfileBanner";
+import { MenuContent } from "./NavBar";
+import ProfileBanner from "./ProfileBanner";
 import Background from "/img/LOGIN.png"
 import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
 import "../../api/App.css";
 import data from "../../api/mock-data.json";
-import ReadOnlyRow from "../components/ReadOnlyRow";
-import EditableRow from "../components/EditableRow";
-import UserNavigationBar from "../components/UserNavigationBar";
+import ReadOnlyRow from "./ReadOnlyRow";
+import EditableRow from "./EditableRow";
+import UserNavigationBar from "./UserNavigationBar";
 
 var date = new Date();
 date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
@@ -102,7 +102,6 @@ function AdminRecords(props) {
 
   return (
     <>
-      <h3>Tabla de Records</h3>
             <form onSubmit={handleEditFormSubmit}>
               <table>
                 <thead>
