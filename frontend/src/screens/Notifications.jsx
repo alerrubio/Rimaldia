@@ -9,7 +9,6 @@ function Home() {
   return (
     <>
       <div className="col-12 d-flex flex-row flex-wrap justify-content-center">
-        
         <NotificationCard title="Los usuarios más activos del mes" 
                           text="¡Felicidades! Fulanito y panganito, fueron los usuarios con más post en el mes." 
                           time={date}></NotificationCard>

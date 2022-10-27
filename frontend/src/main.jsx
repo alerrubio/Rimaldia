@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import Test from './screens/test';
+import Notifications from './screens/Notifications';
 import Layout from './components/Layout';
 import './index.css';
 import Home from './screens/Home';
@@ -49,8 +49,8 @@ const router = createBrowserRouter([
         element: <MisForos />,
       },
       {
-        path: "test",
-        element: <Test />,
+        path: "notifications/user/:id",
+        element: <Notifications />,
       },
       {
         path: "/Category",

@@ -64,7 +64,7 @@ export const NavBar = (props) => {
       newTab("/",nav_tabs,"Inicio");
       newTab("/TForos",nav_tabs,"Foros");
       newTab("/Records",nav_tabs,"Records");
-      newTab("/test",nav_tabs,<i class="bi bi-bell-fill notif-bell"></i>);
+      newTab("/notifications/user/:id",nav_tabs,<i class="bi bi-bell-fill notif-bell"></i>);
     }
     return (
       <div className="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
