@@ -14,7 +14,7 @@ export const UserCard = (props) => {
     return (
       <>
         <div className="user-card-container d-flex flex-column align-items-end col-1">
-          <Link to={"/user/:id"} className="user-card d-flex flex-row justify-content-center align-items-center">
+          <Link to={"/user/:id"} className="user-card-info d-flex flex-row justify-content-center align-items-center">
             <div className="user_info_card d-flex flex-column col-12">
               <div className="user_name_card">{user_name}</div>
               <div className="username_card">
