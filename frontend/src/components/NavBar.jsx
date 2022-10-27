@@ -90,6 +90,7 @@ export const NavBar = (props) => {
           <li className="nav-item">
             <DropdownButton id="dropdown-basic-button" className="dd-nav-bar" variant="peach" title={username}>
               <Dropdown.Item as={Link} to="#/action-1">Mi cuenta</Dropdown.Item>
+              <Dropdown.Item as={Link} to={"/Settings"}>Settings</Dropdown.Item>
               <Dropdown.Item as={Link} to={"/user"}>Mi perfil</Dropdown.Item>
               <Dropdown.Item as={Link} to={"/login"}>Cerrar sesión</Dropdown.Item>
             </DropdownButton>
