@@ -4,6 +4,8 @@ import TagsBox from "./TagsBox";
 var fecha = new Date();
 fecha = fecha.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric' });
 import { useLocation, Link } from "react-router-dom";
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 export const Post = (props) => {
     const {children, visible_rows, post_detail} = props;
@@ -26,6 +28,11 @@ export const Post = (props) => {
         <div className="Actividad-iconos d-flex flex-row justify-content-end">
             <div><i className="bi bi-hand-thumbs-up-fill"></i>12</div>
             <div><i className="bi bi-chat-left-fill"></i>5</div>
+            <div><i className="bi bi-save-fill"></i></div>
+            <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="✎">
+                <Dropdown.Item href="#">Editar</Dropdown.Item>
+                <Dropdown.Item href="#">Eliminar</Dropdown.Item>
+            </DropdownButton>
           </div>
       );
     }
@@ -43,6 +50,11 @@ export const Post = (props) => {
           <div className="Actividad-iconos">
             <div><i className="bi bi-hand-thumbs-up-fill"></i>12</div>
             <div><i className="bi bi-chat-left-fill"></i>5</div>
+            <div><i className="bi bi-save-fill"></i></div>
+            <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="✎">
+                <Dropdown.Item href="#">Editar</Dropdown.Item>
+                <Dropdown.Item href="#">Eliminar</Dropdown.Item>
+            </DropdownButton>
           </div>
         </div>
       );

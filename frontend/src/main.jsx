@@ -13,6 +13,7 @@ import Login from './screens/Login';
 import Register from './screens/Register';
 import TForos from './screens/TForos';
 import MisForos from './screens/MisForos';
+import ForumCreate from './screens/ForumCreate';
 import Records from './screens/Records';
 import UserProfile from './screens/UserProfile'
 import Settings from './screens/Settings';
@@ -25,6 +26,7 @@ import SuperAdmin from './screens/SuperAdmin';
 import AdminRecords from './components/AdminRecords';
 import NewNotification from './screens/NewNotification';
 import Users from './screens/Users';
+import ThemeCreate from './screens/ThemeCreate';
 Modal.setAppElement("#root");
 
 const router = createBrowserRouter([
@@ -47,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "misforos",
         element: <MisForos />,
+      },
+      {
+        path: "crearforo",
+        element: <ForumCreate />,
       },
       {
         path: "notifications/user/:id",
@@ -97,6 +103,10 @@ const router = createBrowserRouter([
       {
         path: "usuarios",
         element: <Users />,
+      },
+      {
+        path: "temas",
+        element: <ThemeCreate />,
       }
     ] 
   },
