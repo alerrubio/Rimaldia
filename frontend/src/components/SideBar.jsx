@@ -8,8 +8,8 @@ export const SideBar = (props) => {
   const {children, username, email} = props;
   return (
     <div id="sidebar" className="container d-none d-lg-block d-flex justify-content-center">
-        <div className="user-card">
-            <img className="profile-image" src={PP} />
+        <div className="user-card-image">
+            <img className="profile-image-side-bar" src={PP} />
             <Link 
                 to="/user/:id" className="to-profile container justify-content-center">
                     <div className="username text-center">
