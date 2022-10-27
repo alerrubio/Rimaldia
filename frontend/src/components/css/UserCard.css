@@ -1,0 +1,49 @@
+.user-card-container{
+    width: 40%;
+    background-color: white;
+    height: 100%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    margin-right: 20px;
+    padding: 10px;
+}
+
+.users-icon{
+    font-size: 50px;
+    margin-right: 20px;
+}
+.user-card{
+    width: 100%;
+    border-radius: 15px;
+}
+
+.user-card:hover{
+    background-color: #e0dcd6;
+}
+
+.user_info_card{
+    margin-left: 0px;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.user_name_card{
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.user-options_card{
+    font-size: 30px;
+}
+
+.edit-user_card:hover{
+    color: #c13202;
+}
+
+.email_card, .username_card{
+    font-size: 14px;
+}
+
+.delete-user-icon:hover, .change-role-user-icon:hover{
+    color: #c13202;
+}

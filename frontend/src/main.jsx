@@ -21,6 +21,9 @@ import ForumDetail from './screens/ForumDetail';
 import Favoritos from './screens/Favoritos';
 import Modal from "react-modal";
 import SuperAdmin from './screens/SuperAdmin';
+import AdminRecords from './screens/AdminRecords';
+import NewNotification from './screens/NewNotification';
+import Users from './screens/Users';
 Modal.setAppElement("#root");
 
 
@@ -73,7 +76,25 @@ const router = createBrowserRouter([
   },
   {
     path: "/SuperAdmin",
-    element: <SuperAdmin username="panchitadream" user_full_name="Francisca Sueño"/>
+    element: <SuperAdmin username="panchitadream" user_full_name="Francisca Sueño" role="Administrador"/>,
+    children: [
+      {
+        path: "",
+        element: <AdminRecords />,
+      },
+      {
+        path: "adminrecords",
+        element: <AdminRecords />,
+      },
+      {
+        path: "notification",
+        element: <NewNotification />,
+      },
+      {
+        path: "usuarios",
+        element: <Users />,
+      }
+    ] 
   },
   {
     path: "/Register",
@@ -81,7 +102,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/user/:id",
-    element: <UserProfile username="panchitadream" user_full_name="Francisca Sueño" />
+    element: <UserProfile username="panchitadream" user_full_name="Francisca Sueño" role="Poeta"/>
   },
 ]);
 
