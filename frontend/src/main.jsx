@@ -10,7 +10,6 @@ import Layout from './components/Layout';
 import './index.css';
 import Home from './screens/Home';
 import Login from './screens/Login';
-import Post from './screens/Post';
 import Register from './screens/Register';
 import TForos from './screens/TForos';
 import MisForos from './screens/MisForos';

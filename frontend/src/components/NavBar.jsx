@@ -64,7 +64,7 @@ export const NavBar = (props) => {
       newTab("/",nav_tabs,"Inicio");
       newTab("/TForos",nav_tabs,"Foros");
       newTab("/Records",nav_tabs,"Records");
-      newTab("/Records",nav_tabs,<i class="bi bi-bell-fill notif-bell"></i>);
+      newTab("/",nav_tabs,<i class="bi bi-bell-fill notif-bell"></i>);
     }
     return (
       <div className="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
@@ -72,12 +72,8 @@ export const NavBar = (props) => {
           {nav_tabs}
           <li className="nav-item">
             <DropdownButton id="dropdown-basic-button" className="dd-nav-bar" variant="peach" title={username}>
-              <Dropdown.Item as={Link} to="#/action-1">Mi cuenta</Dropdown.Item>
-
               <Dropdown.Item as={Link} to={"/Settings"}>Settings</Dropdown.Item>
-             
               <Dropdown.Item as={Link} to={"/user/:id"}>Mi perfil</Dropdown.Item>
-
               <Dropdown.Item as={Link} to={"/login"}>Cerrar sesión</Dropdown.Item>
             </DropdownButton>
           </li>
