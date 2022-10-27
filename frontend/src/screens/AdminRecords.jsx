@@ -18,7 +18,7 @@ var datetime = new Date();
 datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
 
 
-function SuperAdmin(props) {
+function AdminRecords(props) {
   const {username, user_full_name, role} = props;
 
   const [contacts, setContacts] = useState(data);
@@ -102,24 +102,41 @@ function SuperAdmin(props) {
 
   return (
     <>
-      <img src={Background} className="bg-img" alt="" />
-        <NavBar title="Rimaldía" 
-                username={props.username} 
-                nav_bar_alignment="between" 
-                logo>
-            <MenuContent username={props.username}
-                         admin/>
-        </NavBar>
-        <div className="profile-page-content">
-          <ProfileBanner username={props.username} user_full_name={props.user_full_name} role={props.role}/>
-          <div className="posts-content col-10 d-flex flex-column justify-content-center">
-          <div className="app-container">
-            <Outlet/>
-          </div>
-        </div>
-      </div>
+      <h3>Tabla de Records</h3>
+            <form onSubmit={handleEditFormSubmit}>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Acción</th>
+                    <th>Fecha de reporte</th>
+                    <th>Tabla Afectada</th>
+                    <th>Edición</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {contacts.map((contact) => (
+                    <Fragment>
+                      {editContactId === contact.id ? (
+                        <EditableRow
+                          editFormData={editFormData}
+                          handleEditFormChange={handleEditFormChange}
+                          handleCancelClick={handleCancelClick}
+                        />
+                      ) : (
+                        <ReadOnlyRow
+                          contact={contact}
+                          handleEditClick={handleEditClick}
+                          handleDeleteClick={handleDeleteClick}
+                        />
+                      )}
+                    </Fragment>
+                  ))}
+                </tbody>
+              </table>
+            </form>
     </>
   )
 }
 
-export default SuperAdmin
+export default AdminRecords

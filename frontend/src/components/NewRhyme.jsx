@@ -50,7 +50,6 @@ export const NewRhyme = (props) => {
                     Publicar {post_to}
                   </Button>
                 </div>
-                
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@ import PP2 from"/img/pp2.png";
 import PP3 from"/img/pp3.jpg";
 import PP4 from"/img/pp4.jpg";
 import CommentForm from "./CommentForm";
+import "../components/css/comments.css";
 
 const Comment = ({
   comment,

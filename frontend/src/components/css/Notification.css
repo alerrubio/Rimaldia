@@ -1,0 +1,19 @@
+.notification-form{
+    background-color: #e0dcd6;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.notif-input{
+    margin:10px 0px;
+}
+
+.notif-inputs-box{
+    padding: 20px 10px;
+}
+
+.notification-form > h3{
+    font-size: 30px;
+    color: gray;
+    font-weight: bold;
+}

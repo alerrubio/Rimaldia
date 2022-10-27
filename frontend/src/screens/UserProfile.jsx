@@ -14,7 +14,7 @@ var datetime = new Date();
 datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
 
 function UserProfile(props) {
-  const {username, user_full_name} = props;
+  const {username, user_full_name, role} = props;
 
   return (
     <>
@@ -26,7 +26,7 @@ function UserProfile(props) {
             <MenuContent username={props.username}/>
         </NavBar>
         <div className="profile-page-content">
-          <ProfileBanner username={props.username} user_full_name={props.user_full_name}/>
+          <ProfileBanner username={props.username} user_full_name={props.user_full_name} role={props.role}/>
           <div className="posts-content col-10 d-flex flex-column justify-content-center">
             <NewRhyme ></NewRhyme>
             <Post>

@@ -26,7 +26,6 @@ export const Post = (props) => {
         <div className="Actividad-iconos d-flex flex-row justify-content-end">
             <div><i className="bi bi-hand-thumbs-up-fill"></i>12</div>
             <div><i className="bi bi-chat-left-fill"></i>5</div>
-            <div><i className="bi bi-share-fill"></i>2</div>
           </div>
       );
     }
@@ -44,7 +43,6 @@ export const Post = (props) => {
           <div className="Actividad-iconos">
             <div><i className="bi bi-hand-thumbs-up-fill"></i>12</div>
             <div><i className="bi bi-chat-left-fill"></i>5</div>
-            <div><i className="bi bi-share-fill"></i>2</div>
           </div>
         </div>
       );

@@ -19,7 +19,7 @@ function ProfileBanner(props) {
             <div className="text-user-box d-flex flex-column justify-content-center align-items-center">
                 <div className="username-text">{username}</div>
                 <div className="userfullname-text">{user_full_name}</div>
-                <div className="profile-user-role">Poeta{role}</div>
+                <div className="profile-user-role">{role}</div>
             </div>
         </div>
     </>
