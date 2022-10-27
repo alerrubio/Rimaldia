@@ -113,9 +113,7 @@ function SuperAdmin(props) {
         <div className="profile-page-content">
           <ProfileBanner username={props.username} user_full_name={props.user_full_name} role={props.role}/>
           <div className="posts-content col-10 d-flex flex-column justify-content-center">
-          <div className="app-container">
             <Outlet/>
-          </div>
         </div>
       </div>
     </>

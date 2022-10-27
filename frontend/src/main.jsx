@@ -90,11 +90,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <AdminRecords />,
-      },
-      {
-        path: "adminrecords",
-        element: <AdminRecords />,
+        element: <Users />,
       },
       {
         path: "notification",

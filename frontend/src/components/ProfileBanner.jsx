@@ -21,9 +21,7 @@ function ProfileBanner(props) {
                 <div className="userfullname-text">{user_full_name}</div>
                 <div className="profile-user-role">{role}</div>
             </div>
-            <div className="col-3 d-flex flex-column justify-content-center">
-              {children}
-            </div>
+            {children}
         </div>
     </>
   )
