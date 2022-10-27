@@ -42,3 +42,13 @@
     margin: 0%;
     padding: 0%;
 }
+
+.notif-bell{
+    color: #a75d47;
+    font-size: 20px;
+}
+
+.notif-bell:hover{
+    color: #ff8e6c;
+    font-size: 20px;
+}

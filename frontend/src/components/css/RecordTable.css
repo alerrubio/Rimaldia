@@ -68,13 +68,13 @@
       border: 1px solid black;
     }
 
-    td:first-child {
+    .records-usuario > td:first-child {
         border-left-style: solid;
         border-top-left-radius: 10px; 
         border-bottom-left-radius: 10px;
     }
 
-    td:last-child {
+    .records-usuario > td:last-child {
         border-right-style: solid;
         border-bottom-right-radius: 10px; 
         border-top-right-radius: 10px; 
@@ -84,6 +84,6 @@
       border: rgba(0, 0, 0, 0);
     }
 
-    th {
+    .records-usuario > th {
       color: #626262;
     }

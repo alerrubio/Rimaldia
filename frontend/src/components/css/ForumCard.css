@@ -1,20 +1,20 @@
 .forum-card-container{
-    width: 30%;
-    height: auto;
+    width: 40%;
+    background-color: white;
+    height: 100%;
+    border-radius: 15px;
     margin-bottom: 15px;
     margin-right: 20px;
+    padding: 10px;
 }
 
 .forums-icon{
     font-size: 50px;
-    margin-right: 50px;
+    margin-right: 20px;
 }
 .forum-card{
-    background-color: white;
-    height: 100%;
+    width: 100%;
     border-radius: 15px;
-    margin-bottom: 10px;
-    padding: 10px;
 }
 
 .forum-card:hover{
@@ -30,4 +30,12 @@
 .forum_name{
     font-size: 28px;
     font-weight: bold;
+}
+
+.forum-options{
+    font-size: 30px;
+}
+
+.edit-forum:hover{
+    color: #c13202;
 }

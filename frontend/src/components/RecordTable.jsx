@@ -18,7 +18,7 @@ const RecordTable = (props) => {
 
     const location = useLocation();
     return (
-        <Table striped hover className="borderless ps-5">
+        <Table striped hover className="records-usuario borderless ps-5">
         <thead>
             <tr>
                 {headerList}

@@ -1,0 +1,33 @@
+.notif-container-card{
+    background-color: #e0dcd6;
+    margin: 15px 20px;
+    border-radius: 25px;
+}
+
+.read-notif-icon{
+    font-size: 50px;
+}
+
+.notif-title-card{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.notif-time-card{
+    font-size: 13px;
+    color: gray;
+}
+
+div:hover > .read-notif-icon{
+    color: #b80f22;
+}
+
+.legend{
+    font-size: 9px;
+    color: gray;
+}
+
+div:hover > .legend{
+    font-size: 9px;
+    color: black;
+}

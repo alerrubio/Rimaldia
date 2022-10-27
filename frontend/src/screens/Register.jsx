@@ -5,6 +5,7 @@ import { useLocation, Link } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
+import "../assets/sb.css";
 
 const Register = () => {
   const location = useLocation();
@@ -28,8 +29,8 @@ const Register = () => {
           </div>
         </div>
         <div className="row register-box col-9 justify-content-center align-items-center">
-          <div className="row col-12 login-box_R">
-            <Form >
+          <div className="row col-12 login-box_R sb">
+            <Form>
               <div>
                 <label for="email">Correo electrónico</label>
                 <div className="input-group mb-3">
