@@ -18,6 +18,12 @@ import Records from './screens/Records';
 import UserProfile from './screens/UserProfile'
 import Settings from './screens/Settings';
 import Category from './screens/Category';
+import PostDetail from './screens/PostDetail';
+import ForumDetail from './screens/ForumDetail';
+import Favoritos from './screens/Favoritos';
+import Modal from "react-modal";
+import SuperAdmin from './screens/SuperAdmin';
+Modal.setAppElement("#root");
 
 const router = createBrowserRouter([
   {
@@ -29,8 +35,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "post",
-        element: <Post />,
+        path: "post/:id",
+        element: <PostDetail />,
       },
       {
         path: "TForos",
@@ -52,11 +58,27 @@ const router = createBrowserRouter([
         path: "Records",
         element: <Records />,
       },
+      {
+        path: "record/:id",
+        element: <Records />,
+      },
+      {
+        path: "forum/:id",
+        element: <ForumDetail forum_name="Romance" about="Foro para románticos empedernidos" members_no="3" username="Francisca Sueño"/>,
+      },
+      {
+        path: "favoritos",
+        element: <Favoritos/>,
+      },
     ],
   },
   {
     path: "/login",
     element: <Login />
+  },
+  {
+    path: "/SuperAdmin",
+    element: <SuperAdmin username="panchitadream" user_full_name="Francisca Sueño"/>
   },
   {
     path: "/Register",
@@ -67,7 +89,7 @@ const router = createBrowserRouter([
     element: <Settings />
   },
   {
-    path: "/user",
+    path: "/user/:id",
     element: <UserProfile username="panchitadream" user_full_name="Francisca Sueño" />
   },
 ]);

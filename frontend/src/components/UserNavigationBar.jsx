@@ -12,9 +12,10 @@ export const UserNavigationBar = (props) => {
     {/*`/${tab}`*/}
 
     {tabs.forEach((tab, index)=>{
-      tabList.push(<Link to={`#`} key={index} className="col-2 forum-tab d-flex justify-content-center">
+      console.log(`/${tab.link}`);
+      tabList.push(<Link to={`/${tab.link}`} key={index} className={`col-2 forum-tab d-flex justify-content-center ${tab.color}`}>
       <div className="">
-          {tab}
+          {tab.name}
       </div>
       </Link>);
     })}

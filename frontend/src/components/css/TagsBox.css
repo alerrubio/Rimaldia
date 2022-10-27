@@ -1,0 +1,12 @@
+.tag-div{
+    margin-right:10px;
+    font-size: 12px;
+    color: #52776f;
+    font-weight: bold;
+}
+
+.tag-input{
+    font-size: 12px;
+    width: fit-content;
+    max-width: 50%;
+}

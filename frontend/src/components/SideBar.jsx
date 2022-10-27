@@ -1,43 +1,45 @@
 import React, { useState } from "react";
 import "./css/SideBar.css";
 import Logo from "/img/logo.png";
-import PP from"/img/pp-example.jpg";
+import PP from"/img/pp3.jpg";
 import { useLocation, Link } from "react-router-dom";
 
 export const SideBar = (props) => {
   const {children, username, email} = props;
   return (
     <div id="sidebar" className="container d-none d-lg-block d-flex justify-content-center">
-        <div className="user-card row ">
+        <div className="user-card">
             <img className="profile-image" src={PP} />
             <Link 
-                to="/user" className="to-profile container justify-content-center">
+                to="/user/:id" className="to-profile container justify-content-center">
                     <div className="username text-center">
                         { username }
                     </div>
             </Link>
         </div>
-        <div id="categorias" className="categories row">
-            <div className="head">
-                <Link to={"/category"}>Categorías</Link>
-            </div>
-            <div className="item">
-                <Link to={"/category"}>Romántico</Link>
-            </div>
-            <div className="item">
-                <Link to={"/category"}>Verso Libre</Link>
-            </div>
-            <div className="item">
-                <Link to={"/category"}>Tristeza</Link>
-            </div>
-            <div className="item">
-                <Link to={"/category"}>Motivacional</Link>
-            </div>
+        <div id="categorias" className="categories d-flex flex-column ">
+            <Link to={"/#"} className={`head nav-link ${
+                location.pathname === "/category" ? "active" : ""
+              }`}>
+                <i class="bi bi-collection-fill"></i>
+                Categorías
+            </Link>
+            <Link to={"/TForos"} className={`head nav-link ${
+                location.pathname === "/TForos" ? "active" : ""
+              }`}>
+                <i class="bi bi-people-fill"></i>
+                Foros
+            </Link>
+            <Link to={"/favoritos"} className={`head nav-link ${
+                location.pathname === "/favoritos" ? "active" : ""
+              }`}>
+                <i class="bi bi-hearts"></i>
+                Favoritos
+            </Link>
         </div>
-        <div className="logo-container row d-flex justify-content-center ">
-            <img className="logo img-fluid" src={Logo} />
-        </div>
-        
+        <Link to={"/"} className="img-logo-link d-flex flex-row justify-content-center">
+        <img className="logo-sidebar" src={ Logo } />
+        </Link>
     </div>
   );
 };

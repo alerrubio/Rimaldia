@@ -1,0 +1,12 @@
+.bordes{
+    border: 1px solid black;
+}
+
+.post-detail-box{
+    margin-top: 0px;
+    height: 100%;
+}
+
+.post-box{
+    height: 100%;
+}

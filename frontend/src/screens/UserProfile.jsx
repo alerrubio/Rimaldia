@@ -20,15 +20,15 @@ function UserProfile(props) {
     <>
     <img src={Background} className="bg-img" alt="" />
         <NavBar title="Rimaldía" 
-                username="rickypoeta" 
+                username={props.username} 
                 nav_bar_alignment="between" 
                 logo>
-            <MenuContent username="rickypoeta"/>
+            <MenuContent username={props.username}/>
         </NavBar>
         <div className="profile-page-content">
           <ProfileBanner username={props.username} user_full_name={props.user_full_name}/>
           <div className="posts-content col-10 d-flex flex-column justify-content-center">
-            <NewRhyme></NewRhyme>
+            <NewRhyme ></NewRhyme>
             <Post>
               <UserInfo user_name={props.username} time={date} profile_picture={PP}></UserInfo>
             </Post>

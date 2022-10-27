@@ -1,4 +1,4 @@
-import "./css/Home.css";
+import "./css/Favoritos.css";
 import { NewRhyme } from "../components/NewRhyme";
 import UserInfo from "../components/UserInfo";
 import Post from "../components/Post";
@@ -9,19 +9,23 @@ date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'l
 var datetime = new Date();
 datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
 
-function Home() {
+function Favoritos() {
 
   return (
     <>
-    <NewRhyme/>
-    <Post edit="false">
+    <div className="header-container-favs col-12 d-flex flex-row justify-content-center">
+        <div className="favs-header col-8">
+            Mis Publicaciones Favoritas
+        </div>
+    </div>
+    <Post>
       <UserInfo user_name="Sandra Eterna" time={datetime} profile_picture={PP2}></UserInfo>
     </Post>
-    <Post edit="false">
+    <Post>
       <UserInfo user_name="Francisca Sueño" time={date} profile_picture={PP}></UserInfo>
     </Post>
     </>
   )
 }
 
-export default Home
+export default Favoritos

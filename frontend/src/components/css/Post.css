@@ -13,16 +13,13 @@
     margin: 0px 0px;
     margin-bottom: 20px;
     background-color: #f7f4ef;
+    height: fit-content;
   }
   
   .post-text{
     color: #9a9a9a;
+    height: fit-content;
     font-size: 15px;
-  }
-
-  .post-text span{
-    color: #626262;
-    font-weight: 500;
   }
 
   .hashtags a{
