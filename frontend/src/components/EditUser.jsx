@@ -1,4 +1,5 @@
-import "./css/Register.css";
+import "../screens/css/Register.css";
+import "./css/SideBar.css";
 import Background from "/img/REGISTRO.png";
 import Logo from "/img/logo.png";
 import { useLocation, Link } from "react-router-dom";
@@ -7,29 +8,13 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import "../assets/sb.css";
 
-const Register = () => {
-  const location = useLocation();
+function EditUser(){
   return (
     <div>
-      <img className="background" src={ Background } />
-      <Link to={"/"}>
-        <img className="logo-box" src={ Logo } />
-      </Link>
-      <div className="container content  d-flex flex-row justify-content-around align-items-center">
-      <div className="row col-4">
-          <div className="registerBanner">
-            ¿YA TIENES CUENTA?
-          </div>
-          <div>
-            <Link to="/login">
-              <Button variant="peach" className="btn-register register">
-                Iniciar Sesión
-              </Button>
-            </Link>
-          </div>
-        </div>
-        <div className="row register-box col-9 justify-content-center align-items-center">
+        <div className="row register-box col-6">
           <div className="row col-12 login-box_R sb">
+            <h3>Editar Usuario</h3>
+            <div className="container content  d-flex justify-content  col-12">
             <Form>
               <div>
                 <label for="email">Correo electrónico</label>
@@ -54,7 +39,7 @@ const Register = () => {
                 </div>
               </div>
               <div>
-                <label for="mlast-name">Confirmar contraseña</label>
+                <label for="mlast-name">Apellido materno</label>
                 <div className="input-group mb-3">
                   <i className="input-group-text bi bi-person-fill"></i>
                   <input type="text" className="form-control mlast-name-input" name="mlast-name" placeholder="Apellido materno" required/>
@@ -81,17 +66,14 @@ const Register = () => {
                   <input type="password" className="form-control confirm-password-input" name="confirm-password" required/>
                 </div>
               </div>
+              <div className="pb-3">
+              <Button variant="peach" className="">
+                  Guardar
+                </Button>
+              </div>
             </Form>
           </div>
-          <div className="row col-12 btn-registro justify-content-center align-items-center">
-            <div className="col-4">
-              <Link to="/login">
-                <Button variant="peach" className="btn btn-register">
-                    Registrarse
-                </Button>  
-              </Link>
-            </div>
-          </div>
+          
         </div>
         
       </div>
@@ -99,4 +81,4 @@ const Register = () => {
 
   )
 }
-export default Register
+export default EditUser

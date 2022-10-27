@@ -16,13 +16,14 @@ import TForos from './screens/TForos';
 import MisForos from './screens/MisForos';
 import Records from './screens/Records';
 import UserProfile from './screens/UserProfile'
+import Settings from './screens/Settings';
+import Category from './screens/Category';
 import PostDetail from './screens/PostDetail';
 import ForumDetail from './screens/ForumDetail';
 import Favoritos from './screens/Favoritos';
 import Modal from "react-modal";
 import SuperAdmin from './screens/SuperAdmin';
 Modal.setAppElement("#root");
-
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "test",
         element: <Test />,
+      },
+      {
+        path: "/Category",
+        element: <Category />
       },
       {
         path: "Records",
@@ -78,6 +83,10 @@ const router = createBrowserRouter([
   {
     path: "/Register",
     element: <Register />
+  },
+  {
+    path: "/Settings",
+    element: <Settings />
   },
   {
     path: "/user/:id",
