@@ -1,9 +1,11 @@
-
+import React from "react";
 import Background from "/img/LOGIN.png";
 import Logo from "/img/logo.png";
 import { useLocation, Link } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Button from "react-bootstrap/esm/Button";
+import { useAuth0 } from "@auth0/auth0-react";
+
 import "./css/Login.css";
 
 function useradmin() {
@@ -22,7 +24,7 @@ function useradmin() {
 
 const Login = () => {
   const location = useLocation();
-  
+  const { loginWithRedirect } = useAuth0();
   return (
     
     <div>
@@ -47,7 +49,7 @@ const Login = () => {
                 <input type="password" className="form-control password-input" name="password" placeholder="Contraseña" required/>
               </div>
             </div>
-            <Button variant="peach" onClick={event =>  window.location.href='/'} className="btn-login btn login col-12">
+            <Button variant="peach" onClick={() => loginWithRedirect()} /*onClick={event =>  window.location.href='/'} */ className="btn-login btn login col-12">
                 Entrar
             </Button>
             <Link style={{fontSize: "18px"}} to="/SuperAdmin">

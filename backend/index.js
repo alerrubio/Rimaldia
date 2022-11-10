@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
 const port = 3000;
+const cors = require('cors');
 require('./src/models/connection');
 
 const user_router = require('./src/routes/userRouter');
@@ -15,6 +16,7 @@ const userRole_router = require('./src/routes/userRoleRouter');
 const post_router = require('./src/routes/postRouter');
 const record_router = require('./src/routes/recordRouter');
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {

@@ -1,0 +1,33 @@
+import { AxiosConfig as axios } from "./AxiosConfig";
+
+export const getUsers = async () => {
+  //const response = await axios({ url: "/students", method: "get" });
+  try {
+    const response = await axios.get("/users");
+
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};
+
+export const createUser = async (user) => {
+  try {
+    console.log(user);
+    const response = await axios.post("/user", user);
+    console.log(response);
+    console.log("STATUS: " + response.status);
+    if (response.status != 200){
+        return "Error" + response.status;
+    }
+
+    return "Creado con éxito";
+
+  } catch (err) {
+    console.error(err);
+    return "Ocurrió un error inesperado";
+  }
+};
+
+export default createUser;
