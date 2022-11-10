@@ -5,13 +5,16 @@ exports.create = async (req, res) => {
   try{
     const userDB = new User(user);
     await userDB.save();
-      res.send({
-        message: "Usuario creado con éxito",
-        data: userDB,
-      });
+    res.status(200);
+    res.send({
+      message: "Usuario creado con éxito",
+      data: userDB,
+    });
   }catch(err){
     console.log(err);
+    res.status(400);
     res.send({
+      error: err,
       message: "No se pudo crear al usuario",
       user_data: user,
     });

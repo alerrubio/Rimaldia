@@ -25,6 +25,8 @@ import SuperAdmin from './screens/SuperAdmin';
 import AdminRecords from './components/AdminRecords';
 import NewNotification from './screens/NewNotification';
 import Users from './screens/Users';
+import { Auth0Provider } from "@auth0/auth0-react";
+
 Modal.setAppElement("#root");
 
 const router = createBrowserRouter([
@@ -116,6 +118,11 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Auth0Provider 
+    domain='dev-f26bct3qtvafsa13.us.auth0.com'
+    clientId='EvwOAyv0F5VT8aJWsYEwqC6zCNv60nrt'
+    redirectUri={window.location.origin}>
+      <RouterProvider router={router} />
+    </Auth0Provider>
   </React.StrictMode>
 )

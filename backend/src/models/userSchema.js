@@ -4,7 +4,12 @@ const UserSchema = mongoose.Schema({
     email: {
         type: String,
         required: [true, 'Se requiere un correo electrónico'],
-        unique: [true, 'El correo electrónico ya está registrado']
+        unique: [true, 'El correo electrónico ya está registrado'],
+        validate(value) {
+            if (!validator.isEmail(value)) {
+              throw new Error("Please enter a valid E-mail!");
+            }
+        }
     },
     username: {
         type: String,
@@ -25,7 +30,11 @@ const UserSchema = mongoose.Schema({
     },
     last_name: {
         type: String,
-        required: [true, 'Se requiere el apellido del usuario']
+        required: [true, 'Se requiere el apellido paterno del usuario']
+    },
+    mlast_name: {
+        type: String,
+        required: [true, 'Se requiere el apellido materno del usuario']
     }
 },
 {timestamps: true});
