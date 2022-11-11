@@ -5,11 +5,6 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: [true, 'Se requiere un correo electrónico'],
         unique: [true, 'El correo electrónico ya está registrado'],
-        validate(value) {
-            if (!validator.isEmail(value)) {
-              throw new Error("Please enter a valid E-mail!");
-            }
-        }
     },
     username: {
         type: String,
