@@ -1,6 +1,6 @@
 import "./css/UserProfile.css";
 import NavBar from "../components/NavBar";
-import { Outlet } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 import { MenuContent } from "../components/NavBar";
 import ProfileBanner from "../components/ProfileBanner";
 import Background from "/img/LOGIN.png"
@@ -11,6 +11,7 @@ import data from "../../api/mock-data.json";
 import ReadOnlyRow from "../components/ReadOnlyRow";
 import EditableRow from "../components/EditableRow";
 import UserNavigationBar from "../components/UserNavigationBar";
+import { useAuth0 } from "@auth0/auth0-react";
 
 var date = new Date();
 date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
@@ -19,6 +20,8 @@ datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', 
 
 
 function SuperAdmin(props) {
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
   const {username, user_full_name, role} = props;
 
   const [contacts, setContacts] = useState(data);
@@ -99,6 +102,10 @@ function SuperAdmin(props) {
 
     setContacts(newContacts);
   };
+
+  if (!isAuthenticated){
+    return <Navigate to="/login" replace />
+  }
 
   return (
     <>

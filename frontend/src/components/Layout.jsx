@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 import SideBar from "../components/SideBar";
 import Logo from "/img/logo.png";
 import NavBar, { MenuContent }  from "../components/NavBar";
@@ -14,7 +14,7 @@ var datetime = new Date();
 datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
 
 export default function Layout() {
-  const { user, logout, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading){
     return (
@@ -27,6 +27,10 @@ export default function Layout() {
     );
   }
   
+  if (!isAuthenticated){
+    return <Navigate to="/login" replace />
+  }
+
   return (
     <>
       <img src={Background} className="bg-img" alt="" />

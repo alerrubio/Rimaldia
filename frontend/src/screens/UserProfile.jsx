@@ -9,6 +9,7 @@ import Post from "../components/Post";
 import PP from"/img/pp3.jpg";
 import Background from "/img/LOGIN.png";
 import Logo from "/img/logo.png";
+import { Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 var date = new Date();
@@ -18,7 +19,7 @@ datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', 
 
 function UserProfile(props) {
   const {username, user_full_name, role} = props;
-  const { user, isLoading } = useAuth0();
+  const { user, isLoading, isAuthenticated } = useAuth0();
 
   if (isLoading){
     return (
@@ -29,6 +30,10 @@ function UserProfile(props) {
       </div>
     </>
     );
+  }
+
+  if (!isAuthenticated){
+    return <Navigate to="/login" replace />
   }
 
   return (
@@ -63,4 +68,4 @@ function UserProfile(props) {
   )
 }
 
-export default UserProfile
+export default UserProfile;

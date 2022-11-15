@@ -1,6 +1,7 @@
 import "./css/Settings.css";
 import NavBar from "../components/NavBar";
 import { MenuContent } from "../components/NavBar";
+import { Navigate } from "react-router-dom";
 import ProfileBanner from "../components/ProfileBanner";
 import UserInfo from "../components/UserInfo";
 import { NewRhyme } from "../components/NewRhyme";
@@ -18,7 +19,7 @@ import Logo from "/img/logo.png";
 
 const Settings = (props) => {
   const {username, user_full_name, role} = props;
-  const { user, isLoading } = useAuth0();
+  const { user, isLoading, isAuthenticated } = useAuth0();
 
   if (isLoading){
     return (
@@ -30,6 +31,11 @@ const Settings = (props) => {
     </>
     );
   }
+
+  if (!isAuthenticated){
+    return <Navigate to="/login" replace />
+  }
+  
   return (
     <>
       <img src={Background} className="bg-img" alt="" />
