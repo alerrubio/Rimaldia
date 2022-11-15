@@ -7,10 +7,13 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import createUser from '../services/usersService.js';
+import createAuth0User from '../services/auth0/signUpService.js';
+import { useAuth0 } from "@auth0/auth0-react";
 
 import "../assets/sb.css";
 const userInit = {
   role: "63689cdd54a0ef75a20761ae",
+  connection: "Username-Password-Authentication",
 };
 
 const Register = () => {
@@ -20,7 +23,7 @@ const Register = () => {
   
   const newUser = async (event) => {
     event.preventDefault();
-    const res = await createUser(user);
+    const res = await createAuth0User(user);
     console.log("aaaa " +  res);
     console.log(user);
   }
@@ -57,6 +60,13 @@ const Register = () => {
           <div className="row col-12 login-box_R sb">
             <Form id="user_info" onSubmit={newUser}>
               <div>
+                <label for="avatar">Imagen de perfil</label>
+                <input type="file"
+                  id="avatar" name="avatar"
+                  accept="image/png, image/jpeg"
+                  onChange={handleChange} />
+              </div>
+              <div>
                 <label for="email">Correo electrónico</label>
                 <div className="input-group mb-3">
                   <i className="input-group-text bi bi-envelope-fill"></i>
@@ -65,24 +75,17 @@ const Register = () => {
               
               </div>
               <div>
-                <label for="name">Nombre(s)</label>
+                <label for="given_name">Nombre(s)</label>
                 <div className="input-group mb-3">
                   <i className="input-group-text bi bi-person-fill"></i>
-                  <input onChange={handleChange} type="text" className="form-control first-name-input" name="name" placeholder="Nombre" required/>
+                  <input onChange={handleChange} type="text" className="form-control first-name-input" name="given_name" placeholder="Nombre" required/>
                 </div>
               </div>
               <div>
-                <label for="last_name">Apellido paterno</label>
+                <label for="family_name">Apellido paterno</label>
                 <div className="input-group mb-3">
                   <i className="input-group-text bi bi-person-fill"></i>
-                  <input onChange={handleChange} type="text" className="form-control last-name-input" name="last_name" placeholder="Apellido paterno" required/>
-                </div>
-              </div>
-              <div>
-                <label for="mlast_name">Apellido materno</label>
-                <div className="input-group mb-3">
-                  <i className="input-group-text bi bi-person-fill"></i>
-                  <input onChange={handleChange} type="text" className="form-control mlast-name-input" name="mlast_name" placeholder="Apellido materno" required/>
+                  <input onChange={handleChange} type="text" className="form-control last-name-input" name="family_name" placeholder="Apellido paterno" required/>
                 </div>
               </div>
               <div>

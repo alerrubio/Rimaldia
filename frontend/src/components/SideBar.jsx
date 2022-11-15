@@ -3,17 +3,19 @@ import "./css/SideBar.css";
 import Logo from "/img/logo.png";
 import PP from"/img/pp3.jpg";
 import { useLocation, Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const SideBar = (props) => {
   const {children, username, email} = props;
+  const { user } = useAuth0();
   return (
     <div id="sidebar" className="container d-none d-lg-block d-flex justify-content-center">
         <div className="user-card-image">
-            <img className="profile-image-side-bar" src={PP} />
+            <img className="profile-image-side-bar" src={user.picture} />
             <Link 
                 to="/user/:id" className="to-profile container justify-content-center">
                     <div className="username text-center">
-                        { username }
+                        { user.nickname }
                     </div>
             </Link>
         </div>
@@ -21,19 +23,19 @@ export const SideBar = (props) => {
             <Link to={"/category"} className={`head nav-link ${
                 location.pathname === "/category" ? "active" : ""
               }`}>
-                <i class="bi bi-collection-fill"></i>
+                <i className="bi bi-collection-fill"></i>
                 Categorías
             </Link>
             <Link to={"/TForos"} className={`head nav-link ${
                 location.pathname === "/TForos" ? "active" : ""
               }`}>
-                <i class="bi bi-people-fill"></i>
+                <i className="bi bi-people-fill"></i>
                 Foros
             </Link>
             <Link to={"/favoritos"} className={`head nav-link ${
                 location.pathname === "/favoritos" ? "active" : ""
               }`}>
-                <i class="bi bi-hearts"></i>
+                <i className="bi bi-hearts"></i>
                 Favoritos
             </Link>
         </div>

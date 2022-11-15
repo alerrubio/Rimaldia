@@ -12,20 +12,37 @@ import EditUser from "../components/EditUser";
 import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import { useAuth0 } from "@auth0/auth0-react";
+import Logo from "/img/logo.png";
 
 
 const Settings = (props) => {
   const {username, user_full_name, role} = props;
+  const { user, isLoading } = useAuth0();
+
+  if (isLoading){
+    return (
+    <>
+      <div className="loading d-flex justify-content-center align-items-center">
+        <img src={Logo} className="loadingLogo" alt="" />
+        <i class="bi bi-gear rotate"></i>
+      </div>
+    </>
+    );
+  }
   return (
     <>
       <img src={Background} className="bg-img" alt="" />
       <NavBar title="Rimaldía" 
               nav_bar_alignment="between" 
               logo>
-          <MenuContent username={props.username}/>
+          <MenuContent username={user.nickname}/>
       </NavBar>
       <div className="settings-page-content">
-        <ProfileBanner username={props.username} user_full_name={props.user_full_name} role={props.role}>
+        <ProfileBanner username={user.nickname} 
+          user_full_name={user.given_name + " " + user.family_name} 
+          role={props.role}
+          picture={user.picture}>
           <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="Seleccione el tema">
               <Dropdown.Item href="#">Luz</Dropdown.Item>
               <Dropdown.Item href="#">Nocturno</Dropdown.Item>
@@ -35,7 +52,11 @@ const Settings = (props) => {
         </ProfileBanner>
         
         <div className="settings-content col-10 d-flex flex-row justify-content-center">
-          <EditUser></EditUser>
+          <EditUser email={user.email}
+            given_name={user.given_name}
+            family_name={user.family_name}
+            username={user.nickname}
+            password={user.password}></EditUser>
         </div>
       </div>
     </>

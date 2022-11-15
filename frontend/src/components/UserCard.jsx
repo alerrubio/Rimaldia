@@ -4,10 +4,10 @@ import Modal from "react-modal";
 import { useLocation, Link } from "react-router-dom";
 import UserNavigationBar from "./UserNavigationBar";
 
-
 export const UserCard = (props) => {
     const {user_name, username, email, role} = props;
     const [isOpen, setIsOpen] = useState(false);
+    const [userMetadata, setUserMetadata] = useState(null);
     function toggleModal() {
       setIsOpen(!isOpen);
     }
@@ -21,7 +21,7 @@ export const UserCard = (props) => {
                 {username}
               </div>
               <div className="email_card">
-                {email} 
+                {user.email} 
               </div>
               <div className="email_card">
                 {role} 
@@ -30,10 +30,10 @@ export const UserCard = (props) => {
           </Link>
           <div className="user-options_card">
             <Link to="">
-                <i class="bi bi-key-fill change-role-user-icon"></i>
+                <i className="bi bi-key-fill change-role-user-icon"></i>
             </Link>
             <Link to="" onClick={toggleModal}>
-                <i class="bi bi-person-x-fill delete-user-icon"></i>
+                <i className="bi bi-person-x-fill delete-user-icon"></i>
             </Link>
           </div>
           

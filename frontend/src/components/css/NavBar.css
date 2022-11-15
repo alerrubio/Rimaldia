@@ -1,4 +1,16 @@
-
+.rotate{
+    animation: rotation 2s infinite linear;
+    font-size: 30px;
+}
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+  
 .barra-nav{
     background-color: #e0dcd6;
     opacity: 90%;

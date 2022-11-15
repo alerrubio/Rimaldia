@@ -19,7 +19,7 @@ export const ForumCard = (props) => {
       <>
         <div className="forum-card-container d-flex flex-column align-items-end col-2">
           <Link to={"/forum/:id"} className="forum-card d-flex flex-row justify-content-center align-items-center">
-            <i class={`bi ${icon} forums-icon`}></i>
+            <i className={`bi ${icon} forums-icon`}></i>
             <div className="forum_info d-flex flex-column">
               <div className="forum_name">{forum_name}</div>
               <div className="about-forum">
@@ -32,10 +32,10 @@ export const ForumCard = (props) => {
           </Link>
           <div className="forum-options">
             <Link to="">
-              <i class="bi bi-folder-minus edit-forum"></i>
+              <i className="bi bi-folder-minus edit-forum"></i>
             </Link>
             <Link to="" onClick={toggleModal}>
-              <i class="bi bi-trash-fill edit-forum" ></i>
+              <i className="bi bi-trash-fill edit-forum" ></i>
             </Link>
           </div>
           

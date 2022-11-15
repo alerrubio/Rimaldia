@@ -11,11 +11,11 @@ var datetime = new Date();
 datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
 
 function ProfileBanner(props) {
-  const {username, user_full_name,role, children} = props;
+  const {username, user_full_name,role, children, picture} = props;
   return (
     <>
         <div className="user-information col-12 d-flex flex-row justify-content-center">
-            <img src={PP} alt="" className="pp"/>
+            <img src={picture} alt="" className="pp"/>
             <div className="text-user-box d-flex flex-column justify-content-center align-items-center">
                 <div className="username-text">{username}</div>
                 <div className="userfullname-text">{user_full_name}</div>

@@ -33,8 +33,8 @@ const Login = () => {
       </Link>
       <div className="container content d-flex flex-row justify-content-around align-items-center">
         <div className="row login-box col-7 justify-content-center align-items-center">
-          <h1 class="registerBanner">¿Qué es Rimaldía?</h1>
-          <div class="flex-wrap description-rimaldia">
+          <h1 className="registerBanner">¿Qué es Rimaldía?</h1>
+          <div className="flex-wrap description-rimaldia">
             Rimaldía es una red social en la cual los usuarios amantes de la poesía pueden compartir sus creaciones en línea, participar en foros de discusión de temas relevantes en el mundo de la poesía, guardar sus poemas o rimas favoritos y más.
           </div>
           {/*<Form className="container justify-content-center align-items-around">
@@ -57,7 +57,7 @@ const Login = () => {
             <div><br /><br /><center><label><input style={{width: "14px", height: "14px"}} type="checkbox" id="cbox1" value="first_checkbox"/> Soy Administrador</label></center></div>
             </Link>
           </Form>
-          <div className="row col-12 forgot-pwd justify-content-end">
+          {/*<div className="row col-12 forgot-pwd justify-content-end">
             ¿Olvidó su contraseña?
           </div>
           <input type="submit" value="Iniciar Sesion" href="/post"/>
@@ -74,9 +74,12 @@ const Login = () => {
             ¿NO TIENES CUENTA?
           </div>
           <div>
-            <Button variant="peach" className="register" onClick={() => loginWithRedirect()}>
-              Registrarse
-            </Button>
+            <Link to="/register">
+              <Button variant="peach" className="register">
+                Registrarse
+              </Button>
+            </Link>
+            
           </div>
         </div>
       </div>

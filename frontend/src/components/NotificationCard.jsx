@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import { useLocation, Link } from "react-router-dom";
 import UserNavigationBar from "./UserNavigationBar";
 
-export const UserCard = (props) => {
+export const NotificationCard = (props) => {
     const {title, text, time} = props;
     
     const [isActive, setIsActive] = useState(false);
@@ -31,7 +31,7 @@ export const UserCard = (props) => {
                 <div className="notif-time-card">{time}</div>
             </div>
             <div className="mx-2">
-                <i id="read-icon" class="read-notif-icon bi bi-check-all d-flex flex-column justify-content-center"></i>
+                <i id="read-icon" className="read-notif-icon bi bi-check-all d-flex flex-column justify-content-center"></i>
                 <div className="legend">Marcar como leído</div>
             </div>
             
@@ -41,4 +41,4 @@ export const UserCard = (props) => {
   };
 
 
-export default UserCard;
+export default NotificationCard;

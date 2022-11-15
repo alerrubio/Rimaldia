@@ -9,3 +9,31 @@
     margin-right:  80px;
     margin-left: 110px;
 }
+
+.loading{
+    width: 100vw;
+    height: 100vh;
+    background-color: #f7f4ef;
+}
+
+.loadingLogo{
+    position: fixed;
+    z-index: 1000;
+    width: 20%;
+    height: auto;
+}
+
+.rotate{
+    margin-top: 100px;
+    animation: rotation 2s infinite linear;
+    font-size: 30px;
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
