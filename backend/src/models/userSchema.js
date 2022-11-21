@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const UserSchema = mongoose.Schema({
+    user_id:{
+        type: String,
+        required: [true, "Se requiere un ID de auth0"],
+        unique: [true, "El ID ya se ha registrado anteriormente"],
+    },
     email: {
         type: String,
         required: [true, 'Se requiere un correo electrónico'],
@@ -19,17 +24,16 @@ const UserSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "userRole"
     },
-    name: {
+    given_name: {
         type: String,
         required: [true, 'Se requiere el nombre del usuario']
     },
-    last_name: {
+    family_name: {
         type: String,
         required: [true, 'Se requiere el apellido paterno del usuario']
     },
-    mlast_name: {
+    picture: {
         type: String,
-        required: [true, 'Se requiere el apellido materno del usuario']
     }
 },
 {timestamps: true});

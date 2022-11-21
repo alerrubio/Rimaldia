@@ -34,6 +34,31 @@ exports.get = async (req, res) => {
   }
 };
 
+exports.getByEmail = async (req, res) => {
+  const {body: {email}} = req;
+  try{
+    const data = await User.findOne({email: email});
+    if (data){
+      res.status(200).send({
+        message: "Usuario existe",
+        user_email: email,
+      });
+    }else{
+      res.status(204).send({
+        message: "No se encontró al usuario",
+        user_email: email,
+      });
+    }
+  }
+  catch(err){
+    res.status(500).send({
+      message: "Algo salió mal",
+      error: err
+    });
+  }
+  
+};
+
 exports.delete = async (req, res) => {
     const {params: {id}} = req;
     let msg = "";
