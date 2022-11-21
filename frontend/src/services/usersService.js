@@ -12,6 +12,21 @@ export const getUsers = async () => {
   }
 };
 
+export const getUserByEmail = async (user_email) => {
+  try {
+    const requestBody = new FormData();
+    requestBody.append('email', user_email);
+    const response = await axios.post('/getUserByEmail',{
+      email: user_email 
+    });
+
+    return response;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};
+
 export const createUser = async (user) => {
   try {
     console.log(user);

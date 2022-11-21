@@ -1,16 +1,14 @@
-import "./css/Register.css";
-import React, { useState } from "react";
-import Background from "/img/REGISTRO.png";
-import Logo from "/img/logo.png";
-import { useLocation, Link } from "react-router-dom";
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import InputGroup from 'react-bootstrap/InputGroup';
-import createUser from '../services/usersService.js';
-import createAuth0User from '../services/auth0/signUpService.js';
-import { useAuth0 } from "@auth0/auth0-react";
-
 import "../assets/sb.css";
+import "./css/Register.css";
+import Background from "/img/REGISTRO.png";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Logo from "/img/logo.png";
+import React, { useState } from "react";
+import createAuth0User from '../services/auth0/signUpService.js';
+import createUser from '../services/usersService.js';
+import { Link } from "react-router-dom";
+
 const userInit = {
   role: "63689cdd54a0ef75a20761ae",
   connection: "Username-Password-Authentication",
@@ -18,14 +16,45 @@ const userInit = {
 
 const Register = () => {
   const [user, setUser] = useState(userInit);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("Ha ocurrido un error.");
 
-  const location = useLocation();
-  
   const newUser = async (event) => {
-    event.preventDefault();
-    const res = await createAuth0User(user);
-    console.log("aaaa " +  res);
-    console.log(user);
+    try{
+      event.preventDefault();
+      const res = await createAuth0User(user);
+      if (res == 404){
+        setErrorMessage(errorMessage => "El correo ya fue registrado anteriormente.")
+        setError(error => !error);
+      }
+      else{
+        setError(error => error);
+        const auth0User = JSON.parse(res.request.response);
+
+        let dbUser = {
+          user_id: auth0User._id,
+          email: user.email, 
+          password: user.password,
+          username: user.username,
+          given_name: user.given_name,
+          family_name: user.family_name,
+          name: user.given_name + " " + user.family_name,
+          picture: user.avatar,
+        }
+        
+        const dbRes = await createUser(dbUser);
+        
+        document.getElementById(error).style.visibility = "visible";
+        console.log("Auth response: " +  res);
+        console.log("DB response: " +  dbRes);
+        console.log(user);
+      }
+    }
+    catch(err){
+      setErrorMessage(errorMessage => "El correo ya fue registrado anteriormente.")
+      setError(error => !error);
+    }
+    
   }
 
   const handleChange = (event) => {
@@ -37,6 +66,7 @@ const Register = () => {
     });
     console.log(user);
   };
+
   return (
     <div>
       <img className="background" src={ Background } />
@@ -78,14 +108,14 @@ const Register = () => {
                 <label for="given_name">Nombre(s)</label>
                 <div className="input-group mb-3">
                   <i className="input-group-text bi bi-person-fill"></i>
-                  <input onChange={handleChange} type="text" className="form-control first-name-input" name="given_name" placeholder="Nombre" required/>
+                  <input onChange={handleChange} title="Solo se aceptan letras." type="text" className="form-control first-name-input" name="given_name" placeholder="Nombre" required/>
                 </div>
               </div>
               <div>
                 <label for="family_name">Apellido paterno</label>
                 <div className="input-group mb-3">
                   <i className="input-group-text bi bi-person-fill"></i>
-                  <input onChange={handleChange} type="text" className="form-control last-name-input" name="family_name" placeholder="Apellido paterno" required/>
+                  <input onChange={handleChange} title="Solo se aceptan letras." type="text" className="form-control last-name-input" name="family_name" placeholder="Apellido paterno" required/>
                 </div>
               </div>
               <div>
@@ -99,18 +129,14 @@ const Register = () => {
                 <label for="password">Contraseña</label>
                 <div className="input-group mb-3">
                   <i className="input-group-text bi bi-key-fill"></i>
-                  <input onChange={handleChange} type="password" className="form-control password-input" name="password" required/>
-                </div>
-              </div>
-              <div>
-                <label for="confirm-password">Confirmar contraseña</label>
-                <div className="input-group mb-3">
-                  <i className="input-group-text bi bi-key-fill"></i>
-                  <input type="password" className="form-control confirm-password-input" name="confirm-password" required/>
+                  <input onChange={handleChange} title="8 caracteres o más y al menos una mayúscula, una minúscula, un dígito" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" type="password" className="form-control password-input" name="password" required/>
                 </div>
               </div>
             </Form>
+            
           </div>
+          {error && 
+                <span className="error">{errorMessage}</span>}
           <div className="row col-12 btn-registro justify-content-center align-items-center">
             <div className="col-4">
               <Button form="user_info" type="submit" variant="peach" className="btn btn-register">
