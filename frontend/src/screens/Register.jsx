@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import createAuth0User from '../services/auth0/signUpService.js';
 import createUser from '../services/usersService.js';
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const userInit = {
   role: "63689cdd54a0ef75a20761ae",
@@ -18,6 +19,7 @@ const Register = () => {
   const [user, setUser] = useState(userInit);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("Ha ocurrido un error.");
+  const { loginWithRedirect } = useAuth0();
 
   const newUser = async (event) => {
     try{
@@ -43,11 +45,13 @@ const Register = () => {
         }
         
         const dbRes = await createUser(dbUser);
-        
-        document.getElementById(error).style.visibility = "visible";
+
         console.log("Auth response: " +  res);
         console.log("DB response: " +  dbRes);
         console.log(user);
+
+        loginWithRedirect();
+
       }
     }
     catch(err){
@@ -89,13 +93,13 @@ const Register = () => {
         <div className="row register-box col-9 justify-content-center align-items-center">
           <div className="row col-12 login-box_R sb">
             <Form id="user_info" onSubmit={newUser}>
-              <div>
+              {/*<div>
                 <label for="avatar">Imagen de perfil</label>
                 <input type="file"
                   id="avatar" name="avatar"
                   accept="image/png, image/jpeg"
                   onChange={handleChange} />
-              </div>
+  </div>*/}
               <div>
                 <label for="email">Correo electrónico</label>
                 <div className="input-group mb-3">
