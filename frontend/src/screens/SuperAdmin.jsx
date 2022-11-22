@@ -103,24 +103,20 @@ function SuperAdmin(props) {
     setContacts(newContacts);
   };
 
-  if (!isAuthenticated){
-    return <Navigate to="/login" replace />
-  }
-
   return (
     <>
       <img src={Background} className="bg-img" alt="" />
-        <NavBar title="Rimaldía" 
-                username={props.username} 
-                nav_bar_alignment="between" 
-                logo>
-            <MenuContent username={props.username}
-                         admin/>
-        </NavBar>
-        <div className="profile-page-content">
-          <ProfileBanner username={props.username} user_full_name={props.user_full_name} role={props.role}/>
-          <div className="posts-content col-10 d-flex flex-column justify-content-center">
-            <Outlet/>
+      <NavBar title="Rimaldía" 
+              username={user.nickname} 
+              nav_bar_alignment="between" 
+              logo>
+          <MenuContent username={user.nickname}
+                        admin/>
+      </NavBar>
+      <div className="profile-page-content">
+        <ProfileBanner username={user.nickname} user_full_name={user.given_name + " " + user.family_name} role={props.role} picture={user.picture}/>
+        <div className="posts-content col-10 d-flex flex-column justify-content-center">
+          <Outlet/>
         </div>
       </div>
     </>

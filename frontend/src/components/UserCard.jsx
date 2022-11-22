@@ -3,14 +3,33 @@ import "./css/UserCard.css";
 import Modal from "react-modal";
 import { useLocation, Link } from "react-router-dom";
 import UserNavigationBar from "./UserNavigationBar";
+import { useAuth0 } from "@auth0/auth0-react";
+import Logo from "/img/logo.png";
 
 export const UserCard = (props) => {
+    const { user, isAuthenticated, isLoading } = useAuth0();
     const {user_name, username, email, role} = props;
     const [isOpen, setIsOpen] = useState(false);
     const [userMetadata, setUserMetadata] = useState(null);
     function toggleModal() {
       setIsOpen(!isOpen);
     }
+
+    if (isLoading){
+      return (
+      <>
+        <div className="loading d-flex justify-content-center align-items-center">
+          <img src={Logo} className="loadingLogo" alt="" />
+          <i class="bi bi-gear rotate"></i>
+        </div>
+      </>
+      );
+    }
+    
+    if (!isAuthenticated){
+      return <Navigate to="/login" replace />
+    }
+
     return (
       <>
         <div className="user-card-container d-flex flex-column align-items-end col-1">
@@ -21,7 +40,7 @@ export const UserCard = (props) => {
                 {username}
               </div>
               <div className="email_card">
-                {user.email} 
+                {email} 
               </div>
               <div className="email_card">
                 {role} 

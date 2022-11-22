@@ -13,7 +13,6 @@ export const createAuth0User = async (user) => {
         username: user.username,
         given_name: user.given_name,
         family_name: user.family_name,
-        name: user.given_name + " " + user.family_name,
         picture: user.avatar,
       }
       const response = await axios.post("/dbconnections/signup ", user);

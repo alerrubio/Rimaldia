@@ -37,10 +37,11 @@ const Register = () => {
           user_id: auth0User._id,
           email: user.email, 
           password: user.password,
-          username: user.username,
+          username: user.nickname,
           given_name: user.given_name,
           family_name: user.family_name,
           name: user.given_name + " " + user.family_name,
+          role: user.role,
           picture: user.avatar,
         }
         
@@ -123,10 +124,10 @@ const Register = () => {
                 </div>
               </div>
               <div>
-                <label for="username">Nombre de usuario</label>
+                <label for="nickname">Nombre de usuario</label>
                 <div className="input-group mb-3">
                   <i className="input-group-text bi bi-person-fill"></i>
-                  <input onChange={handleChange} type="text" className="form-control username-input" name="username" placeholder="Nombre de usuario" required/>
+                  <input onChange={handleChange} type="text" className="form-control username-input" name="nickname" placeholder="Nombre de usuario" required/>
                 </div>
               </div>
               <div>
