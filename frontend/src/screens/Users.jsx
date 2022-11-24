@@ -1,6 +1,6 @@
 import "./css/Users.css";
 import UserCard from "../components/UserCard";
-import { getUsers } from "../services/usersService.js";
+import { getUsers, getUsersCount } from "../services/usersService.js";
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Constants } from '../lib/constants.js';
@@ -21,6 +21,12 @@ function Users() {
     const response = await getUsers(page);
     setUsers(response.data);
     console.log(users);
+  }
+
+  const getAllUsersCount = async () => {
+    const response = await getUsersCount();
+    setUserCount(response.data);
+    console.log("users count " + userCount);
   }
 
   let usersList = [];
@@ -52,6 +58,7 @@ function Users() {
     if (adminUser == false){
       setnotAdmin(true);
     }
+    getAllUsersCount();
   }, [user]);
 
   useEffect(() => {
