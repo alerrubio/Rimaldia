@@ -7,7 +7,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useAuth0 } from "@auth0/auth0-react";
 
 function newTab(nav_link, nav_bar, tab_title){
-  nav_bar.push(<li className="nav-item">
+  nav_bar.push(<li className="nav-item" key={tab_title}>
         <Link
           className={`nav-link ${
             location.pathname === {nav_link} ? "active" : ""
@@ -58,7 +58,7 @@ export const NavBar = (props) => {
     if (admin){
       newTab("/SuperAdmin",nav_tabs,"Inicio");
       newTab("/SuperAdmin/notification",nav_tabs,"Notificaciones");
-      newTab("/SuperAdmin/temas",nav_tabs,"Temas");
+      newTab("/SuperAdmin/verTemas",nav_tabs,"Temas");
       newTab("/SuperAdmin/usuarios",nav_tabs,"Usuarios");
     }
     else{

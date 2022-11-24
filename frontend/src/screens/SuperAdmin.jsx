@@ -12,6 +12,7 @@ import ReadOnlyRow from "../components/ReadOnlyRow";
 import EditableRow from "../components/EditableRow";
 import UserNavigationBar from "../components/UserNavigationBar";
 import { useAuth0 } from "@auth0/auth0-react";
+import Logo from "/img/logo.png";
 
 var date = new Date();
 date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
@@ -103,6 +104,23 @@ function SuperAdmin(props) {
     setContacts(newContacts);
   };
 
+
+
+  if (isLoading){
+  return (
+  <>
+    <div className="loading d-flex justify-content-center align-items-center">
+    <img src={Logo} className="loadingLogo" alt="" />
+    <i class="bi bi-gear rotate"></i>
+    </div>
+  </>
+  );
+  }
+
+  if (!isAuthenticated){
+  return <Navigate to="/login" replace />
+  }
+
   return (
     <>
       <img src={Background} className="bg-img" alt="" />
@@ -115,6 +133,7 @@ function SuperAdmin(props) {
       </NavBar>
       <div className="profile-page-content">
         <ProfileBanner username={user.nickname} user_full_name={user.given_name + " " + user.family_name} role={props.role} picture={user.picture}/>
+        
         <div className="posts-content col-10 d-flex flex-column justify-content-center">
           <Outlet/>
         </div>

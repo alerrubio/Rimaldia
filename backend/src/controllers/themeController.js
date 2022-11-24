@@ -32,6 +32,18 @@ exports.get = async (req, res) => {
   }
 };
 
+exports.getAll = async (req, res) => {
+  const {params: {id}} = req;
+  const data = await Theme.find({});
+  if (data){
+    res.send(data);
+  }else{
+    res.send({
+        message: "No se encontraron temas.",
+      });
+  }
+};
+
 exports.delete = async (req, res) => {
     const {params: {id}} = req;
     let msg = "";
