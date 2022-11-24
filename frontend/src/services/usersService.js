@@ -1,10 +1,10 @@
 import { AxiosConfig as axios } from "./AxiosConfig";
 
-export const getUsers = async () => {
+export const getUsers = async (page) => {
   //const response = await axios({ url: "/students", method: "get" });
   try {
-    const response = await axios.get("/users");
-
+    const route = "/users?page=" + page;
+    const response = await axios.get(route);
     return response.data;
   } catch (err) {
     console.error(err);
@@ -56,5 +56,17 @@ export const isAdmin = async (user_email) => {
   } catch (err) {
     console.error(err);
     return false;
+  }
+};
+
+export const changeUserRole = async (user_id, role_id) => {
+  try {
+    const route = "/user/".concat(user_id);
+    const response = await axios.put(route, {role: role_id});
+    console.log(response);
+    return response;
+  } catch (err) {
+    console.error(err);
+    return err;
   }
 };
