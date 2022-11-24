@@ -1,5 +1,4 @@
 const User = require("../models/userSchema");
-var constants = require('../lib/constants');
 
 exports.create = async (req, res) => {
   const { body: user } = req;
@@ -82,7 +81,37 @@ exports.getByEmail = async (req, res) => {
       error: err
     });
   }
-  
+};
+
+exports.getAll = async (req, res) => {
+  let {query: {page}} = req;
+  const limit = 4;
+  if (page <= 0){
+    page = 1;
+  }
+
+  const pagination = limit * (page - 1);
+  try{
+    console.log("pagination: " + pagination);
+    console.log("page: " + page);
+    const data = await User.find().skip(pagination).limit( limit );
+    console.log(data);
+    if (data.length == 0){
+      res.status(204).send();
+    }
+    else if (data){
+      res.status(200).send({
+        data: data
+      });
+    }
+  }
+  catch(err){
+    console.log(err);
+    res.status(500).send({
+      message: "Algo salió mal",
+      error: err
+    });
+  }
 };
 
 exports.delete = async (req, res) => {
@@ -114,20 +143,24 @@ exports.update = async (req, res) => {
     const {params: {id}} = req;
     const {body: user} = req;
     try{
-        const userDB = await User.findOne({_id: id}).catch((err) => console.log("UPS!", err));
+        const userDB = await User.findOne({user_id: id});
         let data = null;
         let msg = "";
         if (userDB){
-          data = await User.findOneAndUpdate({_id: id}, user);
+          data = await User.findOneAndUpdate({user_id: id}, user);
           msg = "Usuario actualizado";
-        }else{
+          res_status = 200;
+        }
+        else{
           msg = "No se encontró al usuario";
           data = {user_id: id};
+          res_status = 204;
         }
-        res.send({message: msg,
+        res.status(res_status).send({message: msg,
                   data: data});
     }
     catch(err){
-        console.log(err);
+      res.status(500).send({data: err});
+      console.log(err);
     }
   };
