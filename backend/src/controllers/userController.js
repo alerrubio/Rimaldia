@@ -84,14 +84,21 @@ exports.getByEmail = async (req, res) => {
 };
 
 exports.getAll = async (req, res) => {
-  let {query: {page}} = req;
-  const limit = 4;
-  if (page <= 0){
-    page = 1;
-  }
-
-  const pagination = limit * (page - 1);
   try{
+    const usersCount = await User.find();
+    let {query: {page}} = req;
+    const limit = 4;
+
+    if (page <= 0){
+      page = 1;
+    }
+
+    const pagination = limit * (page - 1);
+
+    if (pagination > usersCount.length){
+      pagination = usersCount.length - limit;
+    }
+    
     console.log("pagination: " + pagination);
     console.log("page: " + page);
     const data = await User.find().skip(pagination).limit( limit );
