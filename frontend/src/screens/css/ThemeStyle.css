@@ -1,0 +1,22 @@
+#dark {
+    background-color: #3b185f;    
+}
+#dark .peach, .btn-peach{
+    background-color: red;
+}
+
+#dark .secondary-color {
+    background-color: #f0caa3;
+}
+
+#dark form {
+    background-color: green;
+}
+
+#dark form div {
+    background-color: green;
+}
+
+#dark .user-information {
+    background-color: white;
+}

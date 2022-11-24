@@ -1,5 +1,6 @@
 import "../../api/App.css";
 import "./css/UserProfile.css";
+import "./css/ThemeStyle.css";
 import Background from "/img/LOGIN.png"
 import Logo from "/img/logo.png";
 import NavBar from "../components/NavBar";
@@ -9,7 +10,6 @@ import data from "../../api/mock-data.json";
 import { MenuContent } from "../components/NavBar";
 import { Outlet, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import Logo from "/img/logo.png";
 
 var date = new Date();
 date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
@@ -127,7 +127,8 @@ function SuperAdmin(props) {
 
   return (
     <>
-      <img src={Background} className="bg-img" alt="" />
+    <div className="profile-page-content m-0 p-0" id="dark">
+    <img src={Background} className="bg-img" alt="" />
       <NavBar title="Rimaldía" 
               username={user.nickname} 
               nav_bar_alignment="between" 
@@ -142,6 +143,8 @@ function SuperAdmin(props) {
           <Outlet/>
         </div>
       </div>
+    </div>
+      
     </>
   )
 }

@@ -20,7 +20,7 @@ function Users() {
   const getAllUsers = async () => {
     const response = await getUsers(page);
     setUsers(response.data);
-    console.log(users);
+    //console.log(users);
   }
 
   let usersList = [];
@@ -48,7 +48,7 @@ function Users() {
 
   useEffect(() => {
     const adminUser = JSON.parse(localStorage.getItem('admin'));
-    console.log(adminUser);
+    //console.log(adminUser);
     if (adminUser == false){
       setnotAdmin(true);
     }
@@ -57,7 +57,7 @@ function Users() {
   useEffect(() => {
     getAllUsers();
     setUserCount(users.length);
-    console.log(page);
+    //console.log(page);
   }, [page]);
 
   if (isLoading){

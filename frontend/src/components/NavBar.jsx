@@ -56,10 +56,10 @@ export const NavBar = (props) => {
     var nav_tabs = [];
 
     if (admin){
-      newTab("/SuperAdmin",nav_tabs,"Inicio");
-      newTab("/SuperAdmin/notification",nav_tabs,"Notificaciones");
-      newTab("/SuperAdmin/verTemas",nav_tabs,"Temas");
-      newTab("/SuperAdmin/usuarios",nav_tabs,"Usuarios");
+      newTab("/admin",nav_tabs,"Inicio");
+      newTab("/admin/notification",nav_tabs,"Notificaciones");
+      newTab("/admin/verTemas",nav_tabs,"Temas");
+      newTab("/admin/usuarios",nav_tabs,"Usuarios");
     }
     else{
       newTab("/",nav_tabs,"Inicio");

@@ -34,7 +34,7 @@ exports.get = async (req, res) => {
 
 exports.getAll = async (req, res) => {
   const {params: {id}} = req;
-  const data = await Theme.find({});
+  const data = await Theme.find({isActive: true});
   if (data){
     res.send(data);
   }else{
@@ -49,7 +49,7 @@ exports.delete = async (req, res) => {
     let msg = "";
     let data = null;
     try{
-      const themeDB = await Theme.findOneAndDelete({_id: id});
+      const themeDB = await Theme.findOneAndUpdate({_id: id}, {isActive: false});
       if (themeDB){
         msg = "Tema eliminado";
         data = themeDB;
@@ -70,7 +70,8 @@ exports.delete = async (req, res) => {
 exports.update = async (req, res) => {
     const {params: {id}} = req;
     const {body: theme} = req;
-    try{
+   
+    try{      
         const themeDB = await Theme.findOne({_id: id}).catch((err) => console.log("UPS!", err));
         let data = null;
         let msg = "";

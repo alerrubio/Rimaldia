@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const ThemeSchema = mongoose.Schema({
     name: {
         type: String,
-        unique: true,
         required: [true, 'Se requiere un nombre para el tema']
     },
     background_color: {
@@ -21,6 +20,10 @@ const ThemeSchema = mongoose.Schema({
     variation_3: {
         type: String,
         required: [true, 'Se requieren tres colores de variación para el tema']
+    },
+    isActive: {
+        type: Boolean,
+        default: true
     }
 },
 {timestamps: true});
