@@ -1,4 +1,3 @@
-const { Types } = require("mongoose");
 const Post = require("../models/postSchema");
 
 exports.create = async (req, res) => {
@@ -39,6 +38,31 @@ exports.get = async (req, res) => {
       res.send({
           message: "No se encontró la publicación.",
           post_id: id,
+        });
+    }
+  }
+  catch(err){
+      console.log(err);
+      res.send({
+        message: "Algo salió mal",
+        error_data: err,
+        post_id: id,
+      });
+  }
+  
+};
+
+exports.getAllPosts = async (req, res) => {
+  const {params: {page}} = req;
+  const pagination = 10 * page;
+  try{
+    const data = await Post.find({}).skip(pagination).limit( 3 ).sort( '-createdOn' );
+    console.log(data);
+    if (data){
+      res.send(data);
+    }else{
+      res.send({
+          message: "No se encontró la publicación."
         });
     }
   }

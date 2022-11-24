@@ -5,25 +5,40 @@ import NavBar, { MenuContent }  from "../components/NavBar";
 import UserInfo from "./UserInfo";
 import "./css/Layout.css";
 import Background from "/img/LOGIN.png";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PP from"/img/pp3.jpg";
 import { useAuth0 } from "@auth0/auth0-react";
-import getAdminUsers from '../services/auth0/userService.js';
+import {isAdmin} from '../services/usersService.js';
 
 var date = new Date();
 date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
 var datetime = new Date();
 datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
 
-
 export default function Layout() {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [Admin, setAdmin] = useState(false);
 
-
-  const adminUsers = async (event) => {
-    const users = await getAdminUsers();
+  const isUserAdmin = async () => {
+    try{
+      const res = await isAdmin(user.email);
+      if (res == true){
+        setAdmin(Admin => !Admin);
+        localStorage.setItem('admin', JSON.stringify(res));
+      }else{
+        localStorage.setItem('admin', JSON.stringify(res));
+      }
+    }
+    catch(err){
+      console.log("Algo salió mal");
+      console.log(err);
+    }
   }
+  
+  useEffect(() => {
+    isUserAdmin();
+  }, [user]);
+
   if (isLoading){
     return (
     <>
@@ -47,7 +62,12 @@ export default function Layout() {
           <SideBar username={ user.nickname } email={ user.email } />
         </div>
         <NavBar title="Rimaldía" username={ user.nickname } nav_bar_alignment="end">
+          {Admin &&
+            <MenuContent username={ user.nickname } admin/>
+          }
+          {!Admin &&
             <MenuContent username={ user.nickname }/>
+          }
         </NavBar>
         
         <div id="detail" className="row col-11 ps-5">

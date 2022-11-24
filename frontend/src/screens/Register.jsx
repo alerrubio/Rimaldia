@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Logo from "/img/logo.png";
 import React, { useState } from "react";
 import createAuth0User from '../services/auth0/signUpService.js';
-import createUser from '../services/usersService.js';
+import { createUser } from '../services/usersService.js';
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 

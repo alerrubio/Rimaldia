@@ -20,7 +20,7 @@ function newTab(nav_link, nav_bar, tab_title){
 }
 
 export const NavBar = (props) => {
-    const {children, title, username, nav_bar_alignment, logo} = props;
+    const {children, nav_bar_alignment, logo} = props;
     
     var logo_div = null;
     if (logo){
@@ -85,9 +85,15 @@ export const NavBar = (props) => {
           {nav_tabs}
           <li className="nav-item">
             <DropdownButton id="dropdown-basic-button" className="dd-nav-bar" variant="peach" title={user.nickname}>
+              {admin &&
+                <Dropdown.Item as={Link} to={"/admin"}>Administrador</Dropdown.Item>
+              }
               <Dropdown.Item as={Link} to={"/Settings"}>Settings</Dropdown.Item>
               <Dropdown.Item as={Link} to={"/user/:id"}>Mi perfil</Dropdown.Item>
-              <Dropdown.Item as={Link} onClick={() => logout({ returnTo: "http://localhost:5173/login" })}>Cerrar sesión</Dropdown.Item>
+              <Dropdown.Item as={Link} onClick={() => {
+                localStorage.clear();
+                logout({ returnTo: "http://localhost:5173/login" });
+                }}>Cerrar sesión</Dropdown.Item>
             </DropdownButton>
           </li>
         </ul>

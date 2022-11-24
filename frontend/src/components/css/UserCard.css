@@ -74,6 +74,10 @@
     font-size: 14px;
 }
 
+.change-role-user-icon{
+    color: #ae766d;
+    font-size: 16px;
+}
 .delete-user-icon:hover, .change-role-user-icon:hover{
     color: #c13202;
 }

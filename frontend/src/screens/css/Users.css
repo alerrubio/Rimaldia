@@ -3,3 +3,11 @@
     padding: 20px;
     border-radius: 15px;
 }
+
+.navigation{
+    font-size: 30px;
+}
+
+.navigation > i:hover {
+    color: #c13202;
+}

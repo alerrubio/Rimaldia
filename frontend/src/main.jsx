@@ -88,8 +88,8 @@ const router = createBrowserRouter([
     element: <Login />
   },
   {
-    path: "/SuperAdmin",
-    element: <SuperAdmin username="panchitadream" user_full_name="Francisca Sueño" role="Administrador"/>,
+    path: "/admin",
+    element: <SuperAdmin/>,
     children: [
       {
         path: "",
@@ -132,6 +132,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Auth0Provider 
     domain='dev-f26bct3qtvafsa13.us.auth0.com'
     clientId='EvwOAyv0F5VT8aJWsYEwqC6zCNv60nrt'
+    cacheLocation= 'localstorage'
     redirectUri={window.location.origin}>
       <RouterProvider router={router} />
     </Auth0Provider>

@@ -1,16 +1,13 @@
-import "./css/UserProfile.css";
-import NavBar from "../components/NavBar";
-import { Outlet, Navigate } from "react-router-dom";
-import { MenuContent } from "../components/NavBar";
-import ProfileBanner from "../components/ProfileBanner";
-import Background from "/img/LOGIN.png"
-import React, { useState, Fragment } from "react";
-import { nanoid } from "nanoid";
 import "../../api/App.css";
+import "./css/UserProfile.css";
+import Background from "/img/LOGIN.png"
+import Logo from "/img/logo.png";
+import NavBar from "../components/NavBar";
+import ProfileBanner from "../components/ProfileBanner";
+import React, { useState, useEffect } from "react";
 import data from "../../api/mock-data.json";
-import ReadOnlyRow from "../components/ReadOnlyRow";
-import EditableRow from "../components/EditableRow";
-import UserNavigationBar from "../components/UserNavigationBar";
+import { MenuContent } from "../components/NavBar";
+import { Outlet, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Logo from "/img/logo.png";
 
@@ -19,13 +16,10 @@ date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'l
 var datetime = new Date();
 datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
 
-
 function SuperAdmin(props) {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-
-  const {username, user_full_name, role} = props;
-
   const [contacts, setContacts] = useState(data);
+  const [notAdmin, setnotAdmin] = useState(false);
+  const { user, isAuthenticated, isLoading } = useAuth0();
 
   const [addFormData, setAddFormData] = useState({
     fullName: "",
@@ -104,21 +98,31 @@ function SuperAdmin(props) {
     setContacts(newContacts);
   };
 
-
+  useEffect(() => {
+    const adminUser = JSON.parse(localStorage.getItem('admin'));
+    console.log(adminUser);
+    if (adminUser == false){
+      setnotAdmin(true);
+    }
+  }, []);
 
   if (isLoading){
-  return (
-  <>
-    <div className="loading d-flex justify-content-center align-items-center">
-    <img src={Logo} className="loadingLogo" alt="" />
-    <i class="bi bi-gear rotate"></i>
-    </div>
-  </>
-  );
+    return (
+    <>
+      <div className="loading d-flex justify-content-center align-items-center">
+        <img src={Logo} className="loadingLogo" alt="" />
+        <i class="bi bi-gear rotate"></i>
+      </div>
+    </>
+    );
+  }
+  
+  if (!isAuthenticated){
+    return <Navigate to="/login" replace />
   }
 
-  if (!isAuthenticated){
-  return <Navigate to="/login" replace />
+  if (notAdmin){
+    return <Navigate to="/" replace />
   }
 
   return (

@@ -5,12 +5,20 @@ import { useLocation, Link } from "react-router-dom";
 import UserNavigationBar from "./UserNavigationBar";
 import { useAuth0 } from "@auth0/auth0-react";
 import Logo from "/img/logo.png";
+import { changeUserRole } from '../services/usersService.js';
+import { Constants } from '../lib/constants.js';
 
 export const UserCard = (props) => {
     const { user, isAuthenticated, isLoading } = useAuth0();
-    const {user_name, username, email, role} = props;
+    const {user_id, user_name, username, email, role} = props;
     const [isOpen, setIsOpen] = useState(false);
     const [userMetadata, setUserMetadata] = useState(null);
+
+    const makeAdmin = async () => {
+      const res = await changeUserRole(user_id, Constants.ROLES.POETA_ID);
+      console.log(res);
+    }
+
     function toggleModal() {
       setIsOpen(!isOpen);
     }
@@ -48,8 +56,8 @@ export const UserCard = (props) => {
             </div>
           </Link>
           <div className="user-options_card">
-            <Link to="">
-                <i className="bi bi-key-fill change-role-user-icon"></i>
+            <Link to="" onClick={() => makeAdmin()} className="change-role-user-icon">
+                Hacer admin
             </Link>
             <Link to="" onClick={toggleModal}>
                 <i className="bi bi-person-x-fill delete-user-icon"></i>
