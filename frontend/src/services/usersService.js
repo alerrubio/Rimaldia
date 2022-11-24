@@ -12,21 +12,6 @@ export const getUsers = async () => {
   }
 };
 
-export const getUserByEmail = async (user_email) => {
-  try {
-    const requestBody = new FormData();
-    requestBody.append('email', user_email);
-    const response = await axios.post('/getUserByEmail',{
-      email: user_email 
-    });
-
-    return response;
-  } catch (err) {
-    console.error(err);
-    return [];
-  }
-};
-
 export const createUser = async (user) => {
   try {
     console.log(user);
@@ -45,4 +30,31 @@ export const createUser = async (user) => {
   }
 };
 
-export default createUser;
+export const getUserByEmail = async (user_email) => {
+  try {
+    const requestBody = new FormData();
+    requestBody.append('email', user_email);
+    const response = await axios.post('/getUserByEmail',{
+      email: user_email 
+    });
+
+    return response;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};
+
+export const isAdmin = async (user_email) => {
+  try {
+    const response = await axios.post("/isUserAdmin", {user_email: user_email});
+    if (response.status != 200){
+      return false;
+    }
+    console.log(response);
+    return true;
+  } catch (err) {
+    console.error(err);
+    return false;
+  }
+};

@@ -53,6 +53,31 @@ exports.get = async (req, res) => {
   
 };
 
+exports.getAllPosts = async (req, res) => {
+  const {params: {page}} = req;
+  const pagination = 10 * page;
+  try{
+    const data = await Post.find({}).skip(pagination).limit( 3 ).sort( '-createdOn' );
+    console.log(data);
+    if (data){
+      res.send(data);
+    }else{
+      res.send({
+          message: "No se encontró la publicación."
+        });
+    }
+  }
+  catch(err){
+      console.log(err);
+      res.send({
+        message: "Algo salió mal",
+        error_data: err,
+        post_id: id,
+      });
+  }
+  
+};
+
 exports.delete = async (req, res) => {
     const {params: {id}} = req;
 

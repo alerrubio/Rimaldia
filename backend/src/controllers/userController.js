@@ -1,4 +1,5 @@
 const User = require("../models/userSchema");
+var constants = require('../lib/constants');
 
 exports.create = async (req, res) => {
   const { body: user } = req;
@@ -31,6 +32,31 @@ exports.get = async (req, res) => {
         message: "No se encontró al usuario",
         user_id: id,
       });
+  }
+};
+
+exports.isAdmin = async (req, res) => {
+  const {body: {user_email}} = req;
+  try{
+    const data = await User.find({email: user_email, role: '637c33318a3d0bc0a9233344'});
+    console.log(data);
+    if (data.length > 0){
+      res.status(200).send({
+        message: "Usuario es admin",
+        user_email: user_email,
+      });
+    }else{
+      res.status(204).send({
+        message: "Usuario no es admin",
+        user_email: user_email,
+      });
+    }
+  }
+  catch(err){
+    res.status(500).send({
+      message: "Algo salió mal",
+      error: err
+    });
   }
 };
 
