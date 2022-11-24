@@ -9,9 +9,10 @@ import createAuth0User from '../services/auth0/signUpService.js';
 import { createUser } from '../services/usersService.js';
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Constants } from '../lib/constants.js';
 
 const userInit = {
-  role: "63689cdd54a0ef75a20761ae",
+  role: Constants.ROLES.POETA_ID,
   connection: "Username-Password-Authentication",
 };
 

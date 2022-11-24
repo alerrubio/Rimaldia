@@ -1,22 +1,33 @@
 import React, { useState } from "react";
 import "./css/UserCard.css";
 import Modal from "react-modal";
-import { useLocation, Link } from "react-router-dom";
-import UserNavigationBar from "./UserNavigationBar";
+import { Link } from "react-router-dom";
+import { deleteAuthUser } from "../services/auth0/authUserService.js";
 import { useAuth0 } from "@auth0/auth0-react";
 import Logo from "/img/logo.png";
-import { changeUserRole } from '../services/usersService.js';
+import { changeUserRole, deleteUser } from '../services/usersService.js';
 import { Constants } from '../lib/constants.js';
 
 export const UserCard = (props) => {
-    const { user, isAuthenticated, isLoading } = useAuth0();
-    const {user_id, user_name, username, email, role} = props;
+    const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+    const {userscount, user_id, user_name, username, email, role} = props;
     const [isOpen, setIsOpen] = useState(false);
     const [userMetadata, setUserMetadata] = useState(null);
 
     const makeAdmin = async () => {
       const res = await changeUserRole(user_id, Constants.ROLES.POETA_ID);
       console.log(res);
+    }
+
+    const deleteAdmin = async () => {
+      const res = await changeUserRole(user_id, Constants.ROLES.POETA_ID);
+      console.log(res);
+    }
+
+    const deleteUserFunct = async () => {
+      const responseAuth = await deleteAuthUser(user_id);
+      console.log(responseAuth);
+      window.location.reload(false);      
     }
 
     function toggleModal() {
@@ -59,7 +70,10 @@ export const UserCard = (props) => {
             <Link to="" onClick={() => makeAdmin()} className="change-role-user-icon">
                 Hacer admin
             </Link>
-            <Link to="" onClick={toggleModal}>
+            <Link to="" onClick={() => {
+              deleteUserFunct();
+              toggleModal();
+              }}>
                 <i className="bi bi-person-x-fill delete-user-icon"></i>
             </Link>
           </div>
