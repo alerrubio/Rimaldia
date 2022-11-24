@@ -30,6 +30,7 @@ export const NewRhyme = (props) => {
   const [post, setPost] = useState(postInit);
   const [error, setError] = useState(false);
   const newPost = async (event) => {
+    event.preventDefault();
     try{
         const dbRes = await createPost(post);
         console.log("DB response: " +  dbRes);
