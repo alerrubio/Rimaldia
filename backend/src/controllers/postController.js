@@ -1,4 +1,3 @@
-const { Types } = require("mongoose");
 const Post = require("../models/postSchema");
 
 exports.create = async (req, res) => {

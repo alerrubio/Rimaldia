@@ -31,20 +31,8 @@ export const NewRhyme = (props) => {
   const [error, setError] = useState(false);
   const newPost = async (event) => {
     try{
-      event.preventDefault();
-      setError(error => error);
-        let dbPost = {
-          user_id: "637c3f97110faec67bbd39db",
-          text: post.text,
-          color_index: "1",
-          tag_id: "1",
-          liked_by_id: "1",
-        }
-        
         const dbRes = await createPost(post);
-
         console.log("DB response: " +  dbRes);
-        console.log(post);
     }
     catch(err){
       setErrorMessage(errorMessage => "Hubo un error al querer publicar.")
