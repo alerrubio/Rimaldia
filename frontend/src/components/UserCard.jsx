@@ -15,7 +15,7 @@ export const UserCard = (props) => {
     const [userMetadata, setUserMetadata] = useState(null);
 
     const makeAdmin = async () => {
-      const res = await changeUserRole(user_id, Constants.ROLES.ADMIN_ID);
+      const res = await changeUserRole(user_id, Constants.ROLES.POETA_ID);
       console.log(res);
     }
 
@@ -59,10 +59,7 @@ export const UserCard = (props) => {
             <Link to="" onClick={() => makeAdmin()} className="change-role-user-icon">
                 Hacer admin
             </Link>
-            <Link to="" onClick={() => {
-              
-              toggleModal();
-              }}>
+            <Link to="" onClick={toggleModal}>
                 <i className="bi bi-person-x-fill delete-user-icon"></i>
             </Link>
           </div>
