@@ -12,6 +12,18 @@ export const getUsers = async (page) => {
   }
 };
 
+export const getUser = async (user_id) => {
+  //const response = await axios({ url: "/students", method: "get" });
+  try {
+    const route = "/user/" + user_id;
+    const response = await axios.get(route);
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};
+
 export const getUsersCount = async (page) => {
   //const response = await axios({ url: "/students", method: "get" });
   try {

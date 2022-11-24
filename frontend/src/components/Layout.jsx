@@ -8,7 +8,7 @@ import Background from "/img/LOGIN.png";
 import React, { useState, useEffect } from "react";
 import PP from"/img/pp3.jpg";
 import { useAuth0 } from "@auth0/auth0-react";
-import {isAdmin} from '../services/usersService.js';
+import { isAdmin, getUser } from '../services/usersService.js';
 
 var date = new Date();
 date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
@@ -34,9 +34,23 @@ export default function Layout() {
       console.log(err);
     }
   }
+
+  const getUserInfo = async () => {
+    try{
+      const res = await getUser(user.sub.substring(6));
+      if (res){
+        localStorage.setItem('user', JSON.stringify(res));
+      }
+    }
+    catch(err){
+      console.log("Algo salió mal");
+      console.log(err);
+    }
+  }
   
   useEffect(() => {
     isUserAdmin();
+    getUserInfo();
   }, [user]);
 
   if (isLoading){
