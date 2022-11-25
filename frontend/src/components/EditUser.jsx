@@ -1,18 +1,72 @@
+import "../assets/sb.css";
 import "../screens/css/Register.css";
 import "./css/SideBar.css";
-import { useLocation, Link } from "react-router-dom";
-import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import "../assets/sb.css";
+import Form from 'react-bootstrap/Form';
+import { useAuth0 } from "@auth0/auth0-react";
+//import { editUser as editUserService } from '../services/usersService.js';
+import React, { useState } from "react";
+import { editAuthUser } from "../services/auth0/authUserService.js";
+
+const userInit = {
+  //connection: "Username-Password-Authentication",
+};
+
+const pwdInit = {
+};
 
 function EditUser(props){
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { email, given_name, family_name, username,} = props;
+  const [editUser, seteditUser] = useState(userInit);
+  const [pwd, setpwd] = useState(pwdInit);
+  const [error, setError] = useState(false);
+  const [editMode, seteditMode] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("Ha ocurrido un error.");
+  const id = JSON.parse(localStorage.getItem('user')).user_id;
+  const handlePwdChange = (event) => {
+  const { name, value } = event.target;
 
-  const { email, given_name, family_name, username, password} = props;
+    setpwd({
+      ...pwd,
+      [name]: value,
+    });
+
+    console.log(pwd);
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    
+    seteditUser({
+      ...editUser,
+      [name]: value,
+    });
+    console.log(editUser);
+  };
+
+  const editUserEvent = async (event) => {
+    try{
+      event.preventDefault();
+      
+      console.log("user id " + id);
+      //const res = await editUserService(editUser, id);
+      const authRes = await editAuthUser(editUser, id);
+      console.log(authRes);
+    }
+    catch(err){
+      setErrorMessage(errorMessage => "Algo salió mal.")
+      setError(error => !error);
+      console.log(err);
+    }
+    
+  }
+
   return (
     <>
       <div className="col-8 edit-box_R sb">
             <div className="edit-user-content">
-            <Form>
+            <Form form="editUserForm" onSubmit={editUserEvent}>
               <div>
                 <label for="email">Correo electrónico</label>
                 <div className="input-group mb-3">
@@ -20,55 +74,80 @@ function EditUser(props){
                   <input type="email" 
                     className="form-control email-input" 
                     name="email" 
-                    placeholder="Correo electrónico" 
-                    value={email}
-                    required />
+                    placeholder={email} 
+                    readOnly />
                 </div>  
               </div>
               <div>
-                <label for="first-name">Nombre(s)</label>
+                <label for="given_name">Nombre(s)</label>
                 <div className="input-group mb-3">
                   <i className="input-group-text bi bi-person-fill"></i>
-                  <input type="text" 
+                  <input type="text"
+                    onChange={handleChange}
                     className="form-control first-name-input" 
-                    name="first-name" 
-                    placeholder="Nombre" 
-                    value={given_name}
-                    required/>
+                    name="given_name" 
+                    placeholder={given_name}
+                    readOnly={!editMode}
+                    />
                 </div>
               </div>
               <div>
-                <label for="last-name">Apellido paterno</label>
+                <label for="family_name">Apellido paterno</label>
                 <div className="input-group mb-3">
                   <i className="input-group-text bi bi-person-fill"></i>
                   <input type="text" 
+                    onChange={handleChange}
                     className="form-control last-name-input" 
-                    name="last-name" 
-                    placeholder="Apellido paterno" 
-                    value={family_name}
-                    required/>
+                    name="family_name" 
+                    placeholder={family_name}
+                    readOnly={!editMode}
+                    />
                 </div>
               </div>
               <div>
-                <label for="username">Nombre de usuario</label>
+                <label for="nickname">Nombre de usuario</label>
                 <div className="input-group mb-3">
                   <i className="input-group-text bi bi-person-fill"></i>
-                  <input type="text" 
+                  <input type="text"
+                    onChange={handleChange}
                     className="form-control username-input" 
-                    name="username" 
-                    placeholder="Nombre de usuario" 
-                    value={username}
-                    required/>
+                    name="nickname" 
+                    placeholder={username}
+                    readOnly={!editMode}
+                    />
                 </div>
               </div>
+              {editMode &&
+                <div>
+                  <label for="password">Contraseña</label>
+                  <div className="input-group mb-3">
+                    <i className="input-group-text bi bi-key-fill"></i>
+                    <input onChange={handlePwdChange} 
+                      title="8 caracteres o más y al menos una mayúscula, una minúscula, un dígito" 
+                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                      type="password" 
+                      className="form-control password-input" 
+                      name="password"
+                      required/>
+                  </div>
+                </div>
+              }
               <div className="pb-3 col-12 d-flex flex-row justify-content-end">
-                <Button variant="peach" className="col-4 p-2">
-                  Guardar
-                </Button>
+                {!editMode &&
+                  <Button variant="peach" onClick={() => seteditMode(true)} className="col-4 p-2">
+                    Editar
+                  </Button>
+                }
+                {editMode &&
+                  <Button variant="peach" type="submit" onClick={() => editUserEvent()}className="col-4 p-2">
+                    Guardar
+                  </Button>
+                }
               </div>
             </Form>
           </div>
-          
+          {error && 
+                <span className="error">{errorMessage}</span>}
         </div>
     </>
 

@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import TagsBox from "./TagsBox";
+import { useAuth0 } from "@auth0/auth0-react";
 var fecha = new Date();
 fecha = fecha.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric' });
 import { useLocation, Link } from "react-router-dom";
@@ -27,13 +28,24 @@ resuelvo el problema de la soledad del ser.
 Invito a la luna y con mi sombra somos tres.`
 
 export const NewRhyme = (props) => {
+  
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const [post, setPost] = useState(postInit);
   const [error, setError] = useState(false);
   const newPost = async (event) => {
     event.preventDefault();
     try{
-        const dbRes = await createPost(post);
+
+      let dbPost = {
+        user_id: user.sub.substring(6),
+        text: post.text, 
+        color_index: "1",
+        tag_id: post.tag_id,
+        liked_by_id: "637c3f97110faec67bbd39db"
+      }
+        const dbRes = await createPost(dbPost);
         console.log("DB response: " +  dbRes);
+        window.location.reload(false);
     }
     catch(err){
       setErrorMessage(errorMessage => "Hubo un error al querer publicar.")
@@ -41,6 +53,7 @@ export const NewRhyme = (props) => {
     }
     
   }
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -72,11 +85,11 @@ export const NewRhyme = (props) => {
                                   {tag_name: "Libre"}]} edit="true"></TagsBox>
                 </div>
                 <div className="d-flex flex-row justify-content-end col-4">
-                  <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="Seleccione la categoría">
-                      <Dropdown.Item href="#">Romántico</Dropdown.Item>
-                      <Dropdown.Item href="#">Verso Libre</Dropdown.Item>
-                      <Dropdown.Item href="#">Tristeza</Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">Motivacional</Dropdown.Item>
+                  <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="Seleccione la categoría" onChange={handleChange} name="tag_id">
+                      <Dropdown.Item href="#" value="Romantico">Romántico</Dropdown.Item>
+                      <Dropdown.Item href="#" value="Romantico">Verso Libre</Dropdown.Item>
+                      <Dropdown.Item href="#" value="Romantico">Tristeza</Dropdown.Item>
+                      <Dropdown.Item href="#/action-3" value="Romantico">Motivacional</Dropdown.Item>
                   </DropdownButton>
 
                   <Button form="user_post" type="submit" variant="peach" className="btn btn-publish">

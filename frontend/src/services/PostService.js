@@ -1,16 +1,29 @@
 import { AxiosConfig as axios } from "./AxiosConfig";
 
-export const getPosts = async () => {
+export const getPostsbyuser = async (user_id) => {
   //const response = await axios({ url: "/students", method: "get" });
   try {
-    const response = await axios.get("/posts");
-
+    const route = "/postsbyuser/" + user_id;
+    const response = await axios.get(route);
     return response.data;
   } catch (err) {
     console.error(err);
     return [];
   }
 };
+
+export const getallPosts = async (post) => {
+  //const response = await axios({ url: "/students", method: "get" });
+  try {
+    const route = "/posts";
+    const response = await axios.get(route);
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};
+
 
 export const createPost = async (post) => {
   try {
