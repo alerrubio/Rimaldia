@@ -30,7 +30,7 @@ export const PostDetail = (props) => {
   return (
     <>
         <div className="post-detail-box d-flex flex-column justify-content-center">
-            <Post visible_rows="5" post_detail text={post.text}>
+            <Post visible_rows="5" post_detail text={post.text} commentsCount="FALTA NUM COMMENTS" likesCount="FALTA NUM LIKES">
               <UserInfo user_name={`${post.user_name}`} 
                 time={post.createdAt} 
                 profile_picture={post.user_picture}></UserInfo>

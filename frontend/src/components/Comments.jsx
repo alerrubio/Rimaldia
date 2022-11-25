@@ -2,6 +2,7 @@ import "../components/css/comments.css";
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 import { useState, useEffect } from "react";
+import EmptyState from "./EmptyState";
 import { getAllComments, createComment, deleteComment as DestroyDBComment, editComment } from '../services/CommentsService';
 import {
   getComments as getCommentsApi,
@@ -98,7 +99,7 @@ const Comments = ({ commentsUrl, currentUserId, post_id }) => {
       <div className="comment-form-title">Escribe tu comentario</div>
       <CommentForm post_id={post_id} submitLabel="Comentar" handleSubmit={newComment} />
       <div className="comments-container">
-        {PostComments.map((rootComment) => (
+        {(PostComments?.length > 0) && PostComments.map((rootComment) => (
           <Comment
             key={rootComment._id}
             comment={rootComment}
@@ -111,6 +112,14 @@ const Comments = ({ commentsUrl, currentUserId, post_id }) => {
             currentUserId={currentUserId}
           />
         ))}
+        <div class="d-flex flex-row justify-content-center py-20">
+        <EmptyState title="comentarios"/>
+        </div>
+        {(PostComments?.length === 0) &&
+          <div class="d-flex flex-row justify-content-center py-20">
+          <EmptyState title="comentarios"/>
+          </div>
+        }
       </div>
     </div>
   );

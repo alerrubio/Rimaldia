@@ -8,7 +8,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
 export const Post = (props) => {
-    const {children, visible_rows, post_detail, text } = props;
+    const {children, visible_rows, post_detail, text, commentsCount, likesCount } = props;
     let tags_and_statistics_box = [];
 
     if (post_detail){
@@ -26,9 +26,8 @@ export const Post = (props) => {
       );
       tags_and_statistics_box.push(
         <div className="Actividad-iconos d-flex flex-row justify-content-end">
-            <div><i className="bi bi-hand-thumbs-up-fill"></i>12</div>
-            <div><i className="bi bi-chat-left-fill"></i>5</div>
-            <div><i className="bi bi-save-fill"></i></div>
+            <div><i className="bi bi-hand-thumbs-up-fill"></i>{likesCount}</div>
+            <div><i className="bi bi-chat-left-fill"></i>{commentsCount}</div>
             <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="✎">
                 <Dropdown.Item href="#">Editar</Dropdown.Item>
                 <Dropdown.Item href="#">Eliminar</Dropdown.Item>

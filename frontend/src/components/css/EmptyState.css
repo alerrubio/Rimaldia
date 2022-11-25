@@ -1,0 +1,9 @@
+.empty-state{
+    color: black;
+    background-color: #f7f4ef;
+    border-radius: 25px;
+}
+
+.bi-x-circle{
+    font-size: 50px;
+}
