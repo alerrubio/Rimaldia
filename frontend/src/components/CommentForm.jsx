@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import { useAuth0 } from "@auth0/auth0-react";
+import Button from 'react-bootstrap/Button';
 
 export const CommentForm = ({
   post_id,
@@ -15,10 +16,12 @@ export const CommentForm = ({
   const [text, setText] = useState(initialText);
   const [comment, setComment] = useState(initialComment);
   const isTextareaDisabled = text.length === 0;
+
   const onSubmit = (event) => {
     event.preventDefault();
     handleSubmit(text);
     setText("");
+    
   };
 
   const handleChange = (event) => {
@@ -58,17 +61,18 @@ export const CommentForm = ({
           setText(e.target.value);
         }}
       />
-      <button className="comment-form-button" disabled={isTextareaDisabled}>
+      <Button variant="peach" type="submit">
         {submitLabel}
-      </button>
+      </Button>
       {hasCancelButton && (
-        <button
+        <Button
+          variant="peach"
           type="button"
           className="comment-form-button comment-form-cancel-button"
           onClick={handleCancel}
         >
           Cancel
-        </button>
+        </Button>
       )}
     </Form>
   );
