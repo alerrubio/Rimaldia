@@ -65,7 +65,6 @@ export const NewRhyme = (props) => {
       ...post,
       [name]: value,
     });
-    console.log(post);
   };
     const {children, title, user_name, time, post_to, visible_rows} = props;
     return (

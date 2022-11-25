@@ -26,7 +26,6 @@ function Home() {
     const fetchdata = async () => {
       const postsdata = await getallPosts();
       setRhymes(postsdata);
-      console.log(postsdata);
     };
     fetchdata();
   }, []);
