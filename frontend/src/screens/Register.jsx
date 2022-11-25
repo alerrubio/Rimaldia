@@ -46,14 +46,15 @@ const Register = () => {
           family_name: user.family_name,
           name: user.given_name + " " + user.family_name,
           role: user.role,
-          picture: user.avatar,
+          picture: auth0User.picture,
         }
         
         const dbRes = await createUser(dbUser);
 
         console.log("Auth response: " +  res);
         console.log("DB response: " +  dbRes);
-        console.log(user);
+        console.log(auth0User);
+        console.log(dbUser);
 
         loginWithRedirect();
 
@@ -99,13 +100,6 @@ const Register = () => {
         <div className="row register-box col-9 justify-content-center align-items-center">
           <div className="row col-12 login-box_R sb">
             <Form id="user_info" onSubmit={newUser}>
-              {/*<div>
-                <label for="avatar">Imagen de perfil</label>
-                <input type="file"
-                  id="avatar" name="avatar"
-                  accept="image/png, image/jpeg"
-                  onChange={handleChange} />
-  </div>*/}
               <div>
                 <label for="email">Correo electrónico</label>
                 <div className="input-group mb-3">

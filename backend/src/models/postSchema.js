@@ -2,8 +2,15 @@ const mongoose = require('mongoose');
 
 const PostSchema = mongoose.Schema({
     user_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
+        type: String,
+        required: true
+    },
+    user_name:{
+        type: String,
+        required: true
+    },
+    user_picture:{
+        type: String,
         required: true
     },
     text: {
@@ -21,8 +28,7 @@ const PostSchema = mongoose.Schema({
         required: false
     }],
     liked_by_id: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
+        type: String,
         required: false
     }]
 },

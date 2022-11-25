@@ -4,11 +4,13 @@ import Background from "/img/LOGIN.png"
 import Logo from "/img/logo.png";
 import NavBar from "../components/NavBar";
 import ProfileBanner from "../components/ProfileBanner";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import data from "../../api/mock-data.json";
 import { MenuContent } from "../components/NavBar";
 import { Outlet, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+
+export const ThemeContext = createContext(null);
 
 var date = new Date();
 date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
@@ -19,6 +21,7 @@ function SuperAdmin(props) {
   const [contacts, setContacts] = useState(data);
   const [notAdmin, setnotAdmin] = useState(false);
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const [themeStyle, setThemeStyle] = useState("");
 
   const [addFormData, setAddFormData] = useState({
     fullName: "",
@@ -125,22 +128,29 @@ function SuperAdmin(props) {
   }
 
   return (
-    <>
+    <ThemeContext.Provider value={{themeStyle, setThemeStyle}}>
+      <>
+      <style>{themeStyle}</style>
+      <div className="profile-page-content p-0 h-auto" id="themed">
       <img src={Background} className="bg-img" alt="" />
-      <NavBar title="Rimaldía" 
-              username={user.nickname} 
-              nav_bar_alignment="between" 
-              logo>
-          <MenuContent username={user.nickname}
-                        admin/>
-      </NavBar>
-      <div className="profile-page-content">
-        <ProfileBanner username={user.nickname} user_full_name={user.given_name + " " + user.family_name} role={props.role} picture={user.picture}/>
-        <div className="posts-content col-10 d-flex flex-column justify-content-center">
-          <Outlet/>
+        <NavBar title="Rimaldía" 
+                username={user.nickname} 
+                nav_bar_alignment="between" 
+                logo>
+            <MenuContent username={user.nickname}
+                          admin/>
+        </NavBar>
+        <div className="profile-page-content">
+          <ProfileBanner username={user.nickname} user_full_name={user.given_name + " " + user.family_name} role={props.role} picture={user.picture}/>
+        
+          <div className="posts-content col-10 d-flex flex-column justify-content-center">
+            <Outlet/>
+          </div>
         </div>
       </div>
-    </>
+      
+      </>
+    </ThemeContext.Provider>    
   )
 }
 

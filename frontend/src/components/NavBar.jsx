@@ -5,9 +5,10 @@ import { useLocation, Link } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useAuth0 } from "@auth0/auth0-react";
+import { isAdmin } from '../services/usersService';
 
 function newTab(nav_link, nav_bar, tab_title){
-  nav_bar.push(<li className="nav-item">
+  nav_bar.push(<li className="nav-item" key={tab_title}>
         <Link
           className={`nav-link ${
             location.pathname === {nav_link} ? "active" : ""
@@ -29,7 +30,7 @@ export const NavBar = (props) => {
     
     return (
       <>
-        <nav className={`barra-nav navbar navbar-expand-sm navbar-expand-lg  fixed-top d-flex justify-content-${nav_bar_alignment}`}>
+        <nav className={`themedSecondary barra-nav navbar navbar-expand-sm navbar-expand-lg  fixed-top d-flex justify-content-${nav_bar_alignment}`}>
           {logo_div}
           <div className="d-flex flex-row align-items-center col-12 col-lg-3 ms-2">
             <div className="search-bar input-group rounded">
@@ -52,20 +53,25 @@ export const NavBar = (props) => {
     const location = useLocation();
     const {username, admin} = props;
     const { user, logout, isLoading } = useAuth0();
+    let enableAdminTab = false;
 
     var nav_tabs = [];
 
     if (admin){
-      newTab("/SuperAdmin",nav_tabs,"Inicio");
-      newTab("/SuperAdmin/notification",nav_tabs,"Notificaciones");
-      newTab("/SuperAdmin/temas",nav_tabs,"Temas");
-      newTab("/SuperAdmin/usuarios",nav_tabs,"Usuarios");
+      newTab("/",nav_tabs,"Inicio");
+      newTab("/admin/notification",nav_tabs,"Notificaciones");
+      newTab("/admin/verTemas",nav_tabs,"Temas");
+      newTab("/admin/usuarios",nav_tabs,"Usuarios");
     }
     else{
       newTab("/",nav_tabs,"Inicio");
       newTab("/TForos",nav_tabs,"Foros");
       newTab("/Records",nav_tabs,"Records");
       newTab("/notifications/user/:id",nav_tabs,<i className="bi bi-bell-fill notif-bell"></i>);
+    }
+
+    if(isAdmin(user.email)){
+      enableAdminTab = true;
     }
 
     if (isLoading) {
@@ -85,7 +91,7 @@ export const NavBar = (props) => {
           {nav_tabs}
           <li className="nav-item">
             <DropdownButton id="dropdown-basic-button" className="dd-nav-bar" variant="peach" title={user.nickname}>
-              {admin &&
+              {enableAdminTab &&
                 <Dropdown.Item as={Link} to={"/admin"}>Administrador</Dropdown.Item>
               }
               <Dropdown.Item as={Link} to={"/Settings"}>Settings</Dropdown.Item>

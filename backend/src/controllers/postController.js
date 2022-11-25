@@ -52,11 +52,33 @@ exports.get = async (req, res) => {
   
 };
 
-exports.getAllPosts = async (req, res) => {
-  const {params: {page}} = req;
-  const pagination = 10 * page;
+exports.getPostsbyUserid = async (req, res) => {
+  const {params: {id}} = req;
   try{
-    const data = await Post.find({}).skip(pagination).limit( 3 ).sort( '-createdOn' );
+    const data = await Post.find({user_id: id}).sort({ _id: -1 })
+    console.log(data);
+    if (data){
+      res.send(data);
+    }else{
+      res.send({
+          message: "No se encontraron publicaciones."
+        });
+    }
+  }
+  catch(err){
+      console.log(err);
+      res.send({
+        message: "Algo salió mal",
+        error_data: err,
+        post_id: id,
+      });
+  }
+  
+};
+
+exports.getAllPosts = async (req, res) => {
+  try{
+    const data = await Post.find({}).sort({ _id: -1 })
     console.log(data);
     if (data){
       res.send(data);

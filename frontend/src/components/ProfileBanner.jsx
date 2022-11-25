@@ -14,12 +14,12 @@ function ProfileBanner(props) {
   const {username, user_full_name,role, children, picture} = props;
   return (
     <>
-        <div className="user-information col-12 d-flex flex-row justify-content-center">
+        <div className="themedSecondary user-information col-12 d-flex flex-row justify-content-center">
             <img src={picture} alt="" className="pp"/>
             <div className="text-user-box d-flex flex-column justify-content-center align-items-center">
-                <div className="username-text">{username}</div>
-                <div className="userfullname-text">{user_full_name}</div>
-                <div className="profile-user-role">{role}</div>
+                <div className="themedText username-text">{username}</div>
+                <div className="themedText userfullname-text">{user_full_name}</div>
+                <div className="themedText profile-user-role">{role}</div>
             </div>
             {children}
         </div>

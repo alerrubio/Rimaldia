@@ -5,42 +5,69 @@ import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import TagsBox from "./TagsBox";
+import { createNotif } from '../services/notificationsService';
+import { useLocation, Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+
 var fecha = new Date();
 fecha = fecha.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric' });
-import { useLocation, Link } from "react-router-dom";
 
 export const Notification = (props) => {
     const {user_name} = props;
+    const [addFormData, setAddFormData] = useState({});
+    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("Ha ocurrido un error.");
+    const [success, setSuccess] = useState(false);
 
-    const handleAddFormSubmit = (event) => {
+    const newNotification = async (event) => {
+      try{
         event.preventDefault();
+        //const res = await createAuth0User(user);  Validar que no exista el nombre del tema
+        if(addFormData.title == "" || addFormData.description == ""){
+          console.log("No deje campos vacíos");
+        }
+        else{
+          setError(error => error);
+
+          let dbNotif = {
+            title: addFormData.title,
+            text: addFormData.description
+          }       
+
+          const dbRes = await createNotif(dbNotif);
+
+          //console.log("Service response: " +  res);
+          console.log("DB response: " +  dbRes);
+
+          setSuccess(true);
+        }
+      }
+      catch(err){
+        setErrorMessage(errorMessage => "No fue posible cargar los temas.")
+        setError(error => !error);
+      }
     
-        const newContact = {
-          id: nanoid(),
-          fullName: addFormData.fullName,
-          address: addFormData.address,
-          phoneNumber: addFormData.phoneNumber,
-          email: addFormData.email,
-        };
-    
-        const newContacts = [...contacts, newContact];
-        setContacts(newContacts);
-      };
+    }
 
     const handleAddFormChange = (event) => {
-        event.preventDefault();
+      event.preventDefault();
+  
+      const fieldName = event.target.getAttribute("name");
+      const fieldValue = event.target.value;
+  
+      const newFormData = { ...addFormData };
+      newFormData[fieldName] = fieldValue;
+  
+      setAddFormData(newFormData);
+    };
+
+    if(success){
+      return <Navigate to="/notifications/user/:id" replace />
+    }
     
-        const fieldName = event.target.getAttribute("name");
-        const fieldValue = event.target.value;
-    
-        const newFormData = { ...addFormData };
-        newFormData[fieldName] = fieldValue;
-    
-        setAddFormData(newFormData);
-      };
     return (
       <>
-        <form onSubmit={handleAddFormSubmit} className="notification-form ">
+        <form onSubmit={newNotification} className="notification-form ">
             <h3 className="col-12 text-center">Notificación nueva</h3>
             <div className="notif-inputs-box d-flex flex-column justify-content-center">
                 <input
@@ -59,18 +86,9 @@ export const Notification = (props) => {
                 onChange={handleAddFormChange}
                 className="notif-input"
                 />
-                <input
-                type="email"
-                name="email"
-                required="required"
-                placeholder="Escriba su nombre..."
-                onChange={handleAddFormChange}
-                className="notif-input">
-                    {user_name}
-                </input>
             </div>
             <div className="d-flex justify-content-end col-12">
-                <Button variant="peach" onClick={event =>  window.location.href='/SuperAdmin'} className="col-3">
+                <Button variant="peach" type="submit" className="col-3">
                     Enviar
                 </Button>
             </div>
