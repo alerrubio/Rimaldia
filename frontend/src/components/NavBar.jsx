@@ -29,7 +29,7 @@ export const NavBar = (props) => {
     
     return (
       <>
-        <nav className={`barra-nav navbar navbar-expand-sm navbar-expand-lg  fixed-top d-flex justify-content-${nav_bar_alignment}`}>
+        <nav className={`themedSecondary barra-nav navbar navbar-expand-sm navbar-expand-lg  fixed-top d-flex justify-content-${nav_bar_alignment}`}>
           {logo_div}
           <div className="d-flex flex-row align-items-center col-12 col-lg-3 ms-2">
             <div className="search-bar input-group rounded">

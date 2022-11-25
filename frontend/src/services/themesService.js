@@ -16,6 +16,23 @@ export const getThemes = async () => {
   }
 };
 
+export const getTheme = async (id) => {
+  //const response = await axios({ url: "/students", method: "get" });
+  try {
+    const url = `/theme/${id}`;
+    const response = await axios.get(url);
+
+    return response.data;
+  } catch (err) {
+    if (!error.response) {
+      // network error
+      this.errorStatus = 'Error: Network Error';
+    } else {
+        this.errorStatus = error.response.data.message;
+    }
+  }
+};
+
 export const deleteTheme = async (id) => {
   //const response = await axios({ url: "/students", method: "get" });
   try {

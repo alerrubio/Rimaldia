@@ -43,9 +43,9 @@ function Themes(props) {
   return (
     <>
         <div className="mt-3"></div>
-        <UserNavigationBar tabs={[{name: 'Ver temas', link: 'admin/verTemas'}, {name: 'Crear tema', link: 'admin/crearTema'}, {name: 'Regresar', link: 'admin', color:'peach'}]} />
-        <div className="secondary-color record-container">
-          <ThemeTable headers={['Nombre', 'Fondo', 'Variación 1', 'Variación 2', 'Variación 3']} data={themes} />  
+        <UserNavigationBar tabs={[{name: 'Ver temas', link: 'admin/verTemas', color:'themedSecondary themedText'}, {name: 'Crear tema', link: 'admin/crearTema', color:'themedSecondary themedText'}, {name: 'Regresar', link: 'admin', color:'themedButton themedText'}]} />
+        <div className="themedSecondary record-container">
+          <ThemeTable headers={['Nombre', 'Fondo', 'Texto', 'Secundario', 'Botones']} data={themes} />  
         </div>
     </>
   )

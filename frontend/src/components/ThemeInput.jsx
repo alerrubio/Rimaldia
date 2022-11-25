@@ -119,25 +119,25 @@ function ThemeInput(props) {
                   </div>
                 </div>
                 <div>
-                  <label for="password">Color base</label>
+                  <label for="password">Color del fondo</label>
                   <div className="input-group mb-3">
                     <input value={theme.background_color} onChange={handleChange} type="color" className="form-control password-input" name="background_color" placeholder="#FFFFFF" required/>
                   </div>
                 </div>
                 <div>
-                  <label for="password">Color de fondo: Variante 1</label>
+                  <label for="password">Color del texto</label>
                   <div className="input-group mb-3">
                     <input value={theme.variation_1} onChange={handleChange} type="color" className="form-control password-input" name="variation_1" placeholder="#FFFFFF" required/>
                   </div>
                 </div>
                 <div>
-                  <label for="password">Color de fondo: Variante 2</label>
+                  <label for="password">Color secundario</label>
                   <div className="input-group mb-3">
                     <input value={theme.variation_2} onChange={handleChange} type="color" className="form-control password-input" name="variation_2" placeholder="#FFFFFF" required/>
                   </div>
                 </div>
                 <div>
-                  <label for="password">Color de fondo: Variante 3</label>
+                  <label for="password">Color de botones</label>
                   <div className="input-group mb-3">
                     <input value={theme.variation_3} onChange={handleChange} type="color" className="form-control password-input" name="variation_3" placeholder="#FFFFFF" required/>
                   </div>

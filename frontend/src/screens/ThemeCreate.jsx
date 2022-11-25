@@ -36,7 +36,7 @@ function ThemeCreate(props) {
   return (
     <>
         <div className="mt-3"></div>
-        <UserNavigationBar tabs={[{name: 'Ver temas', link: 'admin/verTemas'}, {name: 'Crear tema', link: 'admin/crearTema'}, {name: 'Regresar', link: 'admin', color:'peach'}]} />
+        <UserNavigationBar tabs={[{name: 'Ver temas', link: 'admin/verTemas', color:'themedSecondary themedText'}, {name: 'Crear tema', link: 'admin/crearTema', color:'themedSecondary themedText'}, {name: 'Regresar', link: 'admin', color:'themedButton themedText'}]} />
         <div className="forum-cards-container d-flex flex-column align-items-center">
             <ThemeInput editing={edTheme}/>
         </div>
