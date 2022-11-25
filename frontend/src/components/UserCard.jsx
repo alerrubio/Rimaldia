@@ -9,7 +9,7 @@ import { changeUserRole, deleteUser } from '../services/usersService.js';
 import { Constants } from '../lib/constants.js';
 
 export const UserCard = (props) => {
-    const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+    const { user, isAuthenticated, isLoading } = useAuth0();
     const {userscount, user_id, user_name, username, email, role} = props;
     const [isOpen, setIsOpen] = useState(false);
     const [userMetadata, setUserMetadata] = useState(null);
