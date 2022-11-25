@@ -46,14 +46,15 @@ const Register = () => {
           family_name: user.family_name,
           name: user.given_name + " " + user.family_name,
           role: user.role,
-          picture: user.avatar,
+          picture: auth0User.picture,
         }
         
         const dbRes = await createUser(dbUser);
 
         console.log("Auth response: " +  res);
         console.log("DB response: " +  dbRes);
-        console.log(user);
+        console.log(auth0User);
+        console.log(dbUser);
 
         loginWithRedirect();
 
