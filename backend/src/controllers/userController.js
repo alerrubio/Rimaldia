@@ -23,7 +23,7 @@ exports.create = async (req, res) => {
 
 exports.get = async (req, res) => {
   const {params: {id}} = req;
-  const data = await User.findOne({_id: id}).catch((err) => console.log("UPS!", err));
+  const data = await User.findOne({user_id: id}).catch((err) => console.log("UPS!", err));
   if (data){
     res.send(data);
   }else{
@@ -84,14 +84,21 @@ exports.getByEmail = async (req, res) => {
 };
 
 exports.getAll = async (req, res) => {
-  let {query: {page}} = req;
-  const limit = 4;
-  if (page <= 0){
-    page = 1;
-  }
-
-  const pagination = limit * (page - 1);
   try{
+    const usersCount = await User.find();
+    let {query: {page}} = req;
+    const limit = 4;
+
+    if (page <= 0){
+      page = 1;
+    }
+
+    const pagination = limit * (page - 1);
+
+    if (pagination > usersCount.length){
+      pagination = usersCount.length - limit;
+    }
+    
     console.log("pagination: " + pagination);
     console.log("page: " + page);
     const data = await User.find().skip(pagination).limit( limit );
@@ -114,12 +121,34 @@ exports.getAll = async (req, res) => {
   }
 };
 
+exports.getUsersCount = async (req, res) => {
+  try{
+    const data = await User.find();
+    console.log(data);
+    if (data.length == 0){
+      res.status(204).send();
+    }
+    else if (data){
+      res.status(200).send({
+        data: data.length
+      });
+    }
+  }
+  catch(err){
+    console.log(err);
+    res.status(500).send({
+      message: "Algo salió mal",
+      error: err
+    });
+  }
+};
+
 exports.delete = async (req, res) => {
     const {params: {id}} = req;
     let msg = "";
     let data = null;
    try{
-    const userDB = await User.findOneAndDelete({_id: id})
+    const userDB = await User.findOneAndDelete({user_id: id})
     if (userDB){
       msg = "Usuario eliminado";
       data = userDB;

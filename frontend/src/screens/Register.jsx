@@ -9,9 +9,11 @@ import createAuth0User from '../services/auth0/signUpService.js';
 import { createUser } from '../services/usersService.js';
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Constants } from '../lib/constants.js';
+import bcrypt from 'bcryptjs';
 
 const userInit = {
-  role: "63689cdd54a0ef75a20761ae",
+  role: Constants.ROLES.POETA_ID,
   connection: "Username-Password-Authentication",
 };
 
@@ -33,10 +35,12 @@ const Register = () => {
         setError(error => error);
         const auth0User = JSON.parse(res.request.response);
 
+        const hashPwd = await bcrypt.hash(user.password,bcrypt.genSaltSync());
+        console.log(hashPwd);
         let dbUser = {
           user_id: auth0User._id,
           email: user.email, 
-          password: user.password,
+          password: hashPwd,
           username: user.nickname,
           given_name: user.given_name,
           family_name: user.family_name,
@@ -58,6 +62,7 @@ const Register = () => {
     catch(err){
       setErrorMessage(errorMessage => "El correo ya fue registrado anteriormente.")
       setError(error => !error);
+      console.log(err);
     }
     
   }

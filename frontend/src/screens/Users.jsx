@@ -1,6 +1,6 @@
 import "./css/Users.css";
 import UserCard from "../components/UserCard";
-import { getUsers } from "../services/usersService.js";
+import { getUsers, getUsersCount } from "../services/usersService.js";
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Constants } from '../lib/constants.js';
@@ -14,13 +14,20 @@ function Users() {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [notAdmin, setnotAdmin] = useState(false);
   const [page, setPage] = useState(1);
+  const [usersPerPage, setUsersPerPage] = useState(4);
   const [users, setUsers] = useState([]);
   const [userCount, setUserCount] = useState(0);
 
   const getAllUsers = async () => {
     const response = await getUsers(page);
     setUsers(response.data);
-    //console.log(users);
+    return response.data.length;
+  }
+
+  const getAllUsersCount = async () => {
+    const response = await getUsersCount();
+    setUserCount(response.data);
+    console.log("users count " + userCount);
   }
 
   let usersList = [];
@@ -52,12 +59,12 @@ function Users() {
     if (adminUser == false){
       setnotAdmin(true);
     }
+    getAllUsersCount();
   }, [user]);
 
   useEffect(() => {
     getAllUsers();
-    setUserCount(users.length);
-    //console.log(page);
+    console.log(page);
   }, [page]);
 
   if (isLoading){
@@ -85,12 +92,20 @@ function Users() {
       <div className="users-cards-container d-flex flex-row justify-content-center flex-wrap col-12">
         {usersList}
         <div className="col-12 d-flex flex-row justify-content-around mt-3 navigation">
-          <i onClick={() => {
-            if (page > 1){
-              setPage(page - 1);
-            }
-            }} class="bi bi-caret-left-fill nav-prev"></i>
+          {
+            (page > 1) && 
+            <i onClick={() => {
+              if (page > 1){
+                setPage(page - 1);
+              }
+              }
+              } 
+              class="bi bi-caret-left-fill nav-prev"></i>
+          }
+          {(users.length >= 4) && 
           <i onClick={() => setPage(page + 1)} class="bi bi-caret-right-fill nav-next"></i>
+          }
+          
         </div>
       </div>
       

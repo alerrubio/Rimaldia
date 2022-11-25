@@ -12,6 +12,30 @@ export const getUsers = async (page) => {
   }
 };
 
+export const getUser = async (user_id) => {
+  //const response = await axios({ url: "/students", method: "get" });
+  try {
+    const route = "/user/" + user_id;
+    const response = await axios.get(route);
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};
+
+export const getUsersCount = async (page) => {
+  //const response = await axios({ url: "/students", method: "get" });
+  try {
+    const route = "/usersCount";
+    const response = await axios.get(route);
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};
+
 export const createUser = async (user) => {
   try {
     console.log(user);
@@ -63,6 +87,18 @@ export const changeUserRole = async (user_id, role_id) => {
   try {
     const route = "/user/".concat(user_id);
     const response = await axios.put(route, {role: role_id});
+    console.log(response);
+    return response;
+  } catch (err) {
+    console.error(err);
+    return err;
+  }
+};
+
+export const deleteUser = async (user_id) => {
+  try {
+    const route = "/user/".concat(user_id);
+    const response = await axios.delete(route);
     console.log(response);
     return response;
   } catch (err) {
