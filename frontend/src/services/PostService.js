@@ -12,6 +12,19 @@ export const getPostsbyuser = async (user_id) => {
   }
 };
 
+export const getallPosts = async (post) => {
+  //const response = await axios({ url: "/students", method: "get" });
+  try {
+    const route = "/posts";
+    const response = await axios.get(route);
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};
+
+
 export const createPost = async (post) => {
   try {
     console.log(post);

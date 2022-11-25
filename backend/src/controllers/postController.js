@@ -55,7 +55,7 @@ exports.get = async (req, res) => {
 exports.getPostsbyUserid = async (req, res) => {
   const {params: {id}} = req;
   try{
-    const data = await Post.find({user_id: id}).sort( '-createdOn' );
+    const data = await Post.find({user_id: id}).sort({ _id: -1 })
     console.log(data);
     if (data){
       res.send(data);
@@ -77,10 +77,8 @@ exports.getPostsbyUserid = async (req, res) => {
 };
 
 exports.getAllPosts = async (req, res) => {
-  const {params: {page}} = req;
-  const pagination = 10 * page;
   try{
-    const data = await Post.find({}).skip(pagination).limit( 3 ).sort( '-createdOn' );
+    const data = await Post.find({}).sort({ _id: -1 })
     console.log(data);
     if (data){
       res.send(data);
