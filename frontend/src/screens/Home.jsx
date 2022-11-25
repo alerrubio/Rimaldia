@@ -10,6 +10,7 @@ import { NewRhyme } from "../components/NewRhyme";
 import { getUser } from "../services/usersService";
 import { getallPosts } from "../services/PostService";
 import { useAuth0 } from "@auth0/auth0-react";
+
 var date = new Date();
 date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
 var datetime = new Date();

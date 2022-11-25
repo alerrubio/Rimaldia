@@ -1,9 +1,4 @@
 import "./css/TForos.css";
-import Post from "../components/Post";
-import UserInfo from "../components/UserInfo";
-import PP from"/img/pp-example.jpg";
-import PP2 from"/img/pp2.png";
-import { NewRhyme } from "../components/NewRhyme";
 import ForumCard from "../components/ForumCard";
 import UserNavigationBar from "../components/UserNavigationBar";
 var datetime = new Date();
@@ -17,9 +12,9 @@ function TForos() {
     <>
       <div className="mt-3"></div>
       <UserNavigationBar tabs={[{name: 'Mis foros', link: 'misforos'}, 
-                                {name: 'Foros seguidos', link: 'misforos'},
-                                {name: 'Todos los foros', link: 'TForos'},
-                                {name: 'Crear foro', link: 'crearforo', color: 'peach'}]} />
+                                {name: 'Foros seguidos', link: '#'},
+                                {name: 'Todos los foros', link: 'foros'},
+                                {name: 'Crear foro', link: 'crearforo'}]} />
       <div className="forum-cards-container d-flex flex-row justify-content-center flex-wrap col-12">
         <ForumCard forum_name="Romance" 
                    icon="bi bi-tag-fill" 

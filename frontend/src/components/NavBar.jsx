@@ -65,7 +65,7 @@ export const NavBar = (props) => {
     }
     else{
       newTab("/",nav_tabs,"Inicio");
-      newTab("/TForos",nav_tabs,"Foros");
+      newTab("/foros",nav_tabs,"Foros");
       newTab("/Records",nav_tabs,"Records");
       newTab("/notifications/user/:id",nav_tabs,<i className="bi bi-bell-fill notif-bell"></i>);
     }

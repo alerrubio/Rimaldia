@@ -7,9 +7,8 @@ const GroupSchema = mongoose.Schema({
         unique: true
     },
     users: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
-        required: true
+        type: String,
+        required: true,
     }]
 },
 {timestamps: true});

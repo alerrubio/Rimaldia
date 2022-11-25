@@ -11,12 +11,20 @@ export const UserNavigationBar = (props) => {
     let tabList = [];
     {/*`/${tab}`*/}
 
+    console.log("current loc: " + location.pathname);
+    tabs.forEach((tab, index)=>{
+      console.log("tabs loc: " + tab.link);
+    });
     {tabs.forEach((tab, index)=>{
       //console.log(`/${tab.link}`);
-      tabList.push(<Link to={`/${tab.link}`} key={index} className={`col-2 forum-tab d-flex justify-content-center ${tab.color}`}>
-      <div className="">
-          {tab.name}
-      </div>
+      tabList.push(<Link 
+        to={`/${tab.link}`}
+        key={index} 
+        className={`${
+          location.pathname === (`/${tab.link}`) ? "peach activeTab active" : ""
+        }
+        col-2 forum-tab d-flex justify-content-center ${tab.color}`}>
+      {tab.name}
       </Link>);
     })}
 

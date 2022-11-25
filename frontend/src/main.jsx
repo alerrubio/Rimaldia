@@ -46,7 +46,7 @@ const router = createBrowserRouter([
         element: <PostDetail />,
       },
       {
-        path: "TForos",
+        path: "foros",
         element: <TForos />,
       },
       {

@@ -1,6 +1,5 @@
 import "./css/PostDetail.css";
 import Comments from "../components/Comments";
-import PP2 from"/img/pp2.png";
 import Post from "../components/Post";
 import UserInfo from "../components/UserInfo";
 import { useAuth0 } from "@auth0/auth0-react";

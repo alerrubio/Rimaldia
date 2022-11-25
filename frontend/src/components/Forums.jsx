@@ -1,17 +1,15 @@
 import "../components/css/comments.css";
-import Comment from "./Comment";
-import CommentForm from "./CommentForm";
+import ForumCard from "./ForumCard";
+import ForumInput from "./ForumInput";
 import { useState, useEffect } from "react";
 import EmptyState from "./EmptyState";
-import { getAllComments, createComment, deleteComment as DestroyDBComment, editComment } from '../services/CommentsService';
-import {
-  getComments as getCommentsApi,
-  createComment as createCommentApi,
-  updateComment as updateCommentApi,
-  deleteComment as deleteCommentApi,
-} from "../../api/api";
+import { getAllComments, 
+  createForum, 
+  deleteComment as DestroyDBComment, 
+  editComment } 
+from '../services/ForumService';
 
-const Comments = ({ commentsUrl, currentUserId, post_id }) => {
+const Forum = ({ commentsUrl, currentUserId, post_id }) => {
   const [backendComments, setBackendComments] = useState([]);
   const [PostComments, setPostComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
@@ -33,8 +31,11 @@ const Comments = ({ commentsUrl, currentUserId, post_id }) => {
   };
 
   const newComment = (commentObj) => {
-    createComment(commentObj).then((comment) => {
-      setPostComments([comment, ...PostComments]);
+    createComment(commentObj).then(() => {
+      const updatedBackendComments = getAllComments(post_id).then((comments) => {
+        setPostComments(comments.data);
+      });
+      setBackendComments(updatedBackendComments);
       setActiveComment(null);
     });
   };
@@ -97,10 +98,10 @@ const Comments = ({ commentsUrl, currentUserId, post_id }) => {
     <div className="comments">
       <h3 className="comments-title">Comentarios</h3>
       <div className="comment-form-title">Escribe tu comentario</div>
-      <CommentForm post_id={post_id} submitLabel="Comentar" handleSubmit={newComment} />
+      <ForumInput post_id={post_id} submitLabel="Comentar" handleSubmit={newComment} />
       <div className="comments-container">
         {(PostComments?.length > 0) && PostComments.map((rootComment) => (
-          <Comment
+          <ForumCard
             key={rootComment._id}
             comment={rootComment}
             replies={getReplies(rootComment._id)}
@@ -125,4 +126,4 @@ const Comments = ({ commentsUrl, currentUserId, post_id }) => {
   );
 };
 
-export default Comments;
+export default Forum;

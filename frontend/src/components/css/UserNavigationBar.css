@@ -28,3 +28,9 @@
     color: #ff8e6c;
     background-color: white;
 }
+
+.activeTab{
+    font-weight: bold;
+    background-color: #ff8e6c;
+    color: white;
+}
