@@ -106,3 +106,15 @@ export const deleteUser = async (user_id) => {
     return err;
   }
 };
+
+export const editUser = async (user) => {
+  try {
+    const route = "/user/".concat(user.user_id);
+    const response = await axios.put(route, user);
+    console.log(response);
+    return response;
+  } catch (err) {
+    console.error(err);
+    return err;
+  }
+};

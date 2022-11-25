@@ -99,13 +99,6 @@ const Register = () => {
         <div className="row register-box col-9 justify-content-center align-items-center">
           <div className="row col-12 login-box_R sb">
             <Form id="user_info" onSubmit={newUser}>
-              {/*<div>
-                <label for="avatar">Imagen de perfil</label>
-                <input type="file"
-                  id="avatar" name="avatar"
-                  accept="image/png, image/jpeg"
-                  onChange={handleChange} />
-  </div>*/}
               <div>
                 <label for="email">Correo electrónico</label>
                 <div className="input-group mb-3">
