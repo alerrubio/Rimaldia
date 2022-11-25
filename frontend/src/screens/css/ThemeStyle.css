@@ -1,0 +1,65 @@
+#themed {
+    background-color: #00005c; 
+    position:relative;
+    margin: auto;   
+}
+
+#themed .themedText {
+    color: #fffbc1;
+}
+
+#themed .themedSecondary {
+    background-color: #934d7d;
+}
+
+#themed .themedButton {
+    background-color: #f59638;
+}
+
+#themed .btn {
+    background-color: #f59638;
+}
+
+#themed form {
+    background-color: #934d7d;
+}
+
+#themed .users-cards-container {
+    background-color: #934d7d;
+}
+
+#themed .forum-cards-container {
+    background-color: #934d7d;
+}
+
+#themed .user-card-container {
+    background-color: #00005c;
+}
+
+#themed .user_info_card {
+    color:#fffbc1;    
+}
+
+#themed form h3{
+    color: #fffbc1;
+}
+
+#themed .nav-link{
+    color: #fffbc1;
+}
+
+#themed th{
+    color: #fffbc1;
+}
+
+#themed td{
+    color: #fffbc1;
+}
+
+#themed p{
+    color: #fffbc1;
+}
+
+#themed label{
+    color: #fffbc1;
+}
