@@ -15,11 +15,19 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useAuth0 } from "@auth0/auth0-react";
 import Logo from "/img/logo.png";
-
+import { Constants } from '../lib/constants.js';
 
 const Settings = (props) => {
-  const {username, user_full_name, role} = props;
   const { user, isLoading, isAuthenticated } = useAuth0();
+
+  const userRole = JSON.parse(localStorage.getItem('user')).role;
+  let roleStr = "";
+  if (userRole == Constants.ROLES.POETA_ID){
+    roleStr = Constants.ROLES_TITLES.POETA;
+  }
+  else if (userRole == Constants.ROLES.ADMIN_ID){
+    roleStr = Constants.ROLES_TITLES.ADMIN;
+  }
 
   if (isLoading){
     return (
@@ -47,7 +55,7 @@ const Settings = (props) => {
       <div className="settings-page-content">
         <ProfileBanner username={user.nickname} 
           user_full_name={user.given_name + " " + user.family_name} 
-          role={props.role}
+          role={roleStr}
           picture={user.picture}>
           <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="Seleccione el tema">
               <Dropdown.Item href="#">Luz</Dropdown.Item>
