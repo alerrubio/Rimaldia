@@ -4,11 +4,12 @@ import "./css/SideBar.css";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useAuth0 } from "@auth0/auth0-react";
-import { editUser as editUserService } from '../services/usersService.js';
+//import { editUser as editUserService } from '../services/usersService.js';
 import React, { useState } from "react";
+import { editAuthUser } from "../services/auth0/authUserService.js";
 
 const userInit = {
-  connection: "Username-Password-Authentication",
+  //connection: "Username-Password-Authentication",
 };
 
 const pwdInit = {
@@ -24,7 +25,7 @@ function EditUser(props){
   const [errorMessage, setErrorMessage] = useState("Ha ocurrido un error.");
   const id = JSON.parse(localStorage.getItem('user')).user_id;
   const handlePwdChange = (event) => {
-    const { name, value } = event.target;
+  const { name, value } = event.target;
 
     setpwd({
       ...pwd,
@@ -39,7 +40,6 @@ function EditUser(props){
     
     seteditUser({
       ...editUser,
-      "user_id": id,
       [name]: value,
     });
     console.log(editUser);
@@ -49,9 +49,10 @@ function EditUser(props){
     try{
       event.preventDefault();
       
-      console.log(editUser);
-      const res = await editUserService(editUser);
-      console.log(res);
+      console.log("user id " + id);
+      //const res = await editUserService(editUser, id);
+      const authRes = await editAuthUser(editUser, id);
+      console.log(authRes);
     }
     catch(err){
       setErrorMessage(errorMessage => "Algo salió mal.")
@@ -78,39 +79,39 @@ function EditUser(props){
                 </div>  
               </div>
               <div>
-                <label for="first-name">Nombre(s)</label>
+                <label for="given_name">Nombre(s)</label>
                 <div className="input-group mb-3">
                   <i className="input-group-text bi bi-person-fill"></i>
                   <input type="text"
                     onChange={handleChange}
                     className="form-control first-name-input" 
-                    name="first-name" 
+                    name="given_name" 
                     placeholder={given_name}
                     readOnly={!editMode}
                     />
                 </div>
               </div>
               <div>
-                <label for="last-name">Apellido paterno</label>
+                <label for="family_name">Apellido paterno</label>
                 <div className="input-group mb-3">
                   <i className="input-group-text bi bi-person-fill"></i>
                   <input type="text" 
                     onChange={handleChange}
                     className="form-control last-name-input" 
-                    name="last-name" 
+                    name="family_name" 
                     placeholder={family_name}
                     readOnly={!editMode}
                     />
                 </div>
               </div>
               <div>
-                <label for="username">Nombre de usuario</label>
+                <label for="nickname">Nombre de usuario</label>
                 <div className="input-group mb-3">
                   <i className="input-group-text bi bi-person-fill"></i>
                   <input type="text"
                     onChange={handleChange}
                     className="form-control username-input" 
-                    name="username" 
+                    name="nickname" 
                     placeholder={username}
                     readOnly={!editMode}
                     />

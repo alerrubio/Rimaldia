@@ -107,9 +107,10 @@ export const deleteUser = async (user_id) => {
   }
 };
 
-export const editUser = async (user) => {
+export const editUser = async (user, user_id) => {
   try {
-    const route = "/user/".concat(user.user_id);
+
+    const route = "/user/".concat(user_id);
     const response = await axios.put(route, user);
     console.log(response);
     return response;
