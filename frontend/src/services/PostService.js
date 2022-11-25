@@ -24,7 +24,6 @@ export const getallPosts = async (post) => {
   }
 };
 
-
 export const createPost = async (post) => {
   try {
     console.log(post);
@@ -43,4 +42,14 @@ export const createPost = async (post) => {
   }
 };
 
-export default createPost;
+export const getPost = async (post_id) => {
+  //const response = await axios({ url: "/students", method: "get" });
+  try {
+    const route = `/post/${post_id}`;
+    const response = await axios.get(route);
+    return response;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};

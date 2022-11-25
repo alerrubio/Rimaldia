@@ -8,7 +8,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
 export const Post = (props) => {
-    const {children, visible_rows, post_detail} = props;
+    const {children, visible_rows, post_detail, text } = props;
     let tags_and_statistics_box = [];
 
     if (post_detail){
@@ -67,10 +67,7 @@ export const Post = (props) => {
             {children}
           </Link>
           <div className="Contenido_Publicado">
-            <textarea rows={visible_rows} className="post-text" readOnly>
-            El amor no se compra, 
-            no necesitas dinero lo que realmente necesitas
-            es valor para decirle te quiero.</textarea>
+            <textarea rows={visible_rows} className="post-text" placeholder={text}readOnly></textarea>
 
             {tags_and_statistics_box}
             

@@ -24,6 +24,29 @@ exports.get = async (req, res) => {
     }
   };
   
+  exports.getAll = async (req, res) => {
+    const {params: {post_id}} = req;
+    console.log("posttttttttttttttttttttttttttttttttttt: " + post_id);
+
+    try{
+      const data = await Comment.find({post_id: post_id});
+      console.log(data);
+      if (data.length > 0){
+        res.status(200).send(data);
+      }else{
+        res.status(204).send();
+      }
+    }
+    catch(error){
+      console.log(error);
+      res.status(500).send({
+        message: "Algo salió mal",
+        error_data: error,
+        comment_id: id,
+      });
+    }
+  };
+  
 exports.create = async (req, res) => {
   const { body: comment } = req;
   console.log(comment);

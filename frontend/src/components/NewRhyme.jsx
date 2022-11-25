@@ -10,7 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 var fecha = new Date();
 fecha = fecha.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric' });
 import { useLocation, Link } from "react-router-dom";
-import createPost from "../services/PostService";
+import {createPost} from "../services/PostService";
 
 const styles = {
     menu: base => ({

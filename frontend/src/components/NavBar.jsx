@@ -1,11 +1,11 @@
-import React, { useState } from "react";
 import "./css/NavBar.css";
-import Logo from "/img/logo.png";
-import { useLocation, Link } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import { useAuth0 } from "@auth0/auth0-react";
+import Logo from "/img/logo.png";
+import React, { useState } from "react";
 import { isAdmin } from '../services/usersService';
+import { useAuth0 } from "@auth0/auth0-react";
+import { useLocation, Link } from "react-router-dom";
 
 function newTab(nav_link, nav_bar, tab_title){
   nav_bar.push(<li className="nav-item" key={tab_title}>

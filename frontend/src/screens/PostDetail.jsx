@@ -1,10 +1,12 @@
-import Comments from "../components/Comments";
 import "./css/PostDetail.css";
-import UserInfo from "../components/UserInfo";
-import Post from "../components/Post";
+import Comments from "../components/Comments";
 import PP2 from"/img/pp2.png";
-import {useParams} from "react-router-dom";
+import Post from "../components/Post";
+import UserInfo from "../components/UserInfo";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useParams } from "react-router-dom";
+import { getPost } from "../services/PostService";
+import React, { useState, useEffect } from "react";
 
 var date = new Date();
 date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
@@ -14,18 +16,29 @@ datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', 
 export const PostDetail = (props) => {
   const {id} = useParams();
   const { user } = useAuth0();
+  const [post, setPost] = useState({});
+
+  useEffect(() => {
+    const fetchdata = async () => {
+      const res = await getPost(id);
+      setPost(res.data);
+      console.log(res);
+    };
+    fetchdata();
+  }, []);
 
   return (
     <>
         <div className="post-detail-box d-flex flex-column justify-content-center">
-            <Post visible_rows="5" post_detail>
-              <UserInfo user_name={`${user.given_name} ${user.family_name}`} 
-                time={datetime} 
-                profile_picture={user.picture}></UserInfo>
+            <Post visible_rows="5" post_detail text={post.text}>
+              <UserInfo user_name={`${post.user_name}`} 
+                time={post.createdAt} 
+                profile_picture={post.user_picture}></UserInfo>
             </Post>
             <Comments
               commentsUrl="http://localhost:3004/comments"
-              currentUserId="1"/>
+              currentUserId={user.sub.substring(6)}
+              post_id={id}/>
         </div>
     </>
   )

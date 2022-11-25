@@ -1,9 +1,9 @@
 import "./css/Users.css";
-import UserCard from "../components/UserCard";
-import { getUsers, getUsersCount } from "../services/usersService.js";
 import React, { useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import UserCard from "../components/UserCard";
 import { Constants } from '../lib/constants.js';
+import { getUsers, getUsersCount } from "../services/usersService.js";
+import { useAuth0 } from "@auth0/auth0-react";
 
 var datetime = new Date();
 datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
