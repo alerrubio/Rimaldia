@@ -6,6 +6,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useAuth0 } from "@auth0/auth0-react";
 import { isAdmin } from '../services/usersService';
+import { useEffect } from "react";
 
 function newTab(nav_link, nav_bar, tab_title){
   nav_bar.push(<li className="nav-item" key={tab_title}>
@@ -53,7 +54,7 @@ export const NavBar = (props) => {
     const location = useLocation();
     const {username, admin} = props;
     const { user, logout, isLoading } = useAuth0();
-    let enableAdminTab = false;
+    const [indeedAdmin, setIndeedAdmin] = useState(false);
 
     var nav_tabs = [];
 
@@ -69,10 +70,16 @@ export const NavBar = (props) => {
       newTab("/Records",nav_tabs,"Records");
       newTab("/notifications/user/:id",nav_tabs,<i className="bi bi-bell-fill notif-bell"></i>);
     }
-
-    if(isAdmin(user.email)){
-      enableAdminTab = true;
-    }
+  
+    useEffect(() => {    
+      const fetchdata = async () => {
+        const res = await isAdmin(user.email);
+        if(res){
+          setIndeedAdmin(true);
+        }
+      };
+      fetchdata();
+    }, [user]); 
 
     if (isLoading) {
       return (
@@ -91,7 +98,7 @@ export const NavBar = (props) => {
           {nav_tabs}
           <li className="nav-item">
             <DropdownButton id="dropdown-basic-button" className="dd-nav-bar" variant="peach" title={user.nickname}>
-              {enableAdminTab &&
+              {indeedAdmin &&
                 <Dropdown.Item as={Link} to={"/admin"}>Administrador</Dropdown.Item>
               }
               <Dropdown.Item as={Link} to={"/Settings"}>Settings</Dropdown.Item>

@@ -70,13 +70,13 @@ export const getUserByEmail = async (user_email) => {
 };
 
 export const isAdmin = async (user_email) => {
-  try {
+  try {    
     const response = await axios.post("/isUserAdmin", {user_email: user_email});
     if (response.status != 200){
       return false;
     }
-    console.log(response);
-    return true;
+    //console.log("is admin? "+JSON.stringify(response.data.indeedAdmin) + user_email);
+    return response.data.indeedAdmin;
   } catch (err) {
     console.error(err);
     return false;

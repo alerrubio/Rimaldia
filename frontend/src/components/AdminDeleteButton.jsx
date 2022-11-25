@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./css/NotificationCard.css";
 import { deleteNotif } from '../services/notificationsService';
 import { Navigate } from "react-router-dom";
@@ -11,6 +11,7 @@ export const AdminDeleteButton = (props) => {
   const [errorMessage, setErrorMessage] = useState("Ha ocurrido un error.");
   const [needRefresh, setRefresh] = useState(false);
   const { user } = useAuth0();
+  const [Admin, setAdmin] = useState(false);
 
   const deleteNotifFromDb = async (id) => {
     try{
@@ -35,8 +36,18 @@ export const AdminDeleteButton = (props) => {
       //window.location.reload();
       return <Navigate to="/" replace />
   }
+  
+  useEffect(() => {    
+    const fetchdata = async () => {
+      const res = await isAdmin(user.email);
+      if(res){
+        setAdmin(true);
+      }
+    };
+    fetchdata();
+  }, [user]);
 
-  if(isAdmin(user.email)){
+  if(Admin){
     return (
       <div className="ms-auto me-4 my-auto justify-content-right">
         <i className="read-notif-icon bi bi-trash-fill d-flex flex-column justify-content-center" onClick={() => deleteNotifFromDb(id)}></i>
