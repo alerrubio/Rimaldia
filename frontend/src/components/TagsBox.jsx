@@ -19,7 +19,6 @@ export const TagsBox = (props) => {
         <div className="tag-div">#{tag.tag_name}</div>
       );
     })}
-    console.log(edit);
     if (edit === "true"){
         enable_input.push(<input type="text" className="tag-input" placeholder="Nuevo tag"/>);
     }

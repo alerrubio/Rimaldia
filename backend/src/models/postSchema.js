@@ -5,6 +5,14 @@ const PostSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    user_name:{
+        type: String,
+        required: true
+    },
+    user_picture:{
+        type: String,
+        required: true
+    },
     text: {
         type: String,
         maxLength: 500,

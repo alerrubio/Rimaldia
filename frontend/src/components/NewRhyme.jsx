@@ -20,6 +20,8 @@ const styles = {
   };
   const postInit = {
     user_id: "637c3f97110faec67bbd39db",
+    user_name: "name full",
+    user_picture: "photo",
     color_index: "1",
   };
 
@@ -38,6 +40,8 @@ export const NewRhyme = (props) => {
 
       let dbPost = {
         user_id: user.sub.substring(6),
+        user_name: user.given_name + " " + user.family_name,
+        user_picture: user.picture,
         text: post.text, 
         color_index: "1",
         tag_id: post.tag_id,
