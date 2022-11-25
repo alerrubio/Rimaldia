@@ -52,6 +52,30 @@ exports.get = async (req, res) => {
   
 };
 
+exports.getPostsbyUserid = async (req, res) => {
+  const {params: {id}} = req;
+  try{
+    const data = await Post.find({user_id: id}).sort( '-createdOn' );
+    console.log(data);
+    if (data){
+      res.send(data);
+    }else{
+      res.send({
+          message: "No se encontraron publicaciones."
+        });
+    }
+  }
+  catch(err){
+      console.log(err);
+      res.send({
+        message: "Algo salió mal",
+        error_data: err,
+        post_id: id,
+      });
+  }
+  
+};
+
 exports.getAllPosts = async (req, res) => {
   const {params: {page}} = req;
   const pagination = 10 * page;
