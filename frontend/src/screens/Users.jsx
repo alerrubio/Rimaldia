@@ -55,7 +55,7 @@ function Users() {
 
   useEffect(() => {
     const adminUser = JSON.parse(localStorage.getItem('admin'));
-    console.log(adminUser);
+    //console.log(adminUser);
     if (adminUser == false){
       setnotAdmin(true);
     }

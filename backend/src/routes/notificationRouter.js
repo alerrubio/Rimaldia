@@ -4,6 +4,7 @@ const router = express.Router();
 const notification_controller = require('../controllers/notificationController');
 
 router.get("/notification/:id", notification_controller.get);
+router.get("/notifications", notification_controller.getAll);
 router.post("/notification", notification_controller.create);
 router.put("/notification/:id", notification_controller.update);
 router.delete("/notification/:id", notification_controller.delete);

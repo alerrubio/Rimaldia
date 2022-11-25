@@ -26,6 +26,7 @@ import SuperAdmin from './screens/SuperAdmin';
 import AdminRecords from './components/AdminRecords';
 import NewNotification from './screens/NewNotification';
 import Users from './screens/Users';
+import Themes from './screens/Themes';
 import ThemeCreate from './screens/ThemeCreate';
 import { Auth0Provider } from "@auth0/auth0-react";
 
@@ -103,8 +104,12 @@ const router = createBrowserRouter([
         element: <Users />,
       },
       {
-        path: "temas",
+        path: "crearTema",
         element: <ThemeCreate />,
+      },
+      {
+        path: "verTemas",
+        element: <Themes />,
       }
     ] 
   },

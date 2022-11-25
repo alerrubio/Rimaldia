@@ -1,29 +1,59 @@
 import "./css/Home.css";
+import { useState, useEffect } from "react";
 import { NewRhyme } from "../components/NewRhyme";
+import { getNotifs } from '../services/notificationsService';
 
 import NotificationCard from "../components/NotificationCard";
 var date = new Date();
 date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
-function Home() {
+
+function Notifications() {
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("Ha ocurrido un error.");
+  const [notifs, setNotifs] = useState([]);
+
+  const getNotifsFromDb = async (event) => {
+    try{
+      
+      setError(error => error);     
+
+      const dbRes = await getNotifs();
+
+      console.log("Notificaciones cargadas con éxito.");
+
+      setNotifs(dbRes);
+      
+    }
+    catch(err){
+      setErrorMessage(errorMessage => "No fue posible cargar las notificaciones.")
+      setError(error => !error);
+    }
+    
+  }
+
+  useEffect(()=>{
+    getNotifsFromDb();
+  }, []);
 
   return (
     <>
       <div className="col-12 d-flex flex-row flex-wrap justify-content-center">
-        <NotificationCard title="Los usuarios más activos del mes" 
-                          text="¡Felicidades! Fulanito y panganito, fueron los usuarios con más post en el mes." 
-                          time={date}></NotificationCard>
-        <NotificationCard title="Los usuarios más activos del mes" 
-                          text="¡Felicidades! Fulanito y panganito, fueron los usuarios con más post en el mes." 
-                          time={date}></NotificationCard>
-        <NotificationCard title="Los usuarios más activos del mes" 
-                          text="¡Felicidades! Fulanito y panganito, fueron los usuarios con más post en el mes." 
-                          time={date}></NotificationCard>
-        <NotificationCard title="Los usuarios más activos del mes" 
-                          text="¡Felicidades! Fulanito y panganito, fueron los usuarios con más post en el mes." 
-                          time={date}></NotificationCard>
+        
+        {notifs.map(row => {
+            return (
+              <NotificationCard 
+                title={row.title}
+                text={row.text}
+                time={row.createdAt}
+                id={row._id}>
+              </NotificationCard>
+            );
+        })}
+
+        
       </div>
     </>
   )
 }
 
-export default Home
+export default Notifications
