@@ -37,7 +37,7 @@ function Home() {
     {rhymes &&
      rhymes.map((posting) => (
       <div className="post-container">
-      <UserInfo user_name={ user.given_name + " " + user.family_name } time= {datedb = new Date(posting.createdAt).toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' })} profile_picture={user.picture}></UserInfo>
+      <UserInfo user_name={ posting.user_name } time= {datedb = new Date(posting.createdAt).toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' })} profile_picture={ posting.user_picture }></UserInfo>
      
           <div className="Contenido_Publicado">
       {posting.text}
