@@ -21,9 +21,9 @@ var datetime = new Date();
 datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
 var datedb;
 function UserProfile(props) {
+  const { user} = useAuth0();
   const {username, user_full_name, role} = props;
   const { isLoading, isAuthenticated} = useAuth0();
-  const { user} = useAuth0();
   const [rhymes, setRhymes] = useState("");
 
   useEffect(() => {
@@ -33,7 +33,7 @@ function UserProfile(props) {
       console.log(postsdata);
     };
     fetchdata();
-  }, []);
+  }, [user]);
 
   if (isLoading){
     return (
