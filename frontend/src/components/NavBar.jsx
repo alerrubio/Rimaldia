@@ -5,6 +5,7 @@ import { useLocation, Link } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useAuth0 } from "@auth0/auth0-react";
+import { isAdmin } from '../services/usersService';
 
 function newTab(nav_link, nav_bar, tab_title){
   nav_bar.push(<li className="nav-item" key={tab_title}>
@@ -52,11 +53,12 @@ export const NavBar = (props) => {
     const location = useLocation();
     const {username, admin} = props;
     const { user, logout, isLoading } = useAuth0();
+    let enableAdminTab = false;
 
     var nav_tabs = [];
 
     if (admin){
-      newTab("/admin",nav_tabs,"Inicio");
+      newTab("/",nav_tabs,"Inicio");
       newTab("/admin/notification",nav_tabs,"Notificaciones");
       newTab("/admin/verTemas",nav_tabs,"Temas");
       newTab("/admin/usuarios",nav_tabs,"Usuarios");
@@ -66,6 +68,10 @@ export const NavBar = (props) => {
       newTab("/TForos",nav_tabs,"Foros");
       newTab("/Records",nav_tabs,"Records");
       newTab("/notifications/user/:id",nav_tabs,<i className="bi bi-bell-fill notif-bell"></i>);
+    }
+
+    if(isAdmin(user.email)){
+      enableAdminTab = true;
     }
 
     if (isLoading) {
@@ -85,7 +91,7 @@ export const NavBar = (props) => {
           {nav_tabs}
           <li className="nav-item">
             <DropdownButton id="dropdown-basic-button" className="dd-nav-bar" variant="peach" title={user.nickname}>
-              {admin &&
+              {enableAdminTab &&
                 <Dropdown.Item as={Link} to={"/admin"}>Administrador</Dropdown.Item>
               }
               <Dropdown.Item as={Link} to={"/Settings"}>Settings</Dropdown.Item>
