@@ -4,12 +4,34 @@ exports.get = async (req, res) => {
     const {params: {id}} = req;
     try{
       const data = await Notification.findOne({_id: id});
-      console.log(data);
+      //console.log(data);
       if (data){
         res.send(data);
       }else{
         res.send({
             message: "No se encontró la notificación",
+            notification_id: id,
+          });
+      }
+    }catch(error){
+      console.log(error);
+      res.send({
+        message: "Algo salió mal",
+        error_data: error,
+        notification_id: id,
+      });
+    }
+  };
+
+  exports.getAll = async (req, res) => {
+    try{
+      const data = await Notification.find({isActive: true}).sort('-createdAt');
+      console.log(data);
+      if (data){
+        res.send(data);
+      }else{
+        res.send({
+            message: "No se encontraron notificaciones",
             notification_id: id,
           });
       }
@@ -53,7 +75,7 @@ exports.delete = async (req, res) => {
     try{
       let msg = "";
       let data = null;
-      const notifDB = await Notification.findOneAndDelete({_id: id});
+      const notifDB = await Notification.findOneAndUpdate({_id: id}, {isActive: false});
       if (notifDB){
         msg = "Notificación eliminada";
         data = notifDB;

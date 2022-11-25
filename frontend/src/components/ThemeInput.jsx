@@ -100,7 +100,7 @@ function ThemeInput(props) {
       ...theme,
       [name]: value,
     });
-    console.log(theme);
+    //console.log(theme);
   };
 
   if(success){
