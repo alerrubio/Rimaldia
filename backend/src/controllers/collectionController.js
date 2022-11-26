@@ -99,3 +99,27 @@ exports.delete = async (req, res) => {
         collection_id: id});
       }
   };
+
+  //[TRAER TODAS LAS CATEGORÍAS]
+  exports.getAllCategories = async (req, res) => {
+    try{
+      const data = await Collection.find()
+      console.log(data);
+      if (data){
+        res.send(data);
+      }else{
+        res.send({
+            message: "No se encontró la categoría."
+          });
+      }
+    }
+    catch(err){
+        console.log(err);
+        res.send({
+          message: "Algo salió mal",
+          error_data: err,
+          post_id: id,
+        });
+    }
+    
+  };
