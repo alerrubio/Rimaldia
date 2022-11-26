@@ -16,10 +16,12 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useAuth0 } from "@auth0/auth0-react";
 import Logo from "/img/logo.png";
 import { Constants } from '../lib/constants.js';
+import { isAdmin, getUser, editUser } from '../services/usersService.js';
+import React, { useState, useEffect, createContext } from "react";
 
 const Settings = (props) => {
   const { user, isLoading, isAuthenticated } = useAuth0();
-
+  var userSession = {};
   const userRole = JSON.parse(localStorage.getItem('user')).role;
   let roleStr = "";
   if (userRole == Constants.ROLES.POETA_ID){
@@ -28,6 +30,25 @@ const Settings = (props) => {
   else if (userRole == Constants.ROLES.ADMIN_ID){
     roleStr = Constants.ROLES_TITLES.ADMIN;
   }
+
+  const getUserInfo = async () => {
+    try{
+      const res = await getUser(user.sub.substring(6));
+      if (res){
+        localStorage.setItem('user', JSON.stringify(res));
+      }
+    }
+    catch(err){
+      console.log("Algo salió mal");
+      console.log(err);
+    }
+  }
+  useEffect(() => {
+    getUserInfo();
+    userSession = JSON.parse(localStorage.getItem('user'));
+    //let fromLS= localStorage.getItem('themeStyleLS');
+    //setStyleLS(fromLS);
+  }, [user]);
 
   if (isLoading){
     return (
@@ -63,8 +84,7 @@ const Settings = (props) => {
           <EditUser email={user.email}
             given_name={user.given_name}
             family_name={user.family_name}
-            username={user.nickname}
-            password={user.password}></EditUser>
+            ></EditUser>
         </div>
       </div>
     </>

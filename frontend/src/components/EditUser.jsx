@@ -53,6 +53,7 @@ function EditUser(props){
       //const res = await editUserService(editUser, id);
       const authRes = await editAuthUser(editUser, id);
       console.log(authRes);
+      window.location.reload();
     }
     catch(err){
       setErrorMessage(errorMessage => "Algo salió mal.")
@@ -104,34 +105,6 @@ function EditUser(props){
                     />
                 </div>
               </div>
-              <div>
-                <label for="nickname">Nombre de usuario</label>
-                <div className="input-group mb-3">
-                  <i className="input-group-text bi bi-person-fill"></i>
-                  <input type="text"
-                    onChange={handleChange}
-                    className="form-control username-input" 
-                    name="nickname" 
-                    placeholder={username}
-                    readOnly={!editMode}
-                    />
-                </div>
-              </div>
-              {editMode &&
-                <div>
-                  <label for="password">Contraseña</label>
-                  <div className="input-group mb-3">
-                    <i className="input-group-text bi bi-key-fill"></i>
-                    <input onChange={handlePwdChange} 
-                      title="8 caracteres o más y al menos una mayúscula, una minúscula, un dígito" 
-                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-                      type="password" 
-                      className="form-control password-input" 
-                      name="password"
-                      required/>
-                  </div>
-                </div>
-              }
               <div className="pb-3 col-12 d-flex flex-row justify-content-end">
                 {!editMode &&
                   <Button variant="peach" onClick={() => seteditMode(true)} className="col-4 p-2">
@@ -146,8 +119,6 @@ function EditUser(props){
               </div>
             </Form>
           </div>
-          {error && 
-                <span className="error">{errorMessage}</span>}
         </div>
     </>
 
