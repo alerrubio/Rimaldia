@@ -18,6 +18,7 @@ export const PostEdit = (props) => {
   const {id} = useParams();
   const { user } = useAuth0();
   const [post, setPost] = useState({});
+  var commentsCount = 0;
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -37,20 +38,25 @@ export const PostEdit = (props) => {
       setErrorMessage(errorMessage => "Hubo un error al querer editar.")
       setError(error => !error);
     }
-    
   }
 
-  async function commentsCount() {
+  const commentsCountFunct = async () => {
     try{
-        const dbRes = await getAllComments(id);
-        console.log("DB response: " +  dbRes);
-        return dbRes;
+      var commCount = 0;
+      const dbRes = await getAllComments(id);
+      console.log(dbRes);
+      if (dbRes.status == 204){
+        commCount = 0;
+      }
+      else if (dbRes.status == 200){
+        commCount = dbRes.data.length;
+      }
+      return commCount;
     }
     catch(err){
       setErrorMessage(errorMessage => "Hubo un error al querer editar.")
       setError(error => !error);
-    }
-    
+    }  
   }
 
   const handleChange = (event) => {
@@ -84,7 +90,7 @@ export const PostEdit = (props) => {
           </div>
           <div className="Actividad-iconos">
             <div><i className="bi bi-hand-thumbs-up-fill"></i>12</div>
-            <div><i className="bi bi-chat-left-fill"></i>{commentsCount()}</div>
+            <div><i className="bi bi-chat-left-fill"></i>{commentsCount}</div>
             <div><i className="bi bi-save-fill"></i></div>
             <Button variant="peach" onClick={() => PostEdit()} className="mx-4">
                 Guardar
