@@ -38,11 +38,12 @@ exports.isAdmin = async (req, res) => {
   const {body: {user_email}} = req;
   try{
     const data = await User.find({email: user_email, role: '637c33318a3d0bc0a9233344'});
-    console.log(data);
+    //console.log(data);
     if (data.length > 0){
       res.status(200).send({
         message: "Usuario es admin",
         user_email: user_email,
+        indeedAdmin: true
       });
     }else{
       res.status(204).send({
@@ -67,11 +68,12 @@ exports.getByEmail = async (req, res) => {
       res.status(200).send({
         message: "Usuario existe",
         user_email: email,
+        role: data.role
       });
     }else{
       res.status(204).send({
         message: "No se encontró al usuario",
-        user_email: email,
+        user_email: email
       });
     }
   }

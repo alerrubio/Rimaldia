@@ -3,7 +3,7 @@ import Background from "/img/LOGIN.png";
 import Logo from "/img/logo.png";
 import "../components/css/loadingComponent.css";
 import NavBar, { MenuContent }  from "../components/NavBar";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import SideBar from "../components/SideBar";
 import UserInfo from "./UserInfo";
 import { Outlet, Navigate } from "react-router-dom";
@@ -11,12 +11,15 @@ import { isAdmin, getUser, editUser } from '../services/usersService.js';
 import { useAuth0 } from "@auth0/auth0-react";
 import { shortDate } from "../utils/dateFormatter";
 
+export const ThemeContextL = createContext(null);
+
 var date = new Date();
 date = shortDate(date);
 
 export default function Layout() {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [Admin, setAdmin] = useState(false);
+  const [styleLS, setStyleLS] = useState("");
 
   const isUserAdmin = async () => {
     try{
@@ -66,6 +69,8 @@ export default function Layout() {
     isUserAdmin();
     getUserInfo();
     updatePicture();
+    //let fromLS= localStorage.getItem('themeStyleLS');
+    //setStyleLS(fromLS);
   }, [user]);
 
   if (isLoading){
@@ -84,30 +89,33 @@ export default function Layout() {
   }
 
   return (
-    <>
-      <img src={Background} className="bg-img" alt="" />
-      <div className="container d-flex flex-row contenido">
-        <div className="row col-3">
-          <SideBar username={ user.nickname } email={ user.email } />
-        </div>
-        <NavBar title="Rimaldía" username={ user.nickname } nav_bar_alignment="end">
-          {Admin &&
-            <MenuContent username={ user.nickname } admin/>
-          }
-          {!Admin &&
-            <MenuContent username={ user.nickname }/>
-          }
-        </NavBar>
-        
-        <div id="detail" className="row col-11 ps-5">
-          <div className="page-content">
-            <UserInfo user_name={user.given_name + " " + user.family_name} 
-              time={date} 
-              profile_picture={user.picture} />
-            <Outlet />
+    <ThemeContextL.Provider value={{styleLS, setStyleLS}}>
+      <>
+        <style>{styleLS}</style>
+        <img src={Background} className="bg-img" alt="" />
+        <div className="container d-flex flex-row contenido" id="themed">
+          <div className="row col-3">
+            <SideBar username={ user.nickname } email={ user.email } />
+          </div>
+          <NavBar title="Rimaldía" username={ user.nickname } nav_bar_alignment="end">
+            {Admin &&
+              <MenuContent username={ user.nickname } admin/>
+            }
+            {!Admin &&
+              <MenuContent username={ user.nickname }/>
+            }
+          </NavBar>
+          
+          <div id="detail" className="row col-11 ps-5">
+            <div className="page-content">
+              <UserInfo user_name={user.given_name + " " + user.family_name} 
+                time={date} 
+                profile_picture={user.picture} />
+              <Outlet />
+            </div>
           </div>
         </div>
-      </div>
-    </>
+      </>
+    </ThemeContextL.Provider>    
   );
 }

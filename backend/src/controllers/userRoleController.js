@@ -5,7 +5,7 @@ exports.get = async (req, res) => {
     const {params: {id}} = req;
     try {
       const data = await UserRole.findOne({_id: id});
-      console.log(data);
+      //console.log("DATA: "+data);
       if (data){
         res.send(data);
       }else{

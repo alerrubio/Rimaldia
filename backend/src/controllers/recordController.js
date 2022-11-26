@@ -4,8 +4,23 @@ exports.create = async (req, res) => {
   const { body: record } = req;
 
   try{
-    console.log(record);
-    const recordDB = new Record(record);
+
+
+    //0. Search documents (posts) between the given dates to extract the desired data (user_id, tag_id[])
+    const between_dates = await Record.find({
+      date: { $gte: record.start_date, $lte: record.end_date },
+    }); 
+    console.log("Records found between dates:"+ JSON.stringify(between_dates));
+
+    //1. Count the documents by user_id and pick the top 5
+
+    //2. Extract and merge the tag_id then count down how many times there are repeated and pick the top 5
+
+
+
+    
+    /*const recordDB = new Record(record);
+    
     await recordDB.save().catch((err) => {
       console.log("Un error ha ocurrido", err)
       res.send({
@@ -18,7 +33,8 @@ exports.create = async (req, res) => {
     res.send({
       message: "Registro creado con éxito.",
       data: recordDB,
-    });
+    });*/
+
   }
   catch(err){
       console.log(err);
@@ -49,6 +65,18 @@ exports.get = async (req, res) => {
       });
   }
   
+};
+
+exports.getAll = async (req, res) => {
+  const data = await Record.find({isActive: true}).sort('-createdAt');
+  console.log(data);
+  if (data){
+    res.send(data);
+  }else{
+    res.send({
+        message: "No se encontraron records.",
+      });
+  }
 };
 
 exports.delete = async (req, res) => {

@@ -14,6 +14,8 @@ import { NewRhyme } from "../components/NewRhyme";
 import Background from "/img/LOGIN.png";
 import Logo from "/img/logo.png";
 import { Navigate, Link } from "react-router-dom";
+import { getUserByEmail } from "../services/usersService";
+import { getRole } from "../services/userRoleService";
 
 var date = new Date();
 date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
@@ -25,12 +27,15 @@ function UserProfile(props) {
   const {username, user_full_name, role} = props;
   const { isLoading, isAuthenticated} = useAuth0();
   const [rhymes, setRhymes] = useState("");
+  const [userDb, setUserDb] = useState("");
 
   useEffect(() => {
     const fetchdata = async () => {
       const postsdata = await getPostsbyuser(user.sub.substring(6));
       setRhymes(postsdata);
-      console.log(postsdata);
+      const result = await getUserByEmail(user.email);
+      const roleDb = await getRole(result.data.role)
+      setUserDb(roleDb.name);
     };
     fetchdata();
   }, [user]);
@@ -75,7 +80,7 @@ function UserProfile(props) {
         <div className="profile-page-content">
           <ProfileBanner username={user.nickname} 
             user_full_name={user.given_name + " " + user.family_name} 
-            role={props.role}
+            role={userDb}
             picture={user.picture}/>
           <div className="posts-content col-10 d-flex flex-column justify-content-center">
             <NewRhyme ></NewRhyme>
