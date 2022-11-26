@@ -10,3 +10,14 @@
     width: fit-content;
     max-width: 50%;
 }
+
+.new-tag{
+    margin: 0px 10px;
+    color: #b26967;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.new-tag:hover{
+    color:#52776f;
+}

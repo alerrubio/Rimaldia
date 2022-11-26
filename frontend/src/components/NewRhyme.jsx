@@ -11,6 +11,7 @@ var fecha = new Date();
 fecha = fecha.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric' });
 import { useLocation, Link } from "react-router-dom";
 import {createPost} from "../services/PostService";
+import {createTag} from "../services/TagService";
 
 const styles = {
     menu: base => ({
@@ -33,7 +34,9 @@ export const NewRhyme = (props) => {
   const {children, title, user_name, time, post_to, visible_rows} = props;
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [post, setPost] = useState(postInit);
+  const [tagsArr, setTagsArr] = useState([]);
   const [error, setError] = useState(false);
+  const tagsNames = [];
   const newPost = async (event) => {
     event.preventDefault();
     try{
@@ -49,7 +52,7 @@ export const NewRhyme = (props) => {
       }
         const dbRes = await createPost(dbPost);
         console.log("DB response: " +  dbRes);
-        window.location.reload(false);
+        //window.location.reload(false);
     }
     catch(err){
       setErrorMessage(errorMessage => "Hubo un error al querer publicar.")
@@ -66,6 +69,15 @@ export const NewRhyme = (props) => {
       [name]: value,
     });
   };
+
+  const newTag = async (tag) => {
+    const response = await createTag(tag).then((tag) => {
+      setTagsArr([tag.data._id, ...tagsArr]);
+      tagsNames.push({tag_name: tag.data.data.name});
+      console.log(tagsNames);
+    });
+    console.log(response);
+  }
     
     return (
       <>
@@ -80,12 +92,9 @@ export const NewRhyme = (props) => {
 
             <div className="categories-dd d-flex justify-content-between col-12">
                 <div className="post-tag-list d-flex flex-row justify-content-start align-items-center flex-wrap col-8">
-                  <TagsBox tags={[{tag_name: "Romance"},
-                                  {tag_name: "Rimaldía"},
-                                  {tag_name: "Tristeza"},
-                                  {tag_name: "Motivacional"},
-                                  {tag_name: "Verso"},
-                                  {tag_name: "Libre"}]} edit="true"></TagsBox>
+                  <TagsBox tags={tagsNames} 
+                            edit="true"
+                            addTag={newTag}></TagsBox>
                 </div>
                 <div className="d-flex flex-row justify-content-end col-4">
                   <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="Seleccione la categoría" onChange={handleChange} name="tag_id">

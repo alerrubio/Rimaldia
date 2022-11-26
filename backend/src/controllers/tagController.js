@@ -25,7 +25,7 @@ exports.create = async (req, res) => {
   console.log(tag);
   try {
       const tagDB = new Tag(tag);
-      await tagDB.save().catch((err) => {
+      const response = await tagDB.save().catch((err) => {
         console.log("Un error ha ocurrido", err)
         res.send({
             message: err,
@@ -35,7 +35,7 @@ exports.create = async (req, res) => {
       );
       res.send({
         message: "Tag creado con éxito",
-        data: tagDB,
+        data: response,
       });
   } catch (error) {
     console.log(error);

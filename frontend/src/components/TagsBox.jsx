@@ -8,27 +8,47 @@ var fecha = new Date();
 fecha = fecha.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric' });
 import { useLocation, Link } from "react-router-dom";
 
+const tagInit = {
+  name: ""
+};
+
 export const TagsBox = (props) => {
-    const {tags, edit, view} = props;
+    const {tags, edit, view, addTag} = props;
+    const [tag, setTag] = useState(tagInit);
     let tagList = [];
     let enable_input = [];
-    {/*`/${tab}`*/}
+
+    const addTagName = (event) => {
+        addTag(tag);
+    }
 
     {tags.forEach((tag, index)=>{
       tagList.push(
         <div className="tag-div">#{tag.tag_name}</div>
       );
     })}
-    if (edit === "true"){
-        enable_input.push(<input type="text" className="tag-input" placeholder="Nuevo tag"/>);
-    }
     
+    const handleChange = (event) => {
+      const { name, value } = event.target;
+  
+      setTag({
+        ...tag,
+        [name]: value,
+      });
+      console.log(tag);
+    };
+
     return (
       <>
         <div className="d-flex flex-row flex-wrap">
             {tagList}
         </div>
-        {enable_input}
+        {edit === "true" && 
+          <div className="w-100">
+            <input type="text" name="name" className="tag-input" onChange={handleChange} placeholder="Titulo del tag"/>
+            <a href="#" onClick={addTagName} className="new-tag">Agregar tag</a>
+          </div>
+        }
       </>
     );
   };
