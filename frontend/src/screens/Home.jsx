@@ -22,7 +22,17 @@ function Home() {
       setRhymes(postsdata);
     };
     fetchdata();
-  }, []);
+  }, [user]);
+
+  function Showbutton(user_id) {
+    if (user.sub.substring(6) == user_id) {
+      return <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="✎">
+      <Dropdown.Item href="#">Editar</Dropdown.Item>
+      <Dropdown.Item href="#">Eliminar</Dropdown.Item>
+     </DropdownButton> 
+    }
+    return ;
+  }
 
   return (
     <>
@@ -49,10 +59,7 @@ function Home() {
             <div><i className="bi bi-hand-thumbs-up-fill"></i>12</div>
             <div><Link to={`/post/${posting._id}`}><i className="bi bi-chat-left-fill"></i>5 </Link></div>
             <div><i className="bi bi-save-fill"></i></div>
-            <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="✎">
-                <Dropdown.Item href="#">Editar</Dropdown.Item>
-                <Dropdown.Item href="#">Eliminar</Dropdown.Item>
-            </DropdownButton>
+            {Showbutton(posting.user_id)} 
           </div>
         </div>
             
