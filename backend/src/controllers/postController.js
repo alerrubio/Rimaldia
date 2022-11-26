@@ -33,9 +33,9 @@ exports.get = async (req, res) => {
     const data = await Post.findOne({_id: id});
     console.log(data);
     if (data){
-      res.send(data);
+      res.status(200).send(data);
     }else{
-      res.send({
+      res.status(204).send({
           message: "No se encontró la publicación.",
           post_id: id,
         });
@@ -43,7 +43,7 @@ exports.get = async (req, res) => {
   }
   catch(err){
       console.log(err);
-      res.send({
+      res.status(500).send({
         message: "Algo salió mal",
         error_data: err,
         post_id: id,

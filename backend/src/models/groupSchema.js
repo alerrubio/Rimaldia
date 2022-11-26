@@ -6,10 +6,17 @@ const GroupSchema = mongoose.Schema({
         required: true,
         unique: true
     },
+    description:{
+        type: String,
+        required: true,
+    },
+    creator_id: {
+        type: String,
+        required: true,
+    },
     users: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
-        required: true
+        type: String,
+        required: true,
     }]
 },
 {timestamps: true});

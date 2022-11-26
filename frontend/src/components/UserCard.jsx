@@ -1,12 +1,12 @@
-import React, { useState } from "react";
 import "./css/UserCard.css";
+import Logo from "/img/logo.png";
 import Modal from "react-modal";
+import React, { useState } from "react";
+import { Constants } from '../lib/constants.js';
 import { Link } from "react-router-dom";
+import { changeUserRole, deleteUser } from '../services/usersService.js';
 import { deleteAuthUser } from "../services/auth0/authUserService.js";
 import { useAuth0 } from "@auth0/auth0-react";
-import Logo from "/img/logo.png";
-import { changeUserRole, deleteUser } from '../services/usersService.js';
-import { Constants } from '../lib/constants.js';
 
 export const UserCard = (props) => {
     const { user, isAuthenticated, isLoading } = useAuth0();

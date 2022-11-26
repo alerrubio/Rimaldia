@@ -1,16 +1,24 @@
-import React, { useState } from "react";
 import "./css/ForumCard.css";
 import Modal from "react-modal";
-import { useLocation, Link } from "react-router-dom";
-import UserNavigationBar from "./UserNavigationBar";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-Modal.setAppElement("#root");
 var fecha = new Date();
 fecha = fecha.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric' });
 
 
 export const ForumCard = (props) => {
-    const {children, forum_name, icon, members_no, about} = props;
+    const {
+      about,
+      addForum,
+      currentUserId,
+      deleteForum,
+      forum,
+      forum_name, 
+      key,
+      members_no, 
+      updateForum,
+    } = props;
     const [isOpen, setIsOpen] = useState(false);
     function toggleModal() {
       setIsOpen(!isOpen);
@@ -19,8 +27,7 @@ export const ForumCard = (props) => {
       <>
         <div className="forum-card-container d-flex flex-column align-items-end col-2">
           <Link to={"/forum/:id"} className="forum-card d-flex flex-row justify-content-center align-items-center">
-            <i className={`bi ${icon} forums-icon`}></i>
-            <div className="forum_info d-flex flex-column">
+            <div className="forum_info d-flex flex-column p-3">
               <div className="forum_name">{forum_name}</div>
               <div className="about-forum">
                 {about}

@@ -9,14 +9,16 @@ import { useLocation, Link } from "react-router-dom";
 export const UserNavigationBar = (props) => {
     const {tabs} = props;
     let tabList = [];
-    {/*`/${tab}`*/}
 
     {tabs.forEach((tab, index)=>{
-      //console.log(`/${tab.link}`);
-      tabList.push(<Link to={`/${tab.link}`} key={index} className={`col-2 forum-tab d-flex justify-content-center ${tab.color}`}>
-      <div className="">
-          {tab.name}
-      </div>
+      tabList.push(<Link 
+        to={`/${tab.link}`}
+        key={index} 
+        className={`${
+          location.pathname === (`/${tab.link}`) ? "peach activeTab active" : ""
+        }
+        col-2 forum-tab d-flex justify-content-center ${tab.color}`}>
+      {tab.name}
       </Link>);
     })}
 

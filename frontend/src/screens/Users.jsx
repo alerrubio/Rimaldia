@@ -1,9 +1,9 @@
 import "./css/Users.css";
-import UserCard from "../components/UserCard";
-import { getUsers, getUsersCount } from "../services/usersService.js";
 import React, { useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import UserCard from "../components/UserCard";
 import { Constants } from '../lib/constants.js';
+import { getUsers, getUsersCount } from "../services/usersService.js";
+import { useAuth0 } from "@auth0/auth0-react";
 
 var datetime = new Date();
 datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
@@ -21,6 +21,7 @@ function Users() {
   const getAllUsers = async () => {
     const response = await getUsers(page);
     setUsers(response.data);
+    setUsersPerPage(response.data);
     return response.data.length;
   }
 
@@ -55,7 +56,6 @@ function Users() {
 
   useEffect(() => {
     const adminUser = JSON.parse(localStorage.getItem('admin'));
-    //console.log(adminUser);
     if (adminUser == false){
       setnotAdmin(true);
     }
@@ -64,7 +64,9 @@ function Users() {
 
   useEffect(() => {
     getAllUsers();
-    console.log(page);
+    console.log(`page ${page}      usersperPage ${usersPerPage}         userCount ${userCount}`)
+    console.log(((page + 1) * 4) > userCount);
+    console.log("usuarios paginados "+ (page + 1) * 4)
   }, [page]);
 
   if (isLoading){
@@ -102,7 +104,7 @@ function Users() {
               } 
               class="bi bi-caret-left-fill nav-prev"></i>
           }
-          {(users.length >= 4) && 
+          {(usersPerPage.length >= 4 && !(((page) * 4) > userCount)) && 
           <i onClick={() => setPage(page + 1)} class="bi bi-caret-right-fill nav-next"></i>
           }
           

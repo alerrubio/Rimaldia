@@ -26,8 +26,8 @@ export const SideBar = (props) => {
                 <i className="bi bi-collection-fill"></i>
                 Categorías
             </Link>
-            <Link to={"/TForos"} className={`head nav-link ${
-                location.pathname === "/TForos" ? "active" : ""
+            <Link to={"/foros"} className={`head nav-link ${
+                location.pathname === "/foros" ? "active" : ""
               }`}>
                 <i className="bi bi-people-fill"></i>
                 Foros

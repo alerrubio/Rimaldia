@@ -23,9 +23,9 @@ var datetime = new Date();
 datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
 var datedb;
 function UserProfile(props) {
+  const { user} = useAuth0();
   const {username, user_full_name, role} = props;
   const { isLoading, isAuthenticated} = useAuth0();
-  const { user } = useAuth0();
   const [rhymes, setRhymes] = useState("");
   const [userDb, setUserDb] = useState("");
 
@@ -38,8 +38,7 @@ function UserProfile(props) {
       setUserDb(roleDb.name);
     };
     fetchdata();
-
-  }, []);
+  }, [user]);
 
   if (isLoading){
     return (

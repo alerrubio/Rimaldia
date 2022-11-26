@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
-import CommentForm from "./CommentForm";
-import Comment from "./Comment";
 import "../components/css/comments.css";
-
+import Comment from "./Comment";
+import CommentForm from "./CommentForm";
+import { useState, useEffect } from "react";
+import EmptyState from "./EmptyState";
+import { getAllComments, createComment, deleteComment as DestroyDBComment, editComment } from '../services/CommentsService';
 import {
   getComments as getCommentsApi,
   createComment as createCommentApi,
@@ -10,22 +11,30 @@ import {
   deleteComment as deleteCommentApi,
 } from "../../api/api";
 
-const Comments = ({ commentsUrl, currentUserId }) => {
+const Comments = ({ commentsUrl, currentUserId, post_id }) => {
   const [backendComments, setBackendComments] = useState([]);
+  const [PostComments, setPostComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
-  const rootComments = backendComments.filter(
+  /*const rootComments = backendComments.filter(
     (backendComment) => backendComment.parentId === null
-  );
-  const getReplies = (commentId) =>
-    backendComments
-      .filter((backendComment) => backendComment.parentId === commentId)
+  );*/
+  const getReplies = (commentId) =>{
+    /*backendComments.filter((backendComment) => backendComment.parentId === commentId)
       .sort(
         (a, b) =>
           new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-      );
+      );*/
+  }
   const addComment = (text, parentId) => {
     createCommentApi(text, parentId).then((comment) => {
       setBackendComments([comment, ...backendComments]);
+      setActiveComment(null);
+    });
+  };
+
+  const newComment = (commentObj) => {
+    createComment(commentObj).then((comment) => {
+      setPostComments([comment, ...PostComments]);
       setActiveComment(null);
     });
   };
@@ -42,7 +51,17 @@ const Comments = ({ commentsUrl, currentUserId }) => {
       setActiveComment(null);
     });
   };
-  const deleteComment = (commentId) => {
+
+  const editCommentCallback = (commentId, comment) => {
+    editComment(commentId, comment).then(() => {
+      const updatedBackendComments = getAllComments(post_id).then((comments) => {
+        setPostComments(comments.data);
+      });
+      setBackendComments(updatedBackendComments);
+      setActiveComment(null);
+    });
+  };
+  /*const deleteComment = (commentId) => {
     if (window.confirm("¿Estás seguro que quieres eliminar tu comentario?")) {
       deleteCommentApi().then(() => {
         const updatedBackendComments = backendComments.filter(
@@ -51,33 +70,54 @@ const Comments = ({ commentsUrl, currentUserId }) => {
         setBackendComments(updatedBackendComments);
       });
     }
+  };*/
+
+  const destroyComment = (commentId) => {
+    if (window.confirm("¿Estás seguro que quieres eliminar tu comentario?")) {
+      DestroyDBComment(commentId).then(() => {
+        
+        const updatedBackendComments = getAllComments(post_id).then((comments) => {
+          setPostComments(comments.data);
+        });
+        setBackendComments(updatedBackendComments);
+      });
+    }
   };
 
   useEffect(() => {
-    getCommentsApi().then((data) => {
-      setBackendComments(data);
+    getAllComments(post_id).then((comments) => {
+      setPostComments(comments.data);
     });
+    /*getCommentsApi().then((data) => {
+      setBackendComments(data);
+    });*/
   }, []);
 
   return (
     <div className="comments">
       <h3 className="comments-title">Comentarios</h3>
       <div className="comment-form-title">Escribe tu comentario</div>
-      <CommentForm submitLabel="Comentar" handleSubmit={addComment} />
+      <CommentForm post_id={post_id} submitLabel="Comentar" handleSubmit={newComment} />
       <div className="comments-container">
-        {rootComments.map((rootComment) => (
+        {(PostComments?.length > 0) && PostComments.map((rootComment) => (
           <Comment
-            key={rootComment.id}
+            key={rootComment._id}
             comment={rootComment}
-            replies={getReplies(rootComment.id)}
+            replies={getReplies(rootComment._id)}
             activeComment={activeComment}
             setActiveComment={setActiveComment}
-            addComment={addComment}
-            deleteComment={deleteComment}
-            updateComment={updateComment}
+            addComment={newComment}
+            deleteComment={destroyComment}
+            updateComment={editCommentCallback}
             currentUserId={currentUserId}
           />
         ))}
+
+        {(PostComments?.length === 0) &&
+          <div class="d-flex flex-row justify-content-center">
+            <EmptyState title="comentarios"/>
+          </div>
+        }
       </div>
     </div>
   );

@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
+import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { createComment } from '../services/CommentsService';
 import { useAuth0 } from "@auth0/auth0-react";
+import { useState, useEffect } from "react";
 
 export const CommentForm = ({
   post_id,
@@ -9,16 +11,21 @@ export const CommentForm = ({
   hasCancelButton = false,
   handleCancel,
   initialText = "",
-  initialComment = {user_id: "", post_id: ""}
+  initialComment = {user_id: "", post_id: post_id}
 }) => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isLoading } = useAuth0();
   const [text, setText] = useState(initialText);
   const [comment, setComment] = useState(initialComment);
   const isTextareaDisabled = text.length === 0;
-  const onSubmit = (event) => {
+
+  const onSubmit = async (event) => {
     event.preventDefault();
-    handleSubmit(text);
+    
+    //const res = await createComment(comment);
+    //console.log(res);
+    handleSubmit(comment);
     setText("");
+    //window.location.reload();
   };
 
   const handleChange = (event) => {
@@ -26,8 +33,6 @@ export const CommentForm = ({
 
     setComment({
       ...comment,
-      user_id: user.sub.substring(6),
-      post_id: post_id,
       [name]: value,
     });
     console.log(comment);
@@ -35,6 +40,12 @@ export const CommentForm = ({
 
   useEffect(() => {
     console.log(user);
+    setComment({
+      ...comment,
+      username: `${user.given_name} ${user.family_name}`,
+      user_picture: user.picture,
+      user_id: user.sub.substring(6),
+    });
   }, [user]);
 
   if (isLoading){
@@ -51,6 +62,7 @@ export const CommentForm = ({
   return (
     <Form onSubmit={onSubmit}>
       <textarea
+        name="text"
         className="comment-form-textarea"
         placeholder={text}
         onChange={(e) => {
@@ -58,17 +70,18 @@ export const CommentForm = ({
           setText(e.target.value);
         }}
       />
-      <button className="comment-form-button" disabled={isTextareaDisabled}>
+      <Button variant="peach" type="submit">
         {submitLabel}
-      </button>
+      </Button>
       {hasCancelButton && (
-        <button
+        <Button
+          variant="peach"
           type="button"
           className="comment-form-button comment-form-cancel-button"
           onClick={handleCancel}
         >
           Cancel
-        </button>
+        </Button>
       )}
     </Form>
   );
