@@ -26,3 +26,16 @@ export var shortDate = (date) => {
             );
     }
 }
+
+export var ultraShortDate = (date) => {
+    if (date){
+        return new Date(date)
+        .toLocaleDateString(
+            "es-MX",{  
+                day:'numeric', 
+                month:'numeric', 
+                year:'numeric'
+            }
+            );
+    }
+}

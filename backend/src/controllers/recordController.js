@@ -1,25 +1,67 @@
 const Record = require("../models/recordSchema");
+const Post = require("../models/postSchema");
+const {ObjectId} = require('mongodb'); 
 
 exports.create = async (req, res) => {
   const { body: record } = req;
+
+  function mode(array)
+  {
+      if(array.length == 0)
+          return null;
+      var modeMap = {};
+      var maxEl = array[0], maxCount = 1;
+      for(var i = 0; i < array.length; i++)
+      {
+          var el = array[i];
+          if(modeMap[el] == null)
+              modeMap[el] = 1;
+          else
+              modeMap[el]++;  
+          if(modeMap[el] > maxCount)
+          {
+              maxEl = el;
+              maxCount = modeMap[el];
+          }
+      }
+      return maxEl;
+  }
 
   try{
 
 
     //0. Search documents (posts) between the given dates to extract the desired data (user_id, tag_id[])
-    const between_dates = await Record.find({
-      date: { $gte: record.start_date, $lte: record.end_date },
+    const between_dates = await Post.find({
+      createdAt: { $gte: record.start_date, $lte: record.end_date },
     }); 
     console.log("Records found between dates:"+ JSON.stringify(between_dates));
 
+    let docsList=[];
+
+    {between_dates.forEach((doc, index)=>{      
+      docsList.push(doc.user_id);      
+    })}
+
+    /*console.log(JSON.stringify(docsList));
+    console.log(mode(docsList));
+    console.log("Result count:"+between_dates.length);
+    console.log("id count:"+docsList.length);*/
+
     //1. Count the documents by user_id and pick the top 5
+    const countTopUser = Post.count({
+      'booking.status': 'Underprocess',
+      'booking.delivery_date' : '15-03-2016'
+    }, function (err, docs) {
+      // ... count of top-level items which have booking with following attributes
+    });
 
-    //2. Extract and merge the tag_id then count down how many times there are repeated and pick the top 5
-
+    ////////2. Extract and merge the tag_id then count down how many times there are repeated and pick the top 5
+    const objectId =new ObjectId(mode(docsList));
+    record.most_popular_users_id.push(objectId);
 
 
     
-    /*const recordDB = new Record(record);
+    const recordDB = new Record(record);
     
     await recordDB.save().catch((err) => {
       console.log("Un error ha ocurrido", err)
@@ -33,7 +75,7 @@ exports.create = async (req, res) => {
     res.send({
       message: "Registro creado con éxito.",
       data: recordDB,
-    });*/
+    });
 
   }
   catch(err){
