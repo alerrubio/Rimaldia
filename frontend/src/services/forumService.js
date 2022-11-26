@@ -33,9 +33,31 @@ export const getAllUserForums = async (user_id) => {
     }
 };
 
+export const getAllUserOwnedForums = async (user_id) => {
+    try {
+        const response = await axios.get(`/user/${user_id}/owned_groups`);
+        console.log(response);
+        return response;
+    } catch (err) {
+        console.error(err);
+        return err;
+    }
+};
+
 export const editForum = async (forum_id, forum) => {
     try {
         const response = await axios.put(`/group/${forum_id}`, forum);
+        console.log(response);
+        return response;
+    } catch (err) {
+        console.error(err);
+        return err;
+    }
+};
+
+export const deleteForum = async (forum_id) => {
+    try {
+        const response = await axios.delete(`/group/${forum_id}`);
         console.log(response);
         return response;
     } catch (err) {

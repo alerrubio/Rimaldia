@@ -1,18 +1,20 @@
 import "../components/css/comments.css";
+import "../components/css/loadingComponent.css";
 import ForumCard from "./ForumCard";
-import ForumInput from "./ForumInput";
 import { useState, useEffect } from "react";
 import EmptyState from "./EmptyState";
 import { 
   getAllForums,
   getAllUserForums,
-  editForum
+  getAllUserOwnedForums,
+  editForum,
+  deleteForum
 } 
 from '../services/ForumService';
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Forum = (props) => {
-  const {all, usersForums} = props;
+  const {all, usersForums, owned} = props;
   const { user, isLoading } = useAuth0();
   const [backendForums, setBackendForums] = useState([]);
   const [forums, setForums] = useState([]);
@@ -27,38 +29,42 @@ const Forum = (props) => {
     });
   };
 
-  const destroyComment = (commentId) => {
-    if (window.confirm("¿Estás seguro que quieres eliminar tu comentario?")) {
-      DestroyDBComment(commentId).then(() => {
-        
-        const updatedBackendComments = getAllComments(post_id).then((comments) => {
-          setPostComments(comments.data);
-        });
-        setBackendComments(updatedBackendComments);
+  const destroyForum = (forum_id) => {
+    if (window.confirm("¿Estás seguro que quieres eliminar este foro?")) {
+      deleteForum(forum_id).then(() => {
+        if (owned){
+          const updatedBackendForums = getAllUserOwnedForums(userID).then((response) => {
+            setForums(response.data);
+          });
+          forums(updatedBackendForums);
+        }
+        else if (usersForums){
+          const updatedBackendForums = getAllUserForums(userID).then((response) => {
+            setForums(response.data);
+          });
+          forums(updatedBackendForums);
+        }
+        else{
+          const updatedBackendForums = getAllForums().then((response) => {
+            setForums(response.data);
+          });
+          forums(updatedBackendForums);
+        }
       });
     }
   };
-
-  useEffect(() => {
-    if (usersForums){
-      getAllUserForums(userID).then((response) => {
-        setForums(response.data);
-        console.log(response.data);
-      });
-    }
-    else{
-      getAllForums().then((response) => {
-        setForums(response.data);
-        console.log(response.data);
-      });
-    }
-  }, []);
 
   useEffect(() => {
     setuserID(user.sub.substring(6));
     if (usersForums){
       getAllUserForums(user.sub.substring(6)).then((response) => {
         setForums(response.data);
+      });
+    }
+    else if (owned){
+      getAllUserOwnedForums(user.sub.substring(6)).then((response) => {
+        setForums(response.data);
+        console.log(response.data);
       });
     }
     else{
@@ -81,11 +87,24 @@ const Forum = (props) => {
 
   return (
     <>
-    {(forums?.length > 0) && forums.map((forum) => (
+    {owned && (forums?.length > 0) && forums.map((forum) => (
       <ForumCard
         about={forum.description}
         currentUserId={userID}
-        deleteForum=""
+        deleteForum={destroyForum}
+        forum={forum}
+        forum_name={forum.name}
+        key={forum._id}
+        members_no={forum.users.length}
+        updateForum={editForumCallback}
+        canEdit
+      />
+    ))}
+    {!owned && (forums?.length > 0) && forums.map((forum) => (
+      <ForumCard
+        about={forum.description}
+        currentUserId={userID}
+        deleteForum={destroyForum}
         forum={forum}
         forum_name={forum.name}
         key={forum._id}

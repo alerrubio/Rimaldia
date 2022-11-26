@@ -7,6 +7,7 @@ import Favoritos from './screens/Favoritos';
 import Form from 'react-bootstrap/Form';
 import ForumCreate from './screens/ForumCreate';
 import ForumDetail from './screens/ForumDetail';
+import ForumsJoined from './screens/ForumsJoined';
 import Home from './screens/Home';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Layout from './components/Layout';
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "foros",
         element: <TForos />,
+      },
+      {
+        path: "foros_seguidos",
+        element: <ForumsJoined />,
       },
       {
         path: "misforos",

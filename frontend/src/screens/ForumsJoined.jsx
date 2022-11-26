@@ -1,9 +1,9 @@
-import "./css/MisForos.css";
+import "./css/JoinedForums.css";
 import ForumCard from "../components/ForumCard";
 import UserNavigationBar from "../components/UserNavigationBar";
 import Forums from "../components/Forums";
 
-function MisForos() {
+function JoinedForums() {
 
   return (
     <>
@@ -13,11 +13,11 @@ function MisForos() {
                                 {name: 'Todos los foros', link: 'foros'},
                                 {name: 'Crear foro', link: 'crearforo'}]} />
       <div className="forum-cards-container d-flex flex-row justify-content-center flex-wrap col-12">
-        <Forums owned />
+        <Forums usersForums />
       </div>
     </>
     
   )
 }
 
-export default MisForos
+export default JoinedForums

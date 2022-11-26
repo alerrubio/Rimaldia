@@ -73,6 +73,26 @@ exports.getAllUserGroups = async (req, res) => {
   }
 };
 
+exports.getAllUserOwnedGroups = async (req, res) => {
+  const {params: {user_id}} = req;
+  try{
+    const data = await Group.find({creator_id: user_id});
+    if (data){
+      res.status(200).send(data);
+    }else{
+      res.status(204).send();
+    }
+  }
+  catch(error){
+    console.log(error);
+    res.status(500).send({
+      message: "Algo salió mal",
+      error_data: error,
+      group_id: id,
+    });
+  }
+};
+
 exports.getAll = async (req, res) => {
   try{
     const data = await Group.find();

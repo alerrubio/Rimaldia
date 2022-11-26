@@ -23,13 +23,15 @@ function ForumInput(props) {
     try{
       event.preventDefault();
       const res = await createForum(forum);
+      if (window.confirm("Foro creado con éxito")){
+        return (<Redirect to="/misforos" />);
+      }
     }
     catch(err){
-      setErrorMessage(errorMessage => "El correo ya fue registrado anteriormente.")
+      setErrorMessage(errorMessage => "Algo salió mal.")
       setError(error => !error);
       console.log(err);
     }
-    
   }
 
   const handleChange = (event) => {

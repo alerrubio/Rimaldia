@@ -11,6 +11,7 @@ export const ForumCard = (props) => {
     const {
       about,
       addForum,
+      canEdit,
       currentUserId,
       deleteForum,
       forum,
@@ -37,24 +38,17 @@ export const ForumCard = (props) => {
               </div>
             </div>
           </Link>
-          <div className="forum-options">
+          {canEdit &&
+            <div className="forum-options">
             <Link to="">
               <i className="bi bi-folder-minus edit-forum"></i>
             </Link>
-            <Link to="" onClick={toggleModal}>
+            <Link to="" onClick={deleteForum}>
               <i className="bi bi-trash-fill edit-forum" ></i>
             </Link>
           </div>
-          
+          }
         </div>
-        <Modal
-        isOpen={isOpen}
-        onRequestClose={toggleModal}
-        contentLabel="My dialog"
-        className="mymodal"
-        overlayClassName="myoverlay"
-        closeTimeoutMS={500}
-      ></Modal>
       </>
     );
   };
