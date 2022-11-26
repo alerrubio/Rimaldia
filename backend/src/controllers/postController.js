@@ -126,7 +126,6 @@ exports.delete = async (req, res) => {
 exports.update = async (req, res) => {
     const {params: {id}} = req;
     const {body: post} = req;
-    
     try{
         const postDB = await Post.findOne({_id: id});
         let data = null;

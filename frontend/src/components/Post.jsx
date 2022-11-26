@@ -28,10 +28,6 @@ export const Post = (props) => {
         <div className="Actividad-iconos d-flex flex-row justify-content-end">
             <div><i className="bi bi-hand-thumbs-up-fill"></i>{likesCount}</div>
             <div><i className="bi bi-chat-left-fill"></i>{commentsCount}</div>
-            <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="✎">
-                <Dropdown.Item href="#">Editar</Dropdown.Item>
-                <Dropdown.Item href="#">Eliminar</Dropdown.Item>
-            </DropdownButton>
           </div>
       );
     }
