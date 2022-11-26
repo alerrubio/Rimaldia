@@ -17,6 +17,7 @@ export const getUser = async (user_id) => {
   try {
     const route = "/user/" + user_id;
     const response = await axios.get(route);
+    //console.log("?: "+JSON.stringify(response.data));
     return response.data;
   } catch (err) {
     console.error(err);

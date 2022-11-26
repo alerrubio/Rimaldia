@@ -19,11 +19,10 @@ export const getRecords = async (id) => {
 
 export const createRecord = async (record) => {
     try {
-      if(record.start_date == "" || record.end_date == ""){
+
+      if(record.start_date == null || record.end_date == null){
         return "No deje campos vacíos"
       }else{
-        console.log(JSON.stringify("Only dates: "+record));
-
         const response = await axios.post("/record", record);
         console.log(response);
         console.log("STATUS: " + response.status);

@@ -18,36 +18,6 @@ function Records(props) {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("Ha ocurrido un error.");
   const [records, setRecords] = useState([]);
-
-  /*let pclaveDummy = 
-  [
-    {
-      rank: 1,
-      tag: 'amor',
-      user: 'Ana'
-    },
-    {
-      rank: 2,
-      tag: 'amor',
-      user: 'Ana'
-    },
-    {
-      rank: 3,
-      tag: 'amor',
-      user: 'Ana'
-    },
-    {
-      rank: 4,
-      tag: 'amor',
-      user: 'Ana'
-    },
-    {
-      rank: 5,
-      tag: 'amor',
-      user: 'Ana'
-    }
-  ]*/
-
     
   const getRecordsFromDb = async (event) => {
     try{
@@ -89,7 +59,7 @@ function Records(props) {
 
           <div className="record-container">
 
-            <RecordTable headers={['Ranking', 'Usuarios', 'Tags']} data={records} />  
+            <RecordTable headers={['De', 'Hasta','Usuario más activo']} data={records} />  
           </div>
           
       </>

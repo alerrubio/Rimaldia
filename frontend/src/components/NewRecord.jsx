@@ -36,13 +36,14 @@ export const NewRecord = (props) => {
           //load resultados de consultas
 
           let dbRecord = {
-            start_date: addFormData.start_date,
-            end_date: addFormData.end_date,
-            /*most_used_tags_id: "",
-            most_liked_posts_id: "",
-            most_commented_posts_id: "",
-            most_popular_users_id: ""*/
+            start_date: new Date(addFormData.start_date),
+            end_date: new Date(addFormData.end_date),
+            most_used_tags_id: [],
+            most_liked_posts_id: [],
+            most_commented_posts_id: [],
+            most_popular_users_id: []
           }
+          //console.log("Manual object: " +  JSON.stringify(dbRecord));
 
           const dbRes = await createRecord(dbRecord);         
 
