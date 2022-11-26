@@ -90,7 +90,6 @@ export const PostEdit = (props) => {
                               {tag_name: "Libre"}]} edit></TagsBox>
           </div>
           <div className="Actividad-iconos">
-            <div><i className="bi bi-hand-thumbs-up-fill"></i></div>
             <div><i className="bi bi-chat-left-fill"></i></div>
             <div><i className="bi bi-save-fill"></i></div>
             <Button variant="peach" onClick={() => PostEdit()} className="mx-4">

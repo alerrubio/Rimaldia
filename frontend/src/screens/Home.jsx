@@ -21,6 +21,10 @@ function Home() {
   const { user} = useAuth0();
   const [rhymes, setRhymes] = useState("");
   const [authors, author_info] = useState("");
+  const [active, setActive] = useState(false);
+  const handleClick = () => {
+    setActive(!active);
+  };
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -73,7 +77,6 @@ function Home() {
                               {tag_name: "Libre"}]} edit></TagsBox>
           </div>
           <div className="Actividad-iconos">
-            <div><i className="bi bi-hand-thumbs-up-fill"></i></div>
             <div><Link to={`/post/${posting._id}`}><i className="bi bi-chat-left-fill"></i></Link></div>
             <div><i className="bi bi-save-fill"></i></div>
             {Showbutton(posting.user_id, posting._id)} 

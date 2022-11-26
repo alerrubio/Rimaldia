@@ -98,8 +98,7 @@ function UserProfile(props) {
                               {tag_name: "Libre"}]} edit></TagsBox>
           </div>
           <div className="Actividad-iconos">
-            <div><i className="bi bi-hand-thumbs-up-fill"></i>12</div>
-            <div><Link to={"/post/:id"}><i className="bi bi-chat-left-fill"></i>5 </Link></div>
+            <div><Link to={"/post/:id"}><i className="bi bi-chat-left-fill"></i></Link></div>
             <div><i className="bi bi-save-fill"></i></div>
             <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="✎">
                 <Dropdown.Item as={Link} to={`/post_edit/${posting._id}`} eventKey = {posting._id} >Editar</Dropdown.Item>
