@@ -8,7 +8,7 @@ import UserInfo from "../components/UserInfo";
 import { Link } from "react-router-dom";
 import { NewRhyme } from "../components/NewRhyme";
 import { getUser } from "../services/usersService";
-import { getallPosts } from "../services/PostService";
+import { getallPosts, destroypost } from "../services/PostService";
 import { useAuth0 } from "@auth0/auth0-react";
 import { longDate } from "../utils/dateFormatter";
 
@@ -27,7 +27,30 @@ function Home() {
       console.log(postsdata);
     };
     fetchdata();
-  }, []);
+  }, [user]);
+
+  async function deletePost(id_post) {
+    try{
+      console.log(id_post);
+        const dbRes = await destroypost(id_post);
+        window.location.reload(false);
+    }
+    catch(err){
+      setErrorMessage(errorMessage => "Hubo un error al querer eliminar.")
+      setError(error => !error);
+    }
+    
+  }
+
+  function Showbutton(user_id,post_id) {
+    if (user.sub.substring(6) == user_id) {
+      return <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="✎">
+      <Dropdown.Item as={Link} to={`/post_edit/${post_id}`} eventKey = {post_id} >Editar</Dropdown.Item>
+      <Dropdown.Item onClick={() => deletePost(post_id)} eventKey = {post_id} >Eliminar</Dropdown.Item>
+     </DropdownButton> 
+    }
+    return ;
+  }
 
   return (
     <>
@@ -54,10 +77,7 @@ function Home() {
             <div><i className="bi bi-hand-thumbs-up-fill"></i>12</div>
             <div><Link to={`/post/${posting._id}`}><i className="bi bi-chat-left-fill"></i>5 </Link></div>
             <div><i className="bi bi-save-fill"></i></div>
-            <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="✎">
-                <Dropdown.Item href="#">Editar</Dropdown.Item>
-                <Dropdown.Item href="#">Eliminar</Dropdown.Item>
-            </DropdownButton>
+            {Showbutton(posting.user_id, posting._id)} 
           </div>
         </div>
             

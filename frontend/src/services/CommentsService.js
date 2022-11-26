@@ -21,12 +21,7 @@ export const getAllComments = async (post_id) => {
     try {
         const response = await axios.get(`/post/${post_id}/comments`);
         console.log(response);
-        if (response.status != 200){
-            return "Error" + response.status;
-        }
-    
         return response;
-  
     } catch (err) {
         console.error(err);
         return err;

@@ -8,8 +8,11 @@ import { getPost } from "../services/PostService";
 import React, { useState, useEffect } from "react";
 import { longDate } from "../utils/dateFormatter";
 
+var date = new Date();
+date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
+var datetime = new Date();
+datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
 var datedb;
-
 export const PostDetail = (props) => {
   const {id} = useParams();
   const { user } = useAuth0();

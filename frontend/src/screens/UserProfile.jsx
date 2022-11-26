@@ -5,7 +5,7 @@ import { MenuContent } from "../components/NavBar";
 import ProfileBanner from "../components/ProfileBanner";
 import UserInfo from "../components/UserInfo";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getPostsbyuser } from "../services/PostService";
+import { getPostsbyuser,destroypost } from "../services/PostService";
 import "../components/css/Post.css";
 import TagsBox from "../components/TagsBox";
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -34,6 +34,19 @@ function UserProfile(props) {
     };
     fetchdata();
   }, [user]);
+
+  async function deletePost(id_post) {
+    try{
+      console.log(id_post);
+        const dbRes = await destroypost(id_post);
+        window.location.reload(false);
+    }
+    catch(err){
+      setErrorMessage(errorMessage => "Hubo un error al querer eliminar.")
+      setError(error => !error);
+    }
+    
+  }
 
   if (isLoading){
     return (
@@ -89,8 +102,8 @@ function UserProfile(props) {
             <div><Link to={"/post/:id"}><i className="bi bi-chat-left-fill"></i>5 </Link></div>
             <div><i className="bi bi-save-fill"></i></div>
             <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="✎">
-                <Dropdown.Item href="#">Editar</Dropdown.Item>
-                <Dropdown.Item href="#">Eliminar</Dropdown.Item>
+                <Dropdown.Item as={Link} to={`/post_edit/${posting._id}`} eventKey = {posting._id} >Editar</Dropdown.Item>
+                <Dropdown.Item onClick={() => deletePost(posting._id)} eventKey = {posting._id} >Eliminar</Dropdown.Item>
             </DropdownButton>
           </div>
         </div>
