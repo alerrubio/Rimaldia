@@ -113,7 +113,7 @@ exports.isUserInForum = async (req, res) => {
   const {params: {user_id, group_id}} = req;
   try{
     const data = await Group.find({_id: group_id, users: user_id});
-    if (data){
+    if (data.length > 0){
       res.status(200).send(data);
     }else{
       res.status(204).send();

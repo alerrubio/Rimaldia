@@ -56,6 +56,17 @@ export const getAllUserOwnedForums = async (user_id) => {
     }
 };
 
+export const findUser = async (user_id, group_id) => {
+    try {
+        const response = await axios.get(`/user/${user_id}/group/${group_id}`);
+        console.log(response);
+        return response;
+    } catch (err) {
+        console.error(err);
+        return err;
+    }
+};
+
 export const editForum = async (forum_id, user_id_p) => {
     try {
         const body = {

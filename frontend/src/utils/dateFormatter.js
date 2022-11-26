@@ -1,5 +1,4 @@
 export var longDate = (date) => {
-    console.log(date);
     if (date){
         return new Date(date)
         .toLocaleDateString(
