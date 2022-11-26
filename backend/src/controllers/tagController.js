@@ -19,6 +19,25 @@ exports.get = async (req, res) => {
     }
   };
 
+  exports.getPostTags = async (req, res) => {
+    const {params: {post_id}} = req;
+    const {body: {tags}} = req;
+    try {
+      const data = await Tag.findOne({_id: tags}).catch((err) => console.log("Un error ha ocurrido", err));
+      console.log(data);
+      if (data){
+        res.send(data);
+      }else{
+        res.send({
+            message: "No se encontró el tag",
+            tag_id: id,
+          });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 //[CREAR]
 exports.create = async (req, res) => {
   const { body: tag } = req;

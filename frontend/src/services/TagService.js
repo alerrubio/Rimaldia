@@ -6,7 +6,17 @@ export const createTag = async (tag) => {
       const response = await axios.post("/tag", tag);
       console.log(response);
       return response;
-  
+    } catch (err) {
+      console.error(err);
+      return err;
+    }
+  };
+
+  export const getPostTags = async (post_id) => {
+    try {
+      const response = await axios.get(`/post/${post_id}/tags`);
+      console.log(response);
+      return response;
     } catch (err) {
       console.error(err);
       return err;
