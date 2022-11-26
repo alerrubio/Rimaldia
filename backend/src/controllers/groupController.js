@@ -73,6 +73,25 @@ exports.getAllUserGroups = async (req, res) => {
   }
 };
 
+exports.getAll = async (req, res) => {
+  try{
+    const data = await Group.find();
+    if (data){
+      res.status(200).send(data);
+    }else{
+      res.status(204).send();
+    }
+  }
+  catch(error){
+    console.log(error);
+    res.status(500).send({
+      message: "Algo salió mal",
+      error_data: error,
+      group_id: id,
+    });
+  }
+};
+
 
 exports.delete = async (req, res) => {
     const {params: {id}} = req;

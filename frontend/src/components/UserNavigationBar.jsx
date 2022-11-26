@@ -9,14 +9,8 @@ import { useLocation, Link } from "react-router-dom";
 export const UserNavigationBar = (props) => {
     const {tabs} = props;
     let tabList = [];
-    {/*`/${tab}`*/}
 
-    console.log("current loc: " + location.pathname);
-    tabs.forEach((tab, index)=>{
-      console.log("tabs loc: " + tab.link);
-    });
     {tabs.forEach((tab, index)=>{
-      //console.log(`/${tab.link}`);
       tabList.push(<Link 
         to={`/${tab.link}`}
         key={index} 

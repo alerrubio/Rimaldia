@@ -7,27 +7,19 @@ import TagsBox from "../components/TagsBox";
 import UserInfo from "../components/UserInfo";
 import { Link } from "react-router-dom";
 import { NewRhyme } from "../components/NewRhyme";
-import { getUser } from "../services/usersService";
 import { getallPosts } from "../services/PostService";
-import { useAuth0 } from "@auth0/auth0-react";
+import { longDate } from "../utils/dateFormatter";
 
-var date = new Date();
-date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
-var datetime = new Date();
-datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
 var datedb;
 var id_search;
 
 function Home() {
-  const { user} = useAuth0();
   const [rhymes, setRhymes] = useState("");
-  const [authors, author_info] = useState("");
 
   useEffect(() => {
     const fetchdata = async () => {
       const postsdata = await getallPosts();
       setRhymes(postsdata);
-      console.log(postsdata);
     };
     fetchdata();
   }, []);
@@ -38,7 +30,9 @@ function Home() {
     {rhymes &&
      rhymes.map((posting) => (
       <div className="post-container">
-      <UserInfo user_name={ posting.user_name } time= {datedb = new Date(posting.createdAt).toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' })} profile_picture={ posting.user_picture }></UserInfo>
+      <UserInfo user_name={ posting.user_name } 
+        time={datedb = longDate(posting.createdAt)} 
+        profile_picture={ posting.user_picture }></UserInfo>
      
           <div className="Contenido_Publicado">
       {posting.text}

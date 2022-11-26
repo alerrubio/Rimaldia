@@ -1,12 +1,29 @@
 import "./css/TForos.css";
-import ForumCard from "../components/ForumCard";
+import "../components/css/loadingComponent.css"
+import Forums from "../components/Forums";
 import UserNavigationBar from "../components/UserNavigationBar";
-var datetime = new Date();
-datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
-var date = new Date();
-date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
+import { useAuth0 } from "@auth0/auth0-react";
+import React, { useState, useEffect } from "react";
 
 function TForos() {
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const [userID, setUserID] = useState("");
+
+  useEffect(() => {
+    setUserID(user.sub.substring(6));
+    console.log(userID);
+  }, [user]);
+
+  if (isLoading){
+    return (
+    <>
+      <div className="loading d-flex justify-content-center align-items-center">
+        <img src={Logo} className="loadingLogo" alt="" />
+        <i class="bi bi-gear rotate"></i>
+      </div>
+    </>
+    );
+  }
 
   return (
     <>
@@ -16,26 +33,7 @@ function TForos() {
                                 {name: 'Todos los foros', link: 'foros'},
                                 {name: 'Crear foro', link: 'crearforo'}]} />
       <div className="forum-cards-container d-flex flex-row justify-content-center flex-wrap col-12">
-        <ForumCard forum_name="Romance" 
-                   icon="bi bi-tag-fill" 
-                   about="Foro para románticos empedernidos"
-                   members_no="3"></ForumCard>
-        <ForumCard forum_name="Poesía lírica" 
-                   icon="bi bi-tag-fill"
-                   about="Foro de poesía lírica"
-                   members_no="3"></ForumCard>
-        <ForumCard forum_name="Poesía épica" 
-                   icon="bi bi-tag-fill"
-                   about="Foro poesía épica"
-                   members_no="3"></ForumCard>
-        <ForumCard forum_name="Poesía dramática"
-                   icon="bi bi-tag-fill"
-                   about="Foro de poesía dramáticae"
-                   members_no="3"></ForumCard>
-        <ForumCard forum_name="Poesía coral" 
-                   icon="bi bi-tag-fill"
-                   about="Foro de poesía coral"
-                   members_no="3"></ForumCard>
+        <Forums all />
       </div>
     </>
     

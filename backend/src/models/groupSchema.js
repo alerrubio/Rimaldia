@@ -6,6 +6,14 @@ const GroupSchema = mongoose.Schema({
         required: true,
         unique: true
     },
+    description:{
+        type: String,
+        required: true,
+    },
+    creator_id: {
+        type: String,
+        required: true,
+    },
     users: [{
         type: String,
         required: true,

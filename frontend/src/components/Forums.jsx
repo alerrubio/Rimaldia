@@ -3,75 +3,29 @@ import ForumCard from "./ForumCard";
 import ForumInput from "./ForumInput";
 import { useState, useEffect } from "react";
 import EmptyState from "./EmptyState";
-import { getAllComments, 
-  createForum, 
-  deleteComment as DestroyDBComment, 
-  editComment } 
+import { 
+  getAllForums,
+  getAllUserForums,
+  editForum
+} 
 from '../services/ForumService';
+import { useAuth0 } from "@auth0/auth0-react";
 
-const Forum = ({ commentsUrl, currentUserId, post_id }) => {
-  const [backendComments, setBackendComments] = useState([]);
-  const [PostComments, setPostComments] = useState([]);
-  const [activeComment, setActiveComment] = useState(null);
-  /*const rootComments = backendComments.filter(
-    (backendComment) => backendComment.parentId === null
-  );*/
-  const getReplies = (commentId) =>{
-    /*backendComments.filter((backendComment) => backendComment.parentId === commentId)
-      .sort(
-        (a, b) =>
-          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-      );*/
-  }
-  const addComment = (text, parentId) => {
-    createCommentApi(text, parentId).then((comment) => {
-      setBackendComments([comment, ...backendComments]);
-      setActiveComment(null);
+const Forum = (props) => {
+  const {all, usersForums} = props;
+  const { user, isLoading } = useAuth0();
+  const [backendForums, setBackendForums] = useState([]);
+  const [forums, setForums] = useState([]);
+  const [userID, setuserID] = useState("");
+
+  const editForumCallback = (forumId, forum) => {
+    editForum(forumId, forum).then(() => {
+      const updatedBackendForums = getAllForums().then((response) => {
+        setPostComments(response.data);
+      });
+      setBackendComments(updatedBackendForums);
     });
   };
-
-  const newComment = (commentObj) => {
-    createComment(commentObj).then(() => {
-      const updatedBackendComments = getAllComments(post_id).then((comments) => {
-        setPostComments(comments.data);
-      });
-      setBackendComments(updatedBackendComments);
-      setActiveComment(null);
-    });
-  };
-
-  const updateComment = (text, commentId) => {
-    updateCommentApi(text).then(() => {
-      const updatedBackendComments = backendComments.map((backendComment) => {
-        if (backendComment.id === commentId) {
-          return { ...backendComment, body: text };
-        }
-        return backendComment;
-      });
-      setBackendComments(updatedBackendComments);
-      setActiveComment(null);
-    });
-  };
-
-  const editCommentCallback = (commentId, comment) => {
-    editComment(commentId, comment).then(() => {
-      const updatedBackendComments = getAllComments(post_id).then((comments) => {
-        setPostComments(comments.data);
-      });
-      setBackendComments(updatedBackendComments);
-      setActiveComment(null);
-    });
-  };
-  /*const deleteComment = (commentId) => {
-    if (window.confirm("¿Estás seguro que quieres eliminar tu comentario?")) {
-      deleteCommentApi().then(() => {
-        const updatedBackendComments = backendComments.filter(
-          (backendComment) => backendComment.id !== commentId
-        );
-        setBackendComments(updatedBackendComments);
-      });
-    }
-  };*/
 
   const destroyComment = (commentId) => {
     if (window.confirm("¿Estás seguro que quieres eliminar tu comentario?")) {
@@ -86,43 +40,65 @@ const Forum = ({ commentsUrl, currentUserId, post_id }) => {
   };
 
   useEffect(() => {
-    getAllComments(post_id).then((comments) => {
-      setPostComments(comments.data);
-    });
-    /*getCommentsApi().then((data) => {
-      setBackendComments(data);
-    });*/
+    if (usersForums){
+      getAllUserForums(userID).then((response) => {
+        setForums(response.data);
+        console.log(response.data);
+      });
+    }
+    else{
+      getAllForums().then((response) => {
+        setForums(response.data);
+        console.log(response.data);
+      });
+    }
   }, []);
 
-  return (
-    <div className="comments">
-      <h3 className="comments-title">Comentarios</h3>
-      <div className="comment-form-title">Escribe tu comentario</div>
-      <ForumInput post_id={post_id} submitLabel="Comentar" handleSubmit={newComment} />
-      <div className="comments-container">
-        {(PostComments?.length > 0) && PostComments.map((rootComment) => (
-          <ForumCard
-            key={rootComment._id}
-            comment={rootComment}
-            replies={getReplies(rootComment._id)}
-            activeComment={activeComment}
-            setActiveComment={setActiveComment}
-            addComment={newComment}
-            deleteComment={destroyComment}
-            updateComment={editCommentCallback}
-            currentUserId={currentUserId}
-          />
-        ))}
-        <div class="d-flex flex-row justify-content-center py-20">
-        <EmptyState title="comentarios"/>
-        </div>
-        {(PostComments?.length === 0) &&
-          <div class="d-flex flex-row justify-content-center py-20">
-          <EmptyState title="comentarios"/>
-          </div>
-        }
+  useEffect(() => {
+    setuserID(user.sub.substring(6));
+    if (usersForums){
+      getAllUserForums(user.sub.substring(6)).then((response) => {
+        setForums(response.data);
+      });
+    }
+    else{
+      getAllForums().then((response) => {
+        setForums(response.data);
+      });
+    }
+  }, [user]);
+
+  if (isLoading){
+    return (
+    <>
+      <div className="loading d-flex justify-content-center align-items-center">
+        <img src={Logo} className="loadingLogo" alt="" />
+        <i class="bi bi-gear rotate"></i>
       </div>
-    </div>
+    </>
+    );
+  }
+
+  return (
+    <>
+    {(forums?.length > 0) && forums.map((forum) => (
+      <ForumCard
+        about={forum.description}
+        currentUserId={userID}
+        deleteForum=""
+        forum={forum}
+        forum_name={forum.name}
+        key={forum._id}
+        members_no={forum.users.length}
+        updateForum={editForumCallback}
+      />
+    ))}
+    {(forums?.length === 0) &&
+      <div class="d-flex flex-row justify-content-center py-20">
+        <EmptyState title="foros"/>
+      </div>
+    }
+    </>
   );
 };
 

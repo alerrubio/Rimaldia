@@ -38,6 +38,7 @@ function ForumInput(props) {
     setForum({
       ...forum,
       users: [creator_id, ...forumInit.users],
+      creator_id: creator_id,
       [name]: value,
     });
     console.log(forum);

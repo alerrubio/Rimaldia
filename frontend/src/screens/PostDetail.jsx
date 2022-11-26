@@ -6,11 +6,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useParams } from "react-router-dom";
 import { getPost } from "../services/PostService";
 import React, { useState, useEffect } from "react";
+import { longDate } from "../utils/dateFormatter";
 
-var date = new Date();
-date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
-var datetime = new Date();
-datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
+var datedb;
 
 export const PostDetail = (props) => {
   const {id} = useParams();
@@ -21,17 +19,23 @@ export const PostDetail = (props) => {
     const fetchdata = async () => {
       const res = await getPost(id);
       setPost(res.data);
-      console.log(res);
     };
     fetchdata();
+    
   }, []);
+
+  useEffect(() => {
+    if (post){
+      datedb = longDate(post.createdAt);
+    }
+  }, [post]);
 
   return (
     <>
         <div className="post-detail-box d-flex flex-column justify-content-center">
             <Post visible_rows="5" post_detail text={post.text} commentsCount="FALTA NUM COMMENTS" likesCount="FALTA NUM LIKES">
               <UserInfo user_name={`${post.user_name}`} 
-                time={post.createdAt} 
+                time={datedb} 
                 profile_picture={post.user_picture}></UserInfo>
             </Post>
             <Comments

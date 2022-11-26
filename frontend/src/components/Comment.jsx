@@ -1,8 +1,8 @@
-import PP2 from"/img/pp2.png";
-import PP3 from"/img/pp3.jpg";
-import PP4 from"/img/pp4.jpg";
 import CommentForm from "./CommentForm";
 import "../components/css/comments.css";
+import { longDate } from "../utils/dateFormatter";
+
+var datedb;
 
 const Comment = ({
   comment,
@@ -30,16 +30,17 @@ const Comment = ({
   const canReply = Boolean(currentUserId);
   const canEdit = currentUserId === comment.user_id;
   const replyId = parentId ? parentId : comment._id;
-  const createdAt = new Date(comment.createdAt).toLocaleDateString();
+  datedb = longDate(comment.createdAt);
+
   return (
     <div key={comment._id} className="comment">
       <div className="comment-image-container">
         <img src={comment.user_picture} style={{position: "relative"}}/>
       </div>
       <div className="comment-right-part">
-        <div className="comment-content">
+        <div className="comment-content d-flex flex-column justify-content-center align-items-start">
           <div className="comment-author">{comment.username}</div>
-          <div>{createdAt}</div>
+          <div className="comment-date">{datedb}</div>
         </div>
         {!isEditing && <div className="comment-text">{comment.text}</div>}
         {isEditing && (

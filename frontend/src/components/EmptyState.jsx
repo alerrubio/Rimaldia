@@ -10,7 +10,7 @@ export const EmptyState = (props) => {
     
     return (
       <>
-        <div className="empty-state w-50 d-flex flex-column justify-content-center align-items-center text-center">
+        <div className="empty-state py-5 w-50 d-flex flex-column justify-content-center align-items-center text-center">
             <i class="bi bi-x-circle"></i>
             No hay {title} que mostrar.
         </div>

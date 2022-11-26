@@ -1,13 +1,9 @@
 import "./css/ForumDetail.css";
-import NavBar from "../components/NavBar";
-import { MenuContent } from "../components/NavBar";
-import ProfileBanner from "../components/ProfileBanner";
+import ForumBanner from "../components/ForumBanner";
+import PP from"/img/pp3.jpg";
+import Post from "../components/Post";
 import UserInfo from "../components/UserInfo";
 import { NewRhyme } from "../components/NewRhyme";
-import Post from "../components/Post";
-import PP from"/img/pp3.jpg";
-import Background from "/img/LOGIN.png"
-import ForumBanner from "../components/ForumBanner";
 
 var date = new Date();
 date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});

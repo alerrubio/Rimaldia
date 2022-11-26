@@ -112,12 +112,10 @@ const Comments = ({ commentsUrl, currentUserId, post_id }) => {
             currentUserId={currentUserId}
           />
         ))}
-        <div class="d-flex flex-row justify-content-center py-20">
-        <EmptyState title="comentarios"/>
-        </div>
+
         {(PostComments?.length === 0) &&
-          <div class="d-flex flex-row justify-content-center py-20">
-          <EmptyState title="comentarios"/>
+          <div class="d-flex flex-row justify-content-center">
+            <EmptyState title="comentarios"/>
           </div>
         }
       </div>

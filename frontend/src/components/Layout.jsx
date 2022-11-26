@@ -1,19 +1,17 @@
-import { Outlet, Navigate } from "react-router-dom";
-import SideBar from "../components/SideBar";
-import Logo from "/img/logo.png";
-import NavBar, { MenuContent }  from "../components/NavBar";
-import UserInfo from "./UserInfo";
 import "./css/Layout.css";
 import Background from "/img/LOGIN.png";
+import Logo from "/img/logo.png";
+import NavBar, { MenuContent }  from "../components/NavBar";
 import React, { useState, useEffect } from "react";
-import PP from"/img/pp3.jpg";
-import { useAuth0 } from "@auth0/auth0-react";
+import SideBar from "../components/SideBar";
+import UserInfo from "./UserInfo";
+import { Outlet, Navigate } from "react-router-dom";
 import { isAdmin, getUser, editUser } from '../services/usersService.js';
+import { useAuth0 } from "@auth0/auth0-react";
+import { shortDate } from "../utils/dateFormatter";
 
 var date = new Date();
-date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
-var datetime = new Date();
-datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
+date = shortDate(date);
 
 export default function Layout() {
   const { user, isAuthenticated, isLoading } = useAuth0();
