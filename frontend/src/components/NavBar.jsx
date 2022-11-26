@@ -33,14 +33,6 @@ export const NavBar = (props) => {
       <>
         <nav className={`themedSecondary barra-nav navbar navbar-expand-sm navbar-expand-lg  fixed-top d-flex justify-content-${nav_bar_alignment}`}>
           {logo_div}
-          <div className="d-flex flex-row align-items-center col-12 col-lg-3 ms-2">
-            <div className="search-bar input-group rounded">
-              <input type="search" className="form-control rounded search-nav-bar" placeholder="Buscar" aria-label="Search" aria-describedby="search-addon" />
-              <span className="input-group-text border-0" id="search-addon">
-                <i className="bi bi-search"></i>
-              </span>
-            </div>
-          </div>
           <div className="col-12 col-lg-6">
               {children}
           </div>
