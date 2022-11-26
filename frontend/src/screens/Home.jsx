@@ -73,8 +73,8 @@ function Home() {
                               {tag_name: "Libre"}]} edit></TagsBox>
           </div>
           <div className="Actividad-iconos">
-            <div><i className="bi bi-hand-thumbs-up-fill"></i>12</div>
-            <div><Link to={`/post/${posting._id}`}><i className="bi bi-chat-left-fill"></i>5 </Link></div>
+            <div><i className="bi bi-hand-thumbs-up-fill"></i></div>
+            <div><Link to={`/post/${posting._id}`}><i className="bi bi-chat-left-fill"></i></Link></div>
             <div><i className="bi bi-save-fill"></i></div>
             {Showbutton(posting.user_id, posting._id)} 
           </div>
