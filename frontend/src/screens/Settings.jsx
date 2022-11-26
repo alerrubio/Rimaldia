@@ -57,12 +57,6 @@ const Settings = (props) => {
           user_full_name={user.given_name + " " + user.family_name} 
           role={roleStr}
           picture={user.picture}>
-          <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="Seleccione el tema">
-              <Dropdown.Item href="#">Luz</Dropdown.Item>
-              <Dropdown.Item href="#">Nocturno</Dropdown.Item>
-              <Dropdown.Item href="#">Calido</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Frío</Dropdown.Item>
-          </DropdownButton>
         </ProfileBanner>
         
         <div className="settings-content col-10 d-flex flex-row justify-content-center">

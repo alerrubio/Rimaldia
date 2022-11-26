@@ -58,10 +58,11 @@ function Home() {
     {rhymes &&
      rhymes.map((posting) => (
       <div className="post-container">
+        <Link to={`/post/${posting._id}`}>
       <UserInfo user_name={ posting.user_name } 
         time={datedb = longDate(posting.createdAt)} 
         profile_picture={ posting.user_picture }></UserInfo>
-     
+     </Link>
           <div className="Contenido_Publicado">
             {posting.text}
             <div className="post-row d-flex flex-row justify-content-between ">
@@ -69,9 +70,6 @@ function Home() {
               
           </div>
           <div className="Actividad-iconos">
-            <div><i className="bi bi-hand-thumbs-up-fill"></i>12</div>
-            <div><Link to={`/post/${posting._id}`}><i className="bi bi-chat-left-fill"></i>5 </Link></div>
-            <div><i className="bi bi-save-fill"></i></div>
             {Showbutton(posting.user_id, posting._id)} 
           </div>
         </div>

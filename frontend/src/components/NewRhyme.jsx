@@ -52,7 +52,7 @@ export const NewRhyme = (props) => {
       }
         const dbRes = await createPost(dbPost);
         console.log("DB response: " +  dbRes);
-        //window.location.reload(false);
+        window.location.reload(false);
     }
     catch(err){
       setErrorMessage(errorMessage => "Hubo un error al querer publicar.")

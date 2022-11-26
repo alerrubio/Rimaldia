@@ -88,24 +88,13 @@ function UserProfile(props) {
             {rhymes &&
      rhymes.map((posting) => (
       <div className="post-container">
-      
+      <Link to={`/post_edit/${posting._id}`}>
       <UserInfo user_name={ user.given_name + " " + user.family_name } time= {datedb = new Date(posting.createdAt).toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' })} profile_picture={user.picture}></UserInfo>
-     
+      </Link>
           <div className="Contenido_Publicado">
       {posting.text}
             <div className="post-row d-flex flex-row justify-content-between ">
-          <div className="hashtags d-flex flex-row justify-content-around align-items-center flex-wrap">
-              <TagsBox tags={[{tag_name: "Romance"},
-                              {tag_name: "Rimaldía"},
-                              {tag_name: "Tristeza"},
-                              {tag_name: "Motivacional"},
-                              {tag_name: "Verso"},
-                              {tag_name: "Libre"}]} edit></TagsBox>
-          </div>
-          <div className="Actividad-iconos">
-            <div><i className="bi bi-hand-thumbs-up-fill"></i>12</div>
-            <div><Link to={"/post/:id"}><i className="bi bi-chat-left-fill"></i>5 </Link></div>
-            <div><i className="bi bi-save-fill"></i></div>
+          <div className="Actividad-iconos w-100 d-flex flex-row justify-content-end">
             <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="✎">
                 <Dropdown.Item as={Link} to={`/post_edit/${posting._id}`} eventKey = {posting._id} >Editar</Dropdown.Item>
                 <Dropdown.Item onClick={() => deletePost(posting._id)} eventKey = {posting._id} >Eliminar</Dropdown.Item>

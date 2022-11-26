@@ -32,12 +32,7 @@ export const SideBar = (props) => {
                 <i className="bi bi-people-fill"></i>
                 Foros
             </Link>
-            <Link to={"/favoritos"} className={`head nav-link ${
-                location.pathname === "/favoritos" ? "active" : ""
-              }`}>
-                <i className="bi bi-hearts"></i>
-                Favoritos
-            </Link>
+            
         </div>
         <Link to={"/"} className="img-logo-link d-flex flex-row justify-content-center">
         <img className="logo-sidebar" src={ Logo } />
