@@ -34,7 +34,10 @@ const Comments = ({ commentsUrl, currentUserId, post_id }) => {
 
   const newComment = (commentObj) => {
     createComment(commentObj).then((comment) => {
-      setPostComments([comment, ...PostComments]);
+      const updatedBackendComments = getAllComments(post_id).then((comments) => {
+        setPostComments(comments.data);
+      });
+      setBackendComments(updatedBackendComments);
       setActiveComment(null);
     });
   };
