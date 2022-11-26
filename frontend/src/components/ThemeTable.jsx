@@ -52,77 +52,79 @@ const ThemeTable = (props) => {
       try{
     
         setError(error => error);
-        const styleString = ``;
+        const styleString = `#themed {
+            background-color:`+select.background_color+`; 
+            position:relative;
+            margin: auto;   
+        }
 
-        //logica de eniar al css
-        setThemeStyle(`#themed {
-          background-color:`+select.background_color+`; 
-          position:relative;
-          margin: auto;   
-      }
+        #themed .themedText {
+            color: `+select.variation_1+`;
+        }
 
-      #themed .themedText {
-          color: `+select.variation_1+`;
-      }
+        #themed .themedSecondary {
+            background-color: `+select.variation_2+`;
+        }
 
-      #themed .themedSecondary {
-          background-color: `+select.variation_2+`;
-      }
+        #themed .themedButton {
+            background-color: `+select.variation_3+`;
+        }
 
-      #themed .themedButton {
-          background-color: `+select.variation_3+`;
-      }
+        #themed .btn {
+            background-color: `+select.variation_3+`;
+        }
 
-      #themed .btn {
-          background-color: `+select.variation_3+`;
-      }
+        #themed form {
+            background-color: `+select.variation_2+`;
+        }
 
-      #themed form {
-          background-color: `+select.variation_2+`;
-      }
+        #themed .users-cards-container {
+            background-color: `+select.variation_2+`;
+        }
 
-      #themed .users-cards-container {
-          background-color: `+select.variation_2+`;
-      }
+        #themed .forum-cards-container {
+            background-color: `+select.variation_2+`;
+        }
 
-      #themed .forum-cards-container {
-          background-color: `+select.variation_2+`;
-      }
+        #themed .user-card-container {
+            background-color: `+select.background_color+`;
+        }
 
-      #themed .user-card-container {
-          background-color: `+select.background_color+`;
-      }
+        #themed .user_info_card {
+            color:`+select.variation_1+`;    
+        }
 
-      #themed .user_info_card {
-          color:`+select.variation_1+`;    
-      }
+        #themed form h3{
+            color: `+select.variation_1+`;
+        }
 
-      #themed form h3{
-          color: `+select.variation_1+`;
-      }
+        #themed .nav-link{
+            color: `+select.variation_1+`;
+        }
 
-      #themed .nav-link{
-          color: `+select.variation_1+`;
-      }
+        #themed th{
+            color: `+select.variation_1+`;
+        }
 
-      #themed th{
-          color: `+select.variation_1+`;
-      }
+        #themed td{
+            color: `+select.variation_1+`;
+        }
 
-      #themed td{
-          color: `+select.variation_1+`;
-      }
+        #themed p{
+            color: `+select.variation_1+`;
+        }
 
-      #themed p{
-          color: `+select.variation_1+`;
-      }
+        #themed label{
+            color: `+select.variation_1+`;
+        }`;
 
-      #themed label{
-          color: `+select.variation_1+`;
-      }`);
+        //logica de eniar css
+        setThemeStyle(styleString);
+      
+        localStorage.setItem('themeStyleLS', styleString);
 
         console.log("Tema seleccionado con éxito.");
-        setRefresh(true);    
+        //setRefresh(true);    
       }
       catch(err){
         setErrorMessage(errorMessage => "No fue posible cargar los temas.")

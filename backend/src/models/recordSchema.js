@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const RecordSchema = mongoose.Schema({
     start_date: {
         type: Date,
-        required: true,
+        max: Date.now,
+        required: true
     },
     end_date: {
         type: Date, 
@@ -20,22 +21,22 @@ const RecordSchema = mongoose.Schema({
     most_used_tags_id: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "tag",
-        required: true
+        required: false
     }],
     most_liked_posts_id: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "post",
-        required: true
+        required: false
     }],
     most_commented_posts_id: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "comment",
-        required: true
+        required: false
     }],
     most_popular_users_id: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",
-        required: true
+        required: false
     }]
 },
 {timestamps: true});

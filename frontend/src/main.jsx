@@ -26,6 +26,7 @@ import Settings from './screens/Settings';
 import SuperAdmin from './screens/SuperAdmin';
 import TForos from './screens/TForos';
 import ThemeCreate from './screens/ThemeCreate';
+import RecordCreate from './screens/RecordCreate';
 import Themes from './screens/Themes';
 import UserProfile from './screens/UserProfile'
 import Users from './screens/Users';
@@ -120,6 +121,10 @@ const router = createBrowserRouter([
       {
         path: "verTemas",
         element: <Themes />,
+      },
+      {
+        path: "crearRecord",
+        element: <RecordCreate />,
       }
     ] 
   },
