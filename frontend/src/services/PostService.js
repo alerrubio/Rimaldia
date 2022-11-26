@@ -12,6 +12,19 @@ export const getPostsbyuser = async (user_id) => {
   }
 };
 
+export const EditPost = async (idpost, posttext) => {
+  //const response = await axios({ url: "/students", method: "get" });
+  try {
+    const route = "/post/" + idpost;
+    const response = await axios.put(route, posttext);
+    return response.data;
+    
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};
+
 export const getallPosts = async (post) => {
   //const response = await axios({ url: "/students", method: "get" });
   try {
@@ -39,6 +52,20 @@ export const createPost = async (post) => {
   } catch (err) {
     console.error(err);
     return "Ocurrió un error inesperado";
+  }
+};
+
+export const destroypost = async (postId) => {
+  if (window.confirm("¿Estás seguro que quieres eliminar tu rima?")) {
+      //const response = await axios({ url: "/students", method: "get" });
+      try {
+        const route = "/post/" + postId;
+        const response = await axios.delete(route);
+        return response.data;
+      } catch (err) {
+        console.error(err);
+        return [];
+      }
   }
 };
 

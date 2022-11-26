@@ -16,6 +16,7 @@ import Modal from "react-modal";
 import NewNotification from './screens/NewNotification';
 import Notifications from './screens/Notifications';
 import PostDetail from './screens/PostDetail';
+import PostEdit from './screens/PostEdit';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Records from './screens/Records';
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Home />,
+      },
+      {
+        path: "post_edit/:id",
+        element: <PostEdit />,
       },
       {
         path: "post/:id",

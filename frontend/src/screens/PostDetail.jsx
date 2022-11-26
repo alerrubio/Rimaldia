@@ -12,7 +12,7 @@ var date = new Date();
 date = date.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
 var datetime = new Date();
 datetime = datetime.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' });
-
+var datedb;
 export const PostDetail = (props) => {
   const {id} = useParams();
   const { user } = useAuth0();
@@ -32,7 +32,7 @@ export const PostDetail = (props) => {
         <div className="post-detail-box d-flex flex-column justify-content-center">
             <Post visible_rows="5" post_detail text={post.text} commentsCount="FALTA NUM COMMENTS" likesCount="FALTA NUM LIKES">
               <UserInfo user_name={`${post.user_name}`} 
-                time={post.createdAt} 
+                time={datedb = new Date(post.createdAt).toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'numeric', minute:'numeric' })}  
                 profile_picture={post.user_picture}></UserInfo>
             </Post>
             <Comments
