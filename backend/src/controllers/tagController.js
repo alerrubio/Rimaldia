@@ -1,4 +1,5 @@
 const Tag = require("../models/tagSchema");
+const mongoose = require('mongoose');
 
 //[GET]
 exports.get = async (req, res) => {
@@ -20,21 +21,19 @@ exports.get = async (req, res) => {
   };
 
   exports.getPostTags = async (req, res) => {
-    const {params: {post_id}} = req;
     const {body: {tags}} = req;
+    console.log(tags);
     try {
-      const data = await Tag.findOne({_id: tags}).catch((err) => console.log("Un error ha ocurrido", err));
+      const data = await Tag.find({ '_id': { $in: tags } });
       console.log(data);
-      if (data){
-        res.send(data);
+      if (data.length > 0){
+        res.status(200).send(data);
       }else{
-        res.send({
-            message: "No se encontró el tag",
-            tag_id: id,
-          });
+        res.status(204).send();
       }
     } catch (error) {
       console.log(error);
+      res.status(500).send(error);
     }
   };
 

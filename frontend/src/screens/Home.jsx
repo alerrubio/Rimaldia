@@ -63,15 +63,10 @@ function Home() {
         profile_picture={ posting.user_picture }></UserInfo>
      
           <div className="Contenido_Publicado">
-      {posting.text}
+            {posting.text}
             <div className="post-row d-flex flex-row justify-content-between ">
           <div className="hashtags d-flex flex-row justify-content-around align-items-center flex-wrap">
-              <TagsBox tags={[{tag_name: "Romance"},
-                              {tag_name: "Rimaldía"},
-                              {tag_name: "Tristeza"},
-                              {tag_name: "Motivacional"},
-                              {tag_name: "Verso"},
-                              {tag_name: "Libre"}]} edit></TagsBox>
+              
           </div>
           <div className="Actividad-iconos">
             <div><i className="bi bi-hand-thumbs-up-fill"></i>12</div>

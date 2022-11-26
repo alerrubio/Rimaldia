@@ -1,44 +1,29 @@
 import "./css/Post.css";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TagsBox from "./TagsBox";
 import { useLocation, Link } from "react-router-dom";
 
 export const Post = (props) => {
-    const {children, visible_rows, post_detail, text, commentsCount, likesCount } = props;
+    const {children, visible_rows, post_detail, text, commentsCount, likesCount, tags_list } = props;
+    const [tags, setTags] = useState([]);
     let tags_and_statistics_box = [];
-
+    
     if (post_detail){
       tags_and_statistics_box.push(
         <div className="post-row d-flex flex-row justify-content-between ">
           <div className="hashtags d-flex flex-row justify-content-start align-items-center flex-wrap">
-              <TagsBox tags={[{tag_name: "Romance"},
-                              {tag_name: "Rimaldía"},
-                              {tag_name: "Tristeza"},
-                              {tag_name: "Motivacional"},
-                              {tag_name: "Verso"},
-                              {tag_name: "Libre"}]} edit></TagsBox>
+              <TagsBox tags={tags_list} edit></TagsBox>
           </div>
         </div>
-      );
-      tags_and_statistics_box.push(
-        <div className="Actividad-iconos d-flex flex-row justify-content-end">
-            <div><i className="bi bi-hand-thumbs-up-fill"></i>{likesCount}</div>
-            <div><i className="bi bi-chat-left-fill"></i>{commentsCount}</div>
-          </div>
       );
     }
     else{
       tags_and_statistics_box.push(
         <div className="post-row d-flex flex-row justify-content-between ">
           <div className="hashtags d-flex flex-row justify-content-around align-items-center flex-wrap">
-              <TagsBox tags={[{tag_name: "Romance"},
-                              {tag_name: "Rimaldía"},
-                              {tag_name: "Tristeza"},
-                              {tag_name: "Motivacional"},
-                              {tag_name: "Verso"},
-                              {tag_name: "Libre"}]} edit></TagsBox>
+              <TagsBox tags={tags_list} edit></TagsBox>
           </div>
           <div className="Actividad-iconos">
             <div><i className="bi bi-hand-thumbs-up-fill"></i>12</div>
@@ -53,6 +38,10 @@ export const Post = (props) => {
       );
     }
     
+    useEffect(() => {
+      setTags(tags_list);
+    }, [tags_list]);
+
     return (
       <>
         <div className="post-container">

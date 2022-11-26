@@ -97,12 +97,6 @@ export const NewRhyme = (props) => {
                             addTag={newTag}></TagsBox>
                 </div>
                 <div className="d-flex flex-row justify-content-end col-4">
-                  <DropdownButton id="dropdown-basic-button" className="mx-4" variant="leaf" title="Seleccione la categoría" onChange={handleChange} name="tag_id">
-                      <Dropdown.Item href="#" value="Romantico">Romántico</Dropdown.Item>
-                      <Dropdown.Item href="#" value="Romantico">Verso Libre</Dropdown.Item>
-                      <Dropdown.Item href="#" value="Romantico">Tristeza</Dropdown.Item>
-                      <Dropdown.Item href="#/action-3" value="Romantico">Motivacional</Dropdown.Item>
-                  </DropdownButton>
 
                   <Button form="user_post" type="submit" variant="peach" className="btn btn-publish">
                       Publicar {post_to}

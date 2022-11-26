@@ -12,9 +12,9 @@ export const createTag = async (tag) => {
     }
   };
 
-  export const getPostTags = async (post_id) => {
+  export const getPostTags = async (post_id, tags) => {
     try {
-      const response = await axios.get(`/post/${post_id}/tags`);
+      const response = await axios.post(`/post/${post_id}/tags`, tags);
       console.log(response);
       return response;
     } catch (err) {
