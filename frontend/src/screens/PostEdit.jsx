@@ -33,6 +33,8 @@ export const PostEdit = (props) => {
     try{
         const dbRes = await EditPost(post._id,post);
         console.log("DB response: " +  dbRes);
+        window.confirm("Post editado con éxito");
+        window.location.href='/'
     }
     catch(err){
       setErrorMessage(errorMessage => "Hubo un error al querer editar.")
