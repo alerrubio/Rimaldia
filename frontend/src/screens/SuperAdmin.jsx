@@ -106,6 +106,8 @@ function SuperAdmin(props) {
     if (adminUser == false){
       setnotAdmin(true);
     }
+    let fromLS= localStorage.getItem('themeStyleLS');
+    setThemeStyle(fromLS);
   }, []);
 
   if (isLoading){
@@ -113,7 +115,7 @@ function SuperAdmin(props) {
     <>
       <div className="loading d-flex justify-content-center align-items-center">
         <img src={Logo} className="loadingLogo" alt="" />
-        <i class="bi bi-gear rotate"></i>
+        <i className="bi bi-gear rotate"></i>
       </div>
     </>
     );

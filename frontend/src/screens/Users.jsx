@@ -105,7 +105,7 @@ function Users() {
               class="bi bi-caret-left-fill nav-prev"></i>
           }
           {(usersPerPage.length >= 4 && !(((page) * 4) > userCount)) && 
-          <i onClick={() => setPage(page + 1)} class="bi bi-caret-right-fill nav-next"></i>
+          <i onClick={() => setPage(page + 1)} className="bi bi-caret-right-fill nav-next"></i>
           }
           
         </div>

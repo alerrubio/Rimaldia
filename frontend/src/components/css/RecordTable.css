@@ -91,3 +91,7 @@
     .headerDark {
       color: #626262
     }
+
+    th, td {
+      border: rgba(0, 0, 0, 0);
+    }

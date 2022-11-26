@@ -63,11 +63,12 @@ export const NavBar = (props) => {
       newTab("/admin/notification",nav_tabs,"Notificaciones");
       newTab("/admin/verTemas",nav_tabs,"Temas");
       newTab("/admin/usuarios",nav_tabs,"Usuarios");
+      newTab("/admin/crearRecord",nav_tabs,<i class=" themedText bi bi-clipboard-data-fill"></i>);
     }
     else{
       newTab("/",nav_tabs,"Inicio");
       newTab("/foros",nav_tabs,"Foros");
-      newTab("/Records",nav_tabs,"Records");
+      newTab("/Records",nav_tabs,<i class=" themedText bi bi-clipboard-data-fill"></i>);
       newTab("/notifications/user/:id",nav_tabs,<i className="bi bi-bell-fill notif-bell"></i>);
     }
   
