@@ -52,24 +52,6 @@ function ForumDetail(props) {
                       about={forum.description}
                       forum_id={id}
                       user_id={user.sub.substring(6)}/>
-        <div className="posts-content col-12 d-flex flex-column justify-content-center">
-          <NewRhyme post_to={`en ${forum.name}`}/>
-          <Post>
-            <UserInfo user_name={props.username} 
-                      time={date} 
-                      profile_picture={PP}></UserInfo>
-          </Post>
-          <Post>
-            <UserInfo user_name={props.username} 
-                      time={date} 
-                      profile_picture={PP}></UserInfo>
-          </Post>
-          <Post>
-            <UserInfo user_name={props.username} 
-                      time={date} 
-                      profile_picture={PP}></UserInfo>
-          </Post>
-        </div>
       </div>
     </>
   )

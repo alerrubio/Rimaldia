@@ -23,12 +23,14 @@ export const TagsBox = (props) => {
     const addTagName = (event) => {
         addTag(tag);
     }
-
-    {tags.forEach((tag, index)=>{
-      tagList.push(
-        <div className="tag-div">#{tag.tag_name}</div>
-      );
-    })}
+    if (tags){
+      {tags.forEach((tag, index)=>{
+        tagList.push(
+          <div className="tag-div">#{tag.tag_name}</div>
+        );
+      })}
+    }
+    
     
     const handleChange = (event) => {
       const { name, value } = event.target;
