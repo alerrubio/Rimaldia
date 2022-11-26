@@ -34,20 +34,20 @@ export const NewRhyme = (props) => {
   const {children, title, user_name, time, post_to, visible_rows} = props;
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [post, setPost] = useState(postInit);
-  const [tagsArr, setTagsArr] = useState([]);
   const [error, setError] = useState(false);
   const tagsNames = [];
+  const tagsArr = [];
   const newPost = async (event) => {
     event.preventDefault();
     try{
-
+      
       let dbPost = {
         user_id: user.sub.substring(6),
         user_name: user.given_name + " " + user.family_name,
         user_picture: user.picture,
         text: post.text, 
         color_index: "1",
-        tag_id: post.tag_id,
+        tag_id: tagsArr,
         liked_by_id: "637c3f97110faec67bbd39db"
       }
         const dbRes = await createPost(dbPost);
@@ -72,9 +72,9 @@ export const NewRhyme = (props) => {
 
   const newTag = async (tag) => {
     const response = await createTag(tag).then((tag) => {
-      setTagsArr([tag.data._id, ...tagsArr]);
       tagsNames.push({tag_name: tag.data.data.name});
-      console.log(tagsNames);
+      tagsArr.push(tag.data.data._id);
+      console.log(tagsArr);
     });
     console.log(response);
   }
