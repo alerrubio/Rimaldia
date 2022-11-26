@@ -5,12 +5,14 @@ import Background from "/img/LOGIN.png"
 import ThemeSettings from "../components/ThemeSet";
 import EditUser from "../components/EditUser";
 import CategoryDesc from "../components/CategoryDesc";
+import CategoryInput from "../components/CategoryInput";
 
 const Category = () => {
   
   return (
     <>
         <div className="mt-4">
+          <CategoryInput></CategoryInput>
           <CategoryDesc nombre_categoria="Romántico" placeholder_textarea="Rímas con temática de amor"></CategoryDesc>
           <CategoryDesc nombre_categoria="Verso libre" placeholder_textarea="Escritura en tipo prosa"></CategoryDesc>
           <CategoryDesc nombre_categoria="Tristeza" placeholder_textarea="Rímas sobre el sentimiento de tristeza"></CategoryDesc>
