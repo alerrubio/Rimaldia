@@ -1,13 +1,13 @@
 import "../components/css/comments.css";
 import "../components/css/loadingComponent.css";
+import Logo from "/img/logo.png";
 import ForumCard from "./ForumCard";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import EmptyState from "./EmptyState";
 import { 
   getAllForums,
   getAllUserForums,
   getAllUserOwnedForums,
-  editForum,
   deleteForum
 } 
 from '../services/ForumService';
@@ -19,15 +19,6 @@ const Forum = (props) => {
   const [backendForums, setBackendForums] = useState([]);
   const [forums, setForums] = useState([]);
   const [userID, setuserID] = useState("");
-
-  const editForumCallback = (forumId, forum) => {
-    editForum(forumId, forum).then(() => {
-      const updatedBackendForums = getAllForums().then((response) => {
-        setPostComments(response.data);
-      });
-      setBackendComments(updatedBackendForums);
-    });
-  };
 
   const destroyForum = (forum_id) => {
     if (window.confirm("¿Estás seguro que quieres eliminar este foro?")) {
@@ -92,11 +83,9 @@ const Forum = (props) => {
         about={forum.description}
         currentUserId={userID}
         deleteForum={destroyForum}
-        forum={forum}
         forum_name={forum.name}
-        key={forum._id}
+        forumObj={forum}
         members_no={forum.users.length}
-        updateForum={editForumCallback}
         canEdit
       />
     ))}
@@ -104,12 +93,10 @@ const Forum = (props) => {
       <ForumCard
         about={forum.description}
         currentUserId={userID}
-        deleteForum={destroyForum}
-        forum={forum}
         forum_name={forum.name}
         key={forum._id}
+        forumObj={forum}
         members_no={forum.users.length}
-        updateForum={editForumCallback}
       />
     ))}
     {(forums?.length === 0) &&

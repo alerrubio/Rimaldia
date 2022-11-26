@@ -1,5 +1,17 @@
 import { AxiosConfig as axios } from "./AxiosConfig";
 
+export const getForum = async (forum_id) => {
+    try {
+        const route = `/group/${forum_id}`;
+        const response = await axios.get(route);
+        console.log(response);
+        return response;
+    } catch (err) {
+        console.error(err);
+        return err;
+    }
+};
+
 export const getAllForums = async () => {
     try {
         const response = await axios.get(`/groups`);
@@ -44,9 +56,12 @@ export const getAllUserOwnedForums = async (user_id) => {
     }
 };
 
-export const editForum = async (forum_id, forum) => {
+export const editForum = async (forum_id, user_id_p) => {
     try {
-        const response = await axios.put(`/group/${forum_id}`, forum);
+        const body = {
+            user_id: user_id_p
+        }
+        const response = await axios.put(`/group/${forum_id}/add_user`, body);
         console.log(response);
         return response;
     } catch (err) {

@@ -1,11 +1,9 @@
-import React, { useState } from "react";
 import "./css/Post.css";
-import TagsBox from "./TagsBox";
-var fecha = new Date();
-fecha = fecha.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric' });
-import { useLocation, Link } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import React, { useState } from "react";
+import TagsBox from "./TagsBox";
+import { useLocation, Link } from "react-router-dom";
 
 export const Post = (props) => {
     const {children, visible_rows, post_detail, text, commentsCount, likesCount } = props;

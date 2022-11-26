@@ -30,7 +30,7 @@ resuelvo el problema de la soledad del ser.
 Invito a la luna y con mi sombra somos tres.`
 
 export const NewRhyme = (props) => {
-  
+  const {children, title, user_name, time, post_to, visible_rows} = props;
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [post, setPost] = useState(postInit);
   const [error, setError] = useState(false);
@@ -66,7 +66,7 @@ export const NewRhyme = (props) => {
       [name]: value,
     });
   };
-    const {children, title, user_name, time, post_to, visible_rows} = props;
+    
     return (
       <>
         {children}
@@ -96,8 +96,8 @@ export const NewRhyme = (props) => {
                   </DropdownButton>
 
                   <Button form="user_post" type="submit" variant="peach" className="btn btn-publish">
-                  Publicar
-              </Button>  
+                      Publicar {post_to}
+                  </Button>  
                 </div>
             </div>
           </div>

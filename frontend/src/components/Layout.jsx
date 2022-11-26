@@ -1,6 +1,7 @@
 import "./css/Layout.css";
 import Background from "/img/LOGIN.png";
 import Logo from "/img/logo.png";
+import "../components/css/loadingComponent.css";
 import NavBar, { MenuContent }  from "../components/NavBar";
 import React, { useState, useEffect } from "react";
 import SideBar from "../components/SideBar";

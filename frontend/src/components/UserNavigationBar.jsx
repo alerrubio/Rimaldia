@@ -20,7 +20,8 @@ export const UserNavigationBar = (props) => {
         col-2 forum-tab d-flex justify-content-center ${tab.color}`}>
       {tab.name}
       </Link>);
-    })}
+    })
+  }
 
     return (
       <>

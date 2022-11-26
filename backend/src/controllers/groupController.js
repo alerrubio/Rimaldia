@@ -35,17 +35,14 @@ exports.get = async (req, res) => {
   try{
     const data = await Group.findOne({_id: id});
     if (data){
-      res.send(data);
+      res.status(200).send(data);
     }else{
-      res.send({
-          message: "No se encontró el grupo",
-          grupo_id: id,
-        });
+      res.status(204).send();
     }
   }
   catch(error){
     console.log(error);
-    res.send({
+    res.status(500).send({
       message: "Algo salió mal",
       error_data: error,
       group_id: id,
@@ -162,3 +159,33 @@ exports.update = async (req, res) => {
         group_data: group});
     }
   };
+
+exports.addUser = async (req, res) => {
+  const {params: {id}} = req;
+  const {body: {user_id}} = req;
+  try{
+      const groupDB = await Group.findOne({_id: id});
+      let data = null;
+      let msg = "";
+      let status = 0;
+      if (groupDB){
+        console.log("ESTE ES EL ID DEL USUARIO: " + user_id);
+        groupDB.users.push(user_id);
+        data = groupDB.save();
+        msg = "Grupo actualizado";
+        status = 200;
+      }else{
+        msg = "No se encontró el grupo";
+        data = {group_id: id};
+        status = 204;
+      }
+      res.status(status).send({message: msg,
+                data: data});
+  }
+  catch(err){
+      console.log(err);
+      res.status(500).send({message: "No se pudo actualizar el grupo",
+      error_data: err,  
+      group_data: group});
+  }
+};

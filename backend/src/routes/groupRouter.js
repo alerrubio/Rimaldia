@@ -10,5 +10,6 @@ router.get("/user/:user_id/owned_groups", group_controller.getAllUserOwnedGroups
 router.post("/group", group_controller.create);
 router.delete("/group/:id", group_controller.delete);
 router.put("/group/:id", group_controller.update);
+router.put("/group/:id/add_user", group_controller.addUser);
 
 module.exports = router;

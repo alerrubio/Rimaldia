@@ -14,9 +14,8 @@ export const ForumCard = (props) => {
       canEdit,
       currentUserId,
       deleteForum,
-      forum,
+      forumObj,
       forum_name, 
-      key,
       members_no, 
       updateForum,
     } = props;
@@ -27,7 +26,7 @@ export const ForumCard = (props) => {
     return (
       <>
         <div className="forum-card-container d-flex flex-column align-items-end col-2">
-          <Link to={"/forum/:id"} className="forum-card d-flex flex-row justify-content-center align-items-center">
+          <Link to={`/forum/${forumObj._id}`} className="forum-card d-flex flex-row justify-content-center align-items-center">
             <div className="forum_info d-flex flex-column p-3">
               <div className="forum_name">{forum_name}</div>
               <div className="about-forum">
@@ -43,7 +42,7 @@ export const ForumCard = (props) => {
             <Link to="">
               <i className="bi bi-folder-minus edit-forum"></i>
             </Link>
-            <Link to="" onClick={deleteForum}>
+            <Link to="" onClick={() => deleteForum(forumObj._id)}>
               <i className="bi bi-trash-fill edit-forum" ></i>
             </Link>
           </div>

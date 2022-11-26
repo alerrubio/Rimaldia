@@ -6,7 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import React, { useState, useEffect } from "react";
 
 function TForos() {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isLoading } = useAuth0();
   const [userID, setUserID] = useState("");
 
   useEffect(() => {
