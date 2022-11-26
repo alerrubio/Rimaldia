@@ -50,7 +50,8 @@ function ForumDetail(props) {
       <div className="profile-page-content d-flex flex-column align-items-center">
         <ForumBanner forum_name={forum.name} 
                       about={forum.description}
-                      addUser={addUserToForum}/>
+                      forum_id={id}
+                      user_id={user.sub.substring(6)}/>
         <div className="posts-content col-12 d-flex flex-column justify-content-center">
           <NewRhyme post_to={`en ${forum.name}`}/>
           <Post>
