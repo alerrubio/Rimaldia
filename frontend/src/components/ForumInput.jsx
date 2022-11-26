@@ -24,7 +24,7 @@ function ForumInput(props) {
       event.preventDefault();
       const res = await createForum(forum);
       if (window.confirm("Foro creado con éxito")){
-        return (<Redirect to="/misforos" />);
+        window.location.href = '/misforos';
       }
     }
     catch(err){
